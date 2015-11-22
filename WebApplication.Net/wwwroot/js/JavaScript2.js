@@ -1,0 +1,3 @@
+function displayMsg() {
+    alert("Hello");
+}

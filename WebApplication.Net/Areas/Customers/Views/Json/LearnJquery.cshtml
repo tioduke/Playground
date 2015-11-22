@@ -1,0 +1,24 @@
+
+@{
+    ViewBag.Title = "LearnJquery";
+}
+
+<body>
+    <div> 
+        <input type="button" value="See Json data" onclick="return getJson();" />
+    </div>
+</body>
+
+@section Scripts {
+
+    <script language="javascript">
+        function getJson() {
+            $.getJSON("/Customers/Json/getJson", null, Display);
+            return true;
+        }
+        function Display(data) {
+            alert(data.CustomerCode);
+        }
+    </script>
+
+}

@@ -1,0 +1,91 @@
+@{
+    Layout = null;
+}
+ 
+<!DOCTYPE html>
+ 
+<html dir="ltr">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PageViewer</title>
+ 
+    <style type="text/css">
+        .embed-hidden{
+            position: absolute;
+            top: 0;
+            width: 0;
+            height: 0;
+            z-index: -99;
+        }
+    </style>
+    <style type="text/css" media="print">
+        body {
+            display: none;
+        } /*disable printing*/
+    </style>
+    <link rel="stylesheet" href="~/css/viewer.css">
+</head>
+ 
+<body tabindex="1">
+ 
+    <embed src="@Url.Action("GetPdf")" id="PdfPrint" class="embed-hidden" aria-hidden="true" />
+ 
+    <div id="outerContainer">
+        <div id="mainContainer">
+ 
+        <div class="toolbar">
+            <div id="toolbarContainer">
+            <div id="toolbarViewer">
+                <div id="toolbarViewerRight">
+                <button id="print" class="toolbarButton print hiddenMediumView" title="Print" tabindex="33" data-l10n-id="print" onclick="document.getElementById('PdfPrint').printWithDialog()">
+                    <span data-l10n-id="print_label">Imprimer</span>
+                </button>
+                <button id="download" class="toolbarButton download hiddenMediumView" title="Download" tabindex="34" data-l10n-id="download" onclick="window.location.href='@Url.Action("DownloadPDF")'">
+                    <span data-l10n-id="download_label">Télécharger</span>
+                </button>
+                </div>
+            </div>
+            </div>
+        </div> <!-- toolbar -->
+ 
+        <div id="viewerContainer" tabindex="0">
+            <div id="viewer" class="pdfViewer"></div>
+        </div>
+ 
+        </div> <!-- mainContainer -->
+    </div> <!-- outerContainer -->
+ 
+    <script src="~/lib/pdfjs-dist/web/compatibility.js"></script>
+    <script src="~/lib/pdfjs-dist/build/pdf.js"></script>
+    <script src="~/lib/pdfjs-dist/web/pdf_viewer.js"></script>
+ 
+    <script type="text/javascript">
+        var url = '@Url.Action("GetPdf")';
+        var container = document.getElementById('viewerContainer');
+        
+        // (Optionally) enable hyperlinks within PDF files.
+        var pdfLinkService = new PDFJS.PDFLinkService();
+       
+        var pdfViewer = new PDFJS.PDFViewer({
+            container: container,
+            linkService: pdfLinkService,
+        });
+        pdfLinkService.setViewer(pdfViewer);
+       
+        container.addEventListener('pagesinit', function () {
+            // We can use pdfViewer now, e.g. let's change default scale.
+            pdfViewer.currentScaleValue = 'page-width';
+        });
+       
+        // Loading document.
+        PDFJS.getDocument(url).then(function (pdfDocument) {
+            // Document loaded, specifying document for the viewer and
+            // the (optional) linkService.
+            pdfViewer.setDocument(pdfDocument);
+         
+            pdfLinkService.setDocument(pdfDocument, null);
+        });
+    </script>
+ 
+</body>
+</html>

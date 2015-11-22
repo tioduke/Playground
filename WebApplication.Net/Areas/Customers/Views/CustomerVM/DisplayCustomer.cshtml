@@ -1,0 +1,36 @@
+@model WebApplication.Net.Customers.Models.CustomerViewModel
+
+@{
+    ViewBag.Title = "DisplayCustomer";
+}
+
+<div>
+    <h4>CustomerViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TxtName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TxtName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TxtAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TxtAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerLevelColor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerLevelColor)
+        </dd>
+
+    </dl>
+</div>

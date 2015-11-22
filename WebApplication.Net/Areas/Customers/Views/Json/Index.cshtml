@@ -1,0 +1,55 @@
+@inject IJsonHelper Json;
+@model WebApplication.Net.Customers.Models.Customer
+
+<body>
+    <div class="modal fade" id="popupModal" tabindex="-1" role="dialog" aria-labelledby="deleteLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="deleteLabel">Popup!</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="popupContainer"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <input type="button" value="Click" onclick="submitForm()" />
+        <input type="button" value="Popup!" onclick="showPopup()" />
+    </div>
+
+</body>
+
+@section Scripts {
+
+    <script language="javascript">
+        function submitForm() {
+            var url = '@Url.Action("sendJson")';
+            var _model = @Html.Raw(Json.Serialize(Model));
+
+            $.post(url, {customer: JSON.stringify(_model)}, function(data) {
+                $('#popupContainer').html(data);
+    
+                $('#popupModal').modal('show');
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        function showPopup() {
+            var url = '@Url.Action("ItsAPopup")';
+
+            $.get(url, function(data) {
+                $('#popupContainer').html(data);
+
+                $('#popupModal').modal('show');
+            });
+        }
+    </script>
+
+}

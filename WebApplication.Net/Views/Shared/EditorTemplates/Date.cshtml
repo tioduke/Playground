@@ -1,0 +1,41 @@
+@model DateTime?
+@using Microsoft.AspNet.Mvc.ViewFeatures
+
+@{
+    string propertyName = ViewData.ModelMetadata.PropertyName;
+    string gClass = (ViewData["class"] != null) ? String.Format(" {0}", ViewData["class"].ToString()) : "";
+
+    var htmlAttributes = HtmlHelper.AnonymousObjectToHtmlAttributes(ViewData["htmlAttributes"]);
+    if (htmlAttributes.ContainsKey("class"))
+    {
+        htmlAttributes["class"] = String.Format("form-control {0} {1}", htmlAttributes["class"], "datepicker").Trim();
+    }
+    else
+    {
+        htmlAttributes.Add("class", String.Format("form-control {0}", "datepicker").Trim());
+    }
+
+    var dateAttributes = HtmlHelper.AnonymousObjectToHtmlAttributes(ViewData["dateAttributes"]);
+    dateAttributes.Add("data-provide", "datepicker");
+    dateAttributes.Add("data-date-language", @System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+    if (!dateAttributes.ContainsKey("data-date-format"))
+    {
+        dateAttributes.Add("data-date-format", @System.Threading.Thread.CurrentThread.CurrentUICulture.DateTimeFormat.ShortDatePattern.Replace("M", "m"));
+    }
+    if (!dateAttributes.ContainsKey("data-date-today-highlight"))
+    {
+        dateAttributes.Add("data-date-today-highlight", "true");
+    }
+    if (!dateAttributes.ContainsKey("data-date-week-start"))
+    {
+        dateAttributes.Add("data-date-week-start", "0");
+    }
+}
+<div class="form-group@(gClass)" id="form-group-@propertyName" tabindex="-1">
+    <div class="input-group date" role="application"@foreach (var item in dateAttributes) {<text> @item.Key="@item.Value"</text>}>
+        @Html.TextBoxFor(m => m, ViewData.ModelMetadata.DisplayFormatString, htmlAttributes)
+        <span class="input-group-addon" role="button">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
+</div>
