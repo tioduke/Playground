@@ -1,5 +1,6 @@
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
+using System.IO;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -10,22 +11,23 @@ namespace WebApplication.Net
     {
         public Startup(IHostingEnvironment env)
         {
-            // Set up configuration sources.
             var builder = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
 
-        public IConfigurationRoot Configuration { get; set; }
+        public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
             services.AddMvc();
+            //services.AddCaching();
             services.AddSession();
-            services.AddCaching();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,13 +39,12 @@ namespace WebApplication.Net
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
-            app.UseIISPlatformHandler();
 
             app.UseStaticFiles();
 
@@ -61,8 +62,17 @@ namespace WebApplication.Net
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
-
-        // Entry point for the application.
-        public static void Main(string[] args) => Microsoft.AspNet.Hosting.WebApplication.Run<Startup>(args);
+        
+        public static void Main(string[] args)
+        {
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
+                .UseStartup<Startup>()
+                .Build();
+ 
+            host.Run();
+        }
     }
 }

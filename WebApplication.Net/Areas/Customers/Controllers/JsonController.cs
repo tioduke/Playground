@@ -1,5 +1,5 @@
 using System;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 using WebApplication.Net.Customers.Models;

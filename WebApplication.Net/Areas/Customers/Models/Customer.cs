@@ -1,6 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using WebApplication.Net.Validations;
 
 namespace WebApplication.Net.Customers.Models

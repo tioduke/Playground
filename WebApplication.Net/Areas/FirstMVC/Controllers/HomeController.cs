@@ -1,5 +1,5 @@
 using System.IO;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication.Net.FirstMVC.Controllers
 {

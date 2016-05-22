@@ -1,4 +1,4 @@
-@using Microsoft.AspNet.Http
+@using Microsoft.AspNetCore.Http
 
 @{
     Layout = null;
@@ -17,7 +17,7 @@
         @ViewData["Myval"]<br />
         @Context.Session.GetString("Session1")<br />
         @ViewBag.MyVal<br />
-        @Html.ActionLink("Click", "../Default1/Action1")
+        @Html.ActionLink("Click", "Action1", "Default1")
     </div>
 </body>
 </html>

@@ -1,5 +1,6 @@
 using System.IO;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebApplication.Net.FirstMVC.Controllers
 {
@@ -17,7 +18,8 @@ namespace WebApplication.Net.FirstMVC.Controllers
             } else if (id.Value == 2) {
                 return View("EmbedViewer");
             } else {
-                return new HttpStatusCodeResult(400);
+                Response.StatusCode = StatusCodes.Status400BadRequest;
+                return new EmptyResult();
             }
         }
 

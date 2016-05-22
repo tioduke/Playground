@@ -1,5 +1,5 @@
 @model DateTime?
-@using Microsoft.AspNet.Mvc.ViewFeatures
+@using Microsoft.AspNetCore.Mvc.ViewFeatures
 
 @{
     string propertyName = ViewData.ModelMetadata.PropertyName;
@@ -20,7 +20,7 @@
     dateAttributes.Add("data-date-language", @System.Globalization.CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
     if (!dateAttributes.ContainsKey("data-date-format"))
     {
-        dateAttributes.Add("data-date-format", @System.Threading.Thread.CurrentThread.CurrentUICulture.DateTimeFormat.ShortDatePattern.Replace("M", "m"));
+        dateAttributes.Add("data-date-format", @System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat.ShortDatePattern.Replace("M", "m"));
     }
     if (!dateAttributes.ContainsKey("data-date-today-highlight"))
     {

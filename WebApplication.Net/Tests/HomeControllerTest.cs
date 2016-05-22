@@ -1,4 +1,4 @@
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Xunit;
 
 using WebApplication.Net.FirstMVC.Controllers;

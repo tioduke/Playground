@@ -1,10 +1,10 @@
-using System.Collections.Generic; 
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNet.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace WebApplication.Net.Validations
 {
-	public class NasValidationAttribute : ValidationAttribute, IClientModelValidator
+    public class NasValidationAttribute : ValidationAttribute, IClientModelValidator
 	{
 		protected override ValidationResult IsValid(object value, ValidationContext validationContext)
 		{
@@ -30,10 +30,22 @@ namespace WebApplication.Net.Validations
 			return (s % 10) == 0 ? ValidationResult.Success : new ValidationResult(FormatErrorMessage(validationContext.DisplayName));
 		}		
 		
-		public IEnumerable<ModelClientValidationRule> GetClientValidationRules(ClientModelValidationContext context)
+		public void AddValidation(ClientModelValidationContext context)
 		{
-			yield return new ModelClientValidationRule("nasvalidation", FormatErrorMessage(context.ModelMetadata.PropertyName));
+			MergeAttribute(context.Attributes, "data-val", "true");
+			MergeAttribute(context.Attributes, "data-val-remote", FormatErrorMessage(context.ModelMetadata.PropertyName));
+			MergeAttribute(context.Attributes, "data-val-remote-url", "nasvalidation");
 		}
 
+		private  bool MergeAttribute(IDictionary<string, string> attributes, string key, string value)
+		{
+			if (attributes.ContainsKey(key))
+			{
+				return false;
+			}
+
+			attributes.Add(key, value);
+			return true;
+		}
 	}
 }
