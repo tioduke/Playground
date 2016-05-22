@@ -33,8 +33,7 @@ namespace WebApplication.Net.Validations
 		public void AddValidation(ClientModelValidationContext context)
 		{
 			MergeAttribute(context.Attributes, "data-val", "true");
-			MergeAttribute(context.Attributes, "data-val-remote", FormatErrorMessage(context.ModelMetadata.PropertyName));
-			MergeAttribute(context.Attributes, "data-val-remote-url", "nasvalidation");
+			MergeAttribute(context.Attributes, "data-val-nasvalidation", FormatErrorMessage(context.ModelMetadata.PropertyName));
 		}
 
 		private  bool MergeAttribute(IDictionary<string, string> attributes, string key, string value)
