@@ -80,17 +80,13 @@
   },
 
   "scripts": {
-    "prepublish": [ "dotnet restore", "npm install", "bower install" ],
+    "prepublish": [ "dotnet restore", "bower install" ],
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   },
 
   "testRunner": "xunit",
 
   "tooling": {
-    "defaultNamespace": "WebApplicationBasic"
-  },
-
-  "commands": {
-    "test": "xunit.runner.dnx -parallel none"
+    "defaultNamespace": "WebApplication.Net"
   }
 }
