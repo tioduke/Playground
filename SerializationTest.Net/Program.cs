@@ -6,9 +6,6 @@ namespace SerializationTest.Net
     {
         public static void Main(string[] args)
         {
-            string str = "Hello, world!";
-            SerializationUtil.AssertObjectSerialization<string>(str);
-
             var obj = new ClassA
             {
                 Property1 = new ClassB
@@ -19,7 +16,12 @@ namespace SerializationTest.Net
                     Property4 = new Dictionary<string, object> { { "clave", "valor" } } 
                 } 
             };
-            SerializationUtil.AssertObjectSerialization<ClassA>(obj);
+
+            var stream = SerializationUtil.Serialize<ClassA>(obj);
+            System.Console.WriteLine(stream.ContentToString());
+
+            var copy = SerializationUtil.Clone<ClassA>(obj);
+            System.Console.WriteLine(copy.Equals(obj) ? "Equals" : "Not equals");
         }
     }
 }

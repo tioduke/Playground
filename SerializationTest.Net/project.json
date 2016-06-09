@@ -25,6 +25,8 @@
     }
   },
 
+  "testRunner": "xunit",
+
   "tooling": {
     "defaultNamespace": "SerializationTest.Net"
   }

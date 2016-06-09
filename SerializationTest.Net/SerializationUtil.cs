@@ -1,8 +1,8 @@
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
-//using KellermanSoftware.CompareNetObjects;
 using Xunit;
+//using KellermanSoftware.CompareNetObjects;
 
 namespace SerializationTest.Net
 {
@@ -19,7 +19,6 @@ namespace SerializationTest.Net
         public static T Deserialize<T>(Stream stream)
         {
             DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
-            System.Console.WriteLine(stream.ContentToString());
             stream.Position = 0;
             return (T)serializer.ReadObject(stream);
         }

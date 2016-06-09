@@ -25,7 +25,6 @@ namespace SerializationTest.Net
 
     }
 
-
     internal static class CollectionsExtensionMethods
     {
         internal static bool AreEqual(this IList<string> list1, IList<string> list2)
