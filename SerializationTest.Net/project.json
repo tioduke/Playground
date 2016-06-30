@@ -1,31 +1,40 @@
 {
   "version": "1.0.0-*",
-  "buildOptions": {
-    "emitEntryPoint": true
-  },
+  "description": "Serialization Util Test",
+  "testRunner": "xunit",
 
   "dependencies": {
-    "dotnet-test-xunit": "1.0.0-rc2-*",
+    "dotnet-test-xunit": "1.0.0-*",
     "Microsoft.NETCore.App": {
       "type": "platform",
-      "version": "1.0.0-rc2-3002702"
+      "version": "1.0.0"
     },
-    "System.Runtime.Serialization.Json": "4.0.2-rc2-24027",
-    "xunit": "2.1.0-rc2-*",
+    "System.Runtime.Serialization.Json": "4.0.2",
+    "xunit": "2.1.0",
     "CompareNETObjects": "3.5.0"
   },
 
   "frameworks": {
     "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.0"
+        }
+      },
       "imports": [
-        "dotnet5.6",
         "dnxcore50",
         "portable-net45+win8"
       ]
     }
   },
 
-  "testRunner": "xunit",
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "copyToOutput": {
+      "include": [ "xunit.runner.json" ]
+    }
+  },
 
   "tooling": {
     "defaultNamespace": "SerializationTest.Net"
