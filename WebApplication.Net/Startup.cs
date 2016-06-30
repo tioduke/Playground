@@ -66,6 +66,7 @@ namespace WebApplication.Net
         public static void Main(string[] args)
         {
             var host = new WebHostBuilder()
+                .UseUrls("http://127.0.0.1:5000")
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
