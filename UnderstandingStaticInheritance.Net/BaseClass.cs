@@ -9,11 +9,11 @@ public class BaseClass
     {
         get
         {
-            if (this._listNames == null)
+            if (BaseClass._listNames == null)
             {
-                this._listNames = new List<string> { "one", "two" };
+                BaseClass._listNames = new List<string> { "one", "two" };
             }
-            return this._listNames;
+            return BaseClass._listNames;
         }
     }
     
