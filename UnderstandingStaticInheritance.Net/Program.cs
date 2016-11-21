@@ -9,9 +9,9 @@ namespace UnderstandindStaticInheritance.Net
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Before : " + DerivedClass.ListNames);
+            Console.WriteLine("Before : " + DerivedClass.ListNames[0]);
             DerivedClass.ListNames = new List<string> { "three", "four" };
-            Console.WriteLine("After  : " + DerivedClass.ListNames);
+            Console.WriteLine("After  : " + DerivedClass.ListNames[0]);
         }
     }
 }
