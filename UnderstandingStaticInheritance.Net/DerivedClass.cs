@@ -1,21 +1,21 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
-public class DerivedClass : BaseClass
+namespace UnderstandindStaticInheritance.Net
 {
-    public static new List<string> ListNames
+    public class DerivedClass : BaseClass
     {
-        get
+        public static new List<string> ListNames
         {
-            return BaseClass.ListNames;
-        }
-        set
-        {
-            var field = typeof(BaseClass).GetField("_listNames", BindingFlags.Static|BindingFlags.NonPublic);
-            field.SetValue(null, value);
+            get
+            {
+                return BaseClass.ListNames;
+            }
+            set
+            {
+                var field = typeof(BaseClass).GetField("_listNames", BindingFlags.Static | BindingFlags.NonPublic);
+                field.SetValue(null, value);
+            }
         }
     }
-    
 }

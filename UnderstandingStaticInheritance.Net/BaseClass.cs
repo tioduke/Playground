@@ -1,20 +1,20 @@
-using System;
 using System.Collections.Generic;
 
-public class BaseClass
+namespace UnderstandindStaticInheritance.Net
 {
-    private static  List<string> _listNames;
-
-    public static List<string> ListNames
+    public class BaseClass
     {
-        get
+        private static List<string> _listNames;
+
+        public static List<string> ListNames
         {
-            if (BaseClass._listNames == null)
+            get
             {
-                BaseClass._listNames = new List<string> { "one", "two" };
+                if (BaseClass._listNames == null)
+                    BaseClass._listNames = new List<string> { "one", "two" };
+
+                return BaseClass._listNames;
             }
-            return BaseClass._listNames;
         }
     }
-    
 }
