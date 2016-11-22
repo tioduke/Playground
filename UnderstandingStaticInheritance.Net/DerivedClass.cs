@@ -7,10 +7,7 @@ namespace UnderstandindStaticInheritance.Net
     {
         public static new List<string> ListNames
         {
-            get
-            {
-                return BaseClass.ListNames;
-            }
+            get { return BaseClass.ListNames; }
             set
             {
                 var field = typeof(BaseClass).GetField("_listNames", BindingFlags.Static | BindingFlags.NonPublic);

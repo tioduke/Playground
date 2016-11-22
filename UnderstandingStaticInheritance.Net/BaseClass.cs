@@ -8,13 +8,7 @@ namespace UnderstandindStaticInheritance.Net
 
         public static List<string> ListNames
         {
-            get
-            {
-                if (BaseClass._listNames == null)
-                    BaseClass._listNames = new List<string> { "one", "two" };
-
-                return BaseClass._listNames;
-            }
+            get { return _listNames ?? (_listNames = new List<string> { "one", "two" }); }
         }
     }
 }
