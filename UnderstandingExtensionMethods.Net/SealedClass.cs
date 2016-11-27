@@ -19,11 +19,6 @@ namespace UnderstandingExtensionMethods.Net
         {
             get { return this._listeString ?? (this._listeString = new List<string>()); }
         }
-
-        public void AddString(string str)
-        {
-            this._listeString.Add(str);
-        }
     }
 
     public static class SealedClassExtensions
