@@ -2,7 +2,6 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using Xunit;
-//using KellermanSoftware.CompareNetObjects;
 
 namespace SerializationTest.Net
 {
@@ -33,13 +32,11 @@ namespace SerializationTest.Net
             T copy = Clone<T>(source);
 
             Assert.True(copy.Equals(source));
-            //var compare = new CompareLogic();
-            //Assert.True(compare.Compare(source, copy).AreEqual);
         }
 
     }
 
-    internal static class StreamExtensionMethods
+    internal static class StreamExtensions
     {
         internal static string ContentToString(this Stream stream)
         {
