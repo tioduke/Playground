@@ -1,4 +1,3 @@
-using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -61,19 +60,6 @@ namespace WebApplication.Net
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-        }
-        
-        public static void Main(string[] args)
-        {
-            var host = new WebHostBuilder()
-                .UseUrls("http://127.0.0.1:5000")
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .Build();
- 
-            host.Run();
         }
     }
 }
