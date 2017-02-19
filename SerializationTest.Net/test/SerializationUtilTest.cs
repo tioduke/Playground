@@ -14,7 +14,7 @@ namespace SerializationTest.Net.Tests
             //Act
             
             //Assert
-            SerializationUtil.AssertObjectSerialization<string>(str);
+            SerializationUtilTest.AssertObjectSerialization<string>(str);
         }
 
         [Fact] 
@@ -35,7 +35,14 @@ namespace SerializationTest.Net.Tests
             //Act
             
             //Assert
-            SerializationUtil.AssertObjectSerialization<ClassA>(obj);
+            SerializationUtilTest.AssertObjectSerialization<ClassA>(obj);
+        }
+
+        public static void AssertObjectSerialization<T>(T source)
+        {
+            T copy = SerializationUtil.Clone<T>(source);
+
+            Assert.True(copy.Equals(source));
         }
 
     }

@@ -1,7 +1,6 @@
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
-using Xunit;
 
 namespace SerializationTest.Net
 {
@@ -25,13 +24,6 @@ namespace SerializationTest.Net
         public static T Clone<T>(T source)
         {
             return Deserialize<T>(Serialize<T>(source));
-        }
-
-        public static void AssertObjectSerialization<T>(T source)
-        {
-            T copy = Clone<T>(source);
-
-            Assert.True(copy.Equals(source));
         }
 
     }
