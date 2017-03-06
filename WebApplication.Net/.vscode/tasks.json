@@ -1,24 +1,32 @@
 {
     "version": "0.1.0",
-    "command": "dotnet",
+    "command": "bash",
     "isShellCommand": true,
-    "args": [],
+    "args": [ "-c" ],
     "tasks": [
         {
             "taskName": "build",
-            "args": [],
+            "suppressTaskName": true,
+            "args": [
+                "dotnet build \"${workspaceRoot}/test\""
+            ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"
         },
         {
             "taskName": "run",
-            "args": [],
-            "isBuildCommand": false
+            "suppressTaskName": true,
+            "args": [
+                "dotnet run --project \"${workspaceRoot}/src/WebApplication.Net.csproj\""
+            ]
         },
         {
             "taskName": "test",
-            "args": [],
-            "isBuildCommand": false
+            "suppressTaskName": true,
+            "args": [ 
+                "dotnet test \"${workspaceRoot}/test/WebApplication.Net.Tests.csproj\""
+            ],
+            "isTestCommand": true
         }
     ]
 }
