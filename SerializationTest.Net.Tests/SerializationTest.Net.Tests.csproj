@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../src/SerializationTest.Net.csproj" />
+    <ProjectReference Include="../SerializationTest.Net/SerializationTest.Net.csproj" />
   </ItemGroup>
 
   <ItemGroup>
