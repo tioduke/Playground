@@ -1,0 +1,25 @@
+{
+    "version": "0.1.0",
+    "command": "bash",
+    "isShellCommand": true,
+    "args": [ "-c" ],
+    "tasks": [
+        {
+            "taskName": "build",
+            "suppressTaskName": true,
+            "args": [
+                "dotnet build \"${workspaceRoot}/../DataAccess.Net.Tests\""
+            ],
+            "isBuildCommand": true,
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "test",
+            "suppressTaskName": true,
+            "args": [ 
+                "dotnet test \"${workspaceRoot}/../DataAccess.Net.Tests/DataAccess.Net.Tests.csproj\""
+            ],
+            "isTestCommand": true
+        }
+    ]
+}

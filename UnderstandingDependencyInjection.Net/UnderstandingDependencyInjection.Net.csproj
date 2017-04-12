@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <RuntimeFrameworkVersion>1.1.0</RuntimeFrameworkVersion>
+    <AssemblyName>UnderstandingDependencyInjection.Net</AssemblyName>
+    <Description>UnderstandingDependencyInjection.Net Console Application</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Resources/database.sqlite">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../DataAccess.Net/DataAccess.Net.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="1.1.0" />
+  </ItemGroup>
+
+</Project>
