@@ -1,10 +1,11 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using Microsoft.Data.Sqlite;
 using DataAccess.Net.Interfaces;
 
 namespace DataAccess.Net.Implementation.Sqlite
 {
-    public class SqliteCtrlAccesDB : ICtrlAccesDB
+    public class SqliteCtrlAccesDB : ICtrlAccesDB, IDisposable
     {
         private string _connectionId;
         private IDbConnection _connection;
@@ -12,6 +13,11 @@ namespace DataAccess.Net.Implementation.Sqlite
         public SqliteCtrlAccesDB(string connectionId)
         {
             this._connectionId = connectionId;
+        }
+
+        public void Dispose()
+        {
+            this.ReleaseConnection();
         }
 
         public void ReleaseConnection()
