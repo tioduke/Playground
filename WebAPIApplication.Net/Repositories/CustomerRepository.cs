@@ -44,7 +44,7 @@ namespace WebAPIApplication.Net.Repositories
             return base.ExecuteNonQueryRequest(CustomerSql.SqlInsert, entity);
         }
 
-        public int Update(Customer entity, CustomerCriteria criteria=null)
+        public int Update(Customer entity, CustomerCriteria criteria)
         {
             if (entity == null)
                 throw new ArgumentException("entity");

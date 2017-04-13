@@ -4,7 +4,7 @@
     {
         long GetSequence();
         int Insert(TEntity entite);
-        int Update(TEntity entite, TCriteria criteres);
+        int Update(TEntity entite, TCriteria criteres=default(TCriteria));
         int Delete(TCriteria criteres);
     }
 }

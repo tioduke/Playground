@@ -59,7 +59,7 @@ namespace WebAPIApplication.Net.Controllers
                 BirthDate = value.BirthDate,
                 OtherDate = value.OtherDate
             };
-            this._customerWritableRepository.Update(entity, null);
+            this._customerWritableRepository.Update(entity);
         }
 
         // DELETE api/customer/5
