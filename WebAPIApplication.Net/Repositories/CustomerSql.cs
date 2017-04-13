@@ -49,5 +49,60 @@ namespace WebAPIApplication.Net.Repositories
                 : "Where CODE = :CustomerCode ";
         }
 
+        internal static string SqlInsert
+        {
+            get
+            {
+                return new StringBuilder()
+                    .Append("Insert Into ")
+                    .Append("CUSTOMER (")
+                    .Append("CODE, ")
+                    .Append("NAME, ")
+                    .Append("NAS, ")
+                    .Append("AMOUNT, ")
+                    .Append("BIRTH_DATE, ")
+                    .Append("OTHER_DATE ")
+                    .Append(") Values(")
+                    .Append(":CustomerCode, ")
+                    .Append(":CustomerName, ")
+                    .Append(":NAS, ")
+                    .Append(":Amount, ")
+                    .Append(":BirthDate, ")
+                    .Append(":OtherDate)")
+                    .ToString();
+            }
+        }
+
+        internal static string SqlUpdate
+        {
+            get
+            {
+                return new StringBuilder()
+                    .Append("Update ")
+                    .Append("CUSTOMER ")
+                    .Append("Set ")
+                    .Append("CODE = :CustomerCode, ")
+                    .Append("NAME = :CustomerName, ")
+                    .Append("NAS = :NAS, ")
+                    .Append("AMOUNT = :Amount, ")
+                    .Append("BIRTH_DATE = :BirthDate, ")
+                    .Append("OTHER_DATE = :OtherDate ")
+                    .Append("Where ID = :Id")
+                    .ToString();
+            }
+        }
+
+        internal static string SqlDelete
+        {
+            get
+            {
+                return new StringBuilder()
+                    .Append("Delete From ")
+                    .Append("CUSTOMER ")
+                    .Append("Where ID = :Id")
+                    .ToString();
+            }
+        }
+
     }
 }

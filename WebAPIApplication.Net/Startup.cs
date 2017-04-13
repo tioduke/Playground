@@ -34,6 +34,7 @@ namespace WebAPIApplication.Net
 
             // Add application services.
             services.AddScoped<IReadableRepository<Customer, CustomerCriteria>, CustomerRepository>()
+                    .AddScoped<IWritableRepository<Customer, CustomerCriteria>, CustomerRepository>()
                     .AddScoped<IDbExecutor, DapperExecutor>()
                     .AddScoped<ICtrlAccesDB>(x => new SqliteCtrlAccesDB("DataSource=Resources/database.sqlite"));
         }

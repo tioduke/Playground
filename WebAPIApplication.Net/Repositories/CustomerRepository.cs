@@ -9,7 +9,8 @@ namespace WebAPIApplication.Net.Repositories
 {
     public class CustomerRepository :
         BaseRepository<Customer>,
-        IReadableRepository<Customer, CustomerCriteria>
+        IReadableRepository<Customer, CustomerCriteria>,
+        IWritableRepository<Customer, CustomerCriteria>
     {
         public CustomerRepository(ICtrlAccesDB accesDB, IDbExecutor dbExec)
             : base(accesDB, dbExec) { }
@@ -30,5 +31,34 @@ namespace WebAPIApplication.Net.Repositories
             return base.ExecuteReaderRequest(CustomerSql.SqlSelectCustomers(criteria), criteria);
         }
         
+        public long GetSequence()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Insert(Customer entity)
+        {
+            if (entity == null)
+                throw new ArgumentException("entity");
+
+            return base.ExecuteNonQueryRequest(CustomerSql.SqlInsert, entity);
+        }
+
+        public int Update(Customer entity, CustomerCriteria criteria=null)
+        {
+            if (entity == null)
+                throw new ArgumentException("entity");
+
+            return base.ExecuteNonQueryRequest(CustomerSql.SqlUpdate, entity);
+        }
+
+        public int Delete(CustomerCriteria criteria)
+        {
+            if (criteria == null || criteria.Id == null)
+                throw new ArgumentException("criteria");
+
+            return base.ExecuteNonQueryRequest(CustomerSql.SqlDelete, criteria);
+        }
+
     }
 }
