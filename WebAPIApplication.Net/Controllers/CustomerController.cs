@@ -38,6 +38,17 @@ namespace WebAPIApplication.Net.Controllers
             return this._customerReadableRepository.FindById(criteria);
         }
 
+        // GET api/customer/code/A
+        [HttpGet("/code/{customerCode}")]
+        public IEnumerable<Customer> Get(string customerCode)
+        {
+            var criteria = new CustomerCriteria
+            {
+                CustomerCode = customerCode
+            };
+            return this._customerReadableRepository.Find(criteria);
+        }
+
         // POST api/customer
         [HttpPost]
         public void Post([FromBody]Customer value)
