@@ -39,7 +39,7 @@ namespace WebAPIApplication.Net.Controllers
         }
 
         // GET api/customer/code/A
-        [HttpGet("/code/{customerCode}")]
+        [HttpGet("code/{customerCode}")]
         public IEnumerable<Customer> Get(string customerCode)
         {
             var criteria = new CustomerCriteria
