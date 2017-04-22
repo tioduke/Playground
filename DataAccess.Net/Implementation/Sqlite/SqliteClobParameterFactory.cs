@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using DataAccess.Net.Interfaces;
 
-namespace DataAccess.Net.Sqlite
+namespace DataAccess.Net.Implementation.Sqlite
 {
     public class SqliteClobParameterFactory : IClobParameterFactory
     {
