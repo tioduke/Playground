@@ -1,19 +1,24 @@
 {
     "version": "0.1.0",
-    "command": "dotnet",
+    "command": "bash",
     "isShellCommand": true,
-    "args": [],
+    "args": [ "-c" ],
     "tasks": [
         {
             "taskName": "build",
-            "args": [],
+            "suppressTaskName": true,
+            "args": [
+                "dotnet build -c Release \"${workspaceRoot}\""
+            ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"
         },
         {
             "taskName": "run",
-            "args": [],
-            "isBuildCommand": false
+            "suppressTaskName": true,
+            "args": [
+                "dotnet run -c Release --project \"${workspaceRoot}\""
+            ]
         }
     ]
 }
