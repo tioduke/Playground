@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/bin/Debug/netcoreapp1.1/DataAccess.Net.dll",
+            "program": "${workspaceFolder}/src/bin/Debug/netcoreapp2.0/DataAccess.Net.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src",
             "console": "internalConsole",

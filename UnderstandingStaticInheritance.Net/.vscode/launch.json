@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/Debug/<target-framework>/<project-name.dll>",
+            "program": "${workspaceFolder}/bin/Debug/netcoreapp2.0/UnderstandingStaticInheritance.Net.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "externalConsole": false,
@@ -17,7 +17,7 @@
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach",
-            "processId": "${command.pickProcess}"
+            "processId": "${command:pickProcess}"
         }
     ]
 }
