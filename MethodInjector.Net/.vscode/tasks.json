@@ -8,7 +8,7 @@
             "taskName": "build",
             "suppressTaskName": true,
             "args": [
-                "dotnet build -c Release \"${workspaceRoot}\""
+                "dotnet build -c Release \"${workspaceFolder}\""
             ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"
@@ -17,7 +17,7 @@
             "taskName": "run",
             "suppressTaskName": true,
             "args": [
-                "dotnet run -c Release --project \"${workspaceRoot}\""
+                "dotnet run -c Release --project \"${workspaceFolder}\""
             ]
         }
     ]

@@ -8,7 +8,7 @@
             "taskName": "build",
             "suppressTaskName": true,
             "args": [
-                "dotnet build \"${workspaceRoot}/../WebApplication.Net.Tests\""
+                "dotnet build \"${workspaceFolder}/../WebApplication.Net.Tests\""
             ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"
@@ -17,14 +17,14 @@
             "taskName": "run",
             "suppressTaskName": true,
             "args": [
-                "dotnet run --project \"${workspaceRoot}/WebApplication.Net.csproj\""
+                "dotnet run --project \"${workspaceFolder}/WebApplication.Net.csproj\""
             ]
         },
         {
             "taskName": "test",
             "suppressTaskName": true,
             "args": [ 
-                "dotnet test \"${workspaceRoot}/../WebApplication.Net.Tests/WebApplication.Net.Tests.csproj\""
+                "dotnet test \"${workspaceFolder}/../WebApplication.Net.Tests/WebApplication.Net.Tests.csproj\""
             ],
             "isTestCommand": true
         }

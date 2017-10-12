@@ -8,7 +8,7 @@
             "taskName": "build",
             "suppressTaskName": true,
             "args": [
-                "dotnet build \"${workspaceRoot}\""
+                "dotnet build \"${workspaceFolder}\""
             ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"
@@ -17,14 +17,14 @@
             "taskName": "run",
             "suppressTaskName": true,
             "args": [
-                "dotnet run --project \"${workspaceRoot}/../SerializationTest.Net/SerializationTest.Net.csproj\""
+                "dotnet run --project \"${workspaceFolder}/../SerializationTest.Net/SerializationTest.Net.csproj\""
             ]
         },
         {
             "taskName": "test",
             "suppressTaskName": true,
             "args": [ 
-                "dotnet test \"${workspaceRoot}/SerializationTest.Net.Tests.csproj\""
+                "dotnet test \"${workspaceFolder}/SerializationTest.Net.Tests.csproj\""
             ],
             "isTestCommand": true
         }

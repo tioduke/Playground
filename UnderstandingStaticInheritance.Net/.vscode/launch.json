@@ -6,9 +6,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceRoot}/bin/Debug/<target-framework>/<project-name.dll>",
+            "program": "${workspaceFolder}/bin/Debug/<target-framework>/<project-name.dll>",
             "args": [],
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceFolder}",
             "externalConsole": false,
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart"

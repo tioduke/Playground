@@ -8,7 +8,7 @@
             "taskName": "build",
             "suppressTaskName": true,
             "args": [
-                "dotnet build \"${workspaceRoot}/../DataAccess.Net.Tests\""
+                "dotnet build \"${workspaceFolder}/../DataAccess.Net.Tests\""
             ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"
@@ -17,7 +17,7 @@
             "taskName": "test",
             "suppressTaskName": true,
             "args": [ 
-                "dotnet test \"${workspaceRoot}/../DataAccess.Net.Tests/DataAccess.Net.Tests.csproj\""
+                "dotnet test \"${workspaceFolder}/../DataAccess.Net.Tests/DataAccess.Net.Tests.csproj\""
             ],
             "isTestCommand": true
         }

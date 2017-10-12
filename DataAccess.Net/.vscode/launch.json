@@ -6,9 +6,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceRoot}/src/bin/Debug/netcoreapp1.1/DataAccess.Net.dll",
+            "program": "${workspaceFolder}/src/bin/Debug/netcoreapp1.1/DataAccess.Net.dll",
             "args": [],
-            "cwd": "${workspaceRoot}/src",
+            "cwd": "${workspaceFolder}/src",
             "console": "internalConsole",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart"
