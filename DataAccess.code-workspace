@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "DataAccess.Net"
+		},
+		{
+			"path": "DataAccess.Net.Tests"
+		}
+	],
+	"settings": {}
+}

@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "UnderstandingDependencyInjection.Net"
+		},
+		{
+			"path": "DataAccess.Net"
+		}
+	],
+	"settings": {}
+}

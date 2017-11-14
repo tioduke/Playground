@@ -1,32 +1,17 @@
 {
-    "version": "0.1.0",
-    "command": "bash",
-    "isShellCommand": true,
-    "args": [ "-c" ],
+    "version": "2.0.0",
     "tasks": [
         {
-            "taskName": "build",
-            "suppressTaskName": true,
-            "args": [
-                "dotnet build \"${workspaceFolder}/../SerializationTest.Net.Tests\""
-            ],
-            "isBuildCommand": true,
+            "label": "build",
+            "group": "build",
+            "type": "shell",
+            "command": "dotnet build \"${workspaceFolder}\"",
             "problemMatcher": "$msCompile"
         },
         {
-            "taskName": "run",
-            "suppressTaskName": true,
-            "args": [
-                "dotnet run --project \"${workspaceFolder}/SerializationTest.Net.csproj\""
-            ]
-        },
-        {
-            "taskName": "test",
-            "suppressTaskName": true,
-            "args": [ 
-                "dotnet test \"${workspaceFolder}/../SerializationTest.Net.Tests/SerializationTest.Net.Tests.csproj\""
-            ],
-            "isTestCommand": true
+            "label": "run",
+            "type": "shell",
+            "command": "dotnet run --project \"${workspaceFolder}/SerializationTest.Net.csproj\""
         }
     ]
 }
