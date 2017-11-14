@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializationTest.Net.Tests", "SerializationTest.Net.Tests.csproj", "{1DCE4DCF-3C89-4E91-8AF2-6D921EC203AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializationTest.Net", "SerializationTest.Net.csproj", "{9580EA46-5698-440C-861A-42637400CB8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializationTest.Net", "..\SerializationTest.Net\SerializationTest.Net.csproj", "{9580EA46-5698-440C-861A-42637400CB8A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializationTest.Net.Tests", "..\SerializationTest.Net.Tests\SerializationTest.Net.Tests.csproj", "{1DCE4DCF-3C89-4E91-8AF2-6D921EC203AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
