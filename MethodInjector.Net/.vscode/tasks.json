@@ -1,24 +1,18 @@
 {
-    "version": "0.1.0",
-    "command": "bash",
-    "isShellCommand": true,
-    "args": [ "-c" ],
+    "version": "2.0.0",
     "tasks": [
         {
-            "taskName": "build",
-            "suppressTaskName": true,
-            "args": [
-                "dotnet build -c Release \"${workspaceFolder}\""
-            ],
-            "isBuildCommand": true,
-            "problemMatcher": "$msCompile"
+            "label": "build",
+            "type": "shell",
+            "command": "dotnet build \"${workspaceFolder}\"",
+            "group": "build",
+            "problemMatcher": [ "$msCompile" ]
         },
         {
-            "taskName": "run",
-            "suppressTaskName": true,
-            "args": [
-                "dotnet run -c Release --project \"${workspaceFolder}\""
-            ]
+            "label": "run",
+            "type": "shell",
+            "command": "dotnet run --project \"${workspaceFolder}/MethodInjector.Net.csproj\"",
+            "problemMatcher": []
         }
     ]
 }
