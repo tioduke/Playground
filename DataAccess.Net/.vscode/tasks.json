@@ -3,9 +3,9 @@
     "tasks": [
         {
             "label": "build",
-            "group": "build",
             "type": "shell",
-            "command": "dotnet build \"${workspaceFolder}\"",
+            "command": "dotnet build \"${workspaceFolder}/../DataAccess.Net.Tests\"",
+            "group": "build",
             "problemMatcher": "$msCompile"
         }
     ]

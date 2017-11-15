@@ -3,16 +3,16 @@
     "tasks": [
         {
             "label": "build",
-            "group": "build",
             "type": "shell",
             "command": "dotnet build \"${workspaceFolder}\"",
+            "group": "build",
             "problemMatcher": "$msCompile"
         },
         {
             "label": "test",
-            "group": "test",
             "type": "shell",
-            "command": "dotnet test \"${workspaceFolder}/DataAccess.Net.Tests.csproj\""
+            "command": "dotnet test \"${workspaceFolder}/DataAccess.Net.Tests.csproj\"",
+            "group": "test"
         }
     ]
 }
