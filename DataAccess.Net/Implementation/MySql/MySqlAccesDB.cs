@@ -7,12 +7,12 @@ namespace DataAccess.Net.Implementation.Sqlite
 {
     public class MySqlCtrlAccesDB : ICtrlAccesDB, IDisposable
     {
-        private string _connectionId;
+        private string _connectionString;
         private IDbConnection _connection;
 
-        public MySqlCtrlAccesDB(string connectionId)
+        public MySqlCtrlAccesDB(string connectionString)
         {
-            this._connectionId = connectionId;
+            this._connectionString = connectionString;
         }
 
         public void Dispose()
@@ -35,7 +35,7 @@ namespace DataAccess.Net.Implementation.Sqlite
             {
                 this._connection = new MySqlConnection
                 {
-                    ConnectionString = this._connectionId
+                    ConnectionString = this._connectionString
                 };
                 this._connection.Open();
             }
