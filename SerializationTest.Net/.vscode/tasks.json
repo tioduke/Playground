@@ -11,7 +11,8 @@
         {
             "label": "run",
             "type": "shell",
-            "command": "dotnet run --project \"${workspaceFolder}/SerializationTest.Net.csproj\""
+            "command": "dotnet run --project \"${workspaceFolder}/SerializationTest.Net.csproj\"",
+            "problemMatcher": []
         }
     ]
 }
