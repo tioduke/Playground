@@ -6,7 +6,7 @@
             "type": "shell",
             "command": "dotnet build \"${workspaceFolder}/../WebApplication.Net.Tests\"",
             "group": "build",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": [ "$msCompile" ]
         },
         {
             "label": "run",

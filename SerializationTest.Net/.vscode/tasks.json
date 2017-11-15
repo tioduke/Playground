@@ -6,7 +6,7 @@
             "type": "shell",
             "command": "dotnet build \"${workspaceFolder}/../SerializationTest.Net.Tests\"",
             "group": "build",
-            "problemMatcher": "$msCompile"
+            "problemMatcher": [ "$msCompile" ]
         },
         {
             "label": "run",
