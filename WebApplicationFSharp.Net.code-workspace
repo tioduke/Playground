@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "WebApplicationFSharp.Net"
+		},
+		{
+			"path": "WebApplicationFSharp.Net.Tests"
+		}
+	]
+}
