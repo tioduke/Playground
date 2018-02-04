@@ -7,10 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="Controllers/HomeController.fs" />
-    <Compile Include="Models/ErrorViewModel.fs" />
     <Compile Include="Areas/Customers/Models/Customer.fs" />
     <Compile Include="Areas/Customers/Controllers/CustomerController.fs" />
+    <Compile Include="Controllers/HomeController.fs" />
+    <Compile Include="Models/ErrorViewModel.fs" />
     <Compile Include="Startup.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

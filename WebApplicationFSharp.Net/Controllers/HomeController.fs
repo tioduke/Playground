@@ -1,9 +1,5 @@
 ﻿namespace WebApplicationFSharp.Net.Controllers
 
-open System
-open System.Collections.Generic
-open System.Linq
-open System.Threading.Tasks
 open Microsoft.AspNetCore.Mvc
 
 type HomeController () =

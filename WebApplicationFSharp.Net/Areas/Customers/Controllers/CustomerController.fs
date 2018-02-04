@@ -18,7 +18,7 @@ type CustomerController () =
                 CustomerName = "Asterix",
                 NAS = "046454286",
                 Amount = Nullable 90.34M,
-                BirthDate = Nullable (new DateTime(1008, 11, 01))
+                BirthDate = Nullable (DateTime(1008, 11, 01))
             );
             Customer (
                 Id = Nullable 11,
@@ -26,7 +26,7 @@ type CustomerController () =
                 CustomerName = "Obelix",
                 NAS = "046454286",
                 Amount = Nullable 91.00M,
-                BirthDate = Nullable (new DateTime(972, 10, 05))
+                BirthDate = Nullable (DateTime(972, 10, 05))
             );
             Customer (
                 Id = Nullable 0,
@@ -34,7 +34,7 @@ type CustomerController () =
                 CustomerName = "",
                 NAS = "000000000",
                 Amount = Nullable 0.00M,
-                BirthDate = Nullable (new DateTime(0001, 01, 01))
+                BirthDate = Nullable (DateTime(0001, 01, 01))
             )
         ]
 

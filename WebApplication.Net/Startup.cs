@@ -49,11 +49,11 @@ namespace WebApplication.Net
 
             // Add Session data to an In-Memory Cache
             app.UseSession();
-            
+
             app.UseMvc(routes =>
             {
-                routes.MapRoute(name: "areaRoute", 
-                    template: "{area:exists}/{controller}/{action}/{id?}", 
+                routes.MapRoute(name: "areaRoute",
+                    template: "{area:exists}/{controller}/{action}/{id?}",
                     defaults: new { controller = "Home", action = "Index" });
 
                 routes.MapRoute(
