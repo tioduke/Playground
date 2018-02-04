@@ -29,7 +29,7 @@ type Startup private () =
         app.UseMvc(fun routes ->
             routes.MapRoute(
                 name = "areaRoute",
-                template = "{area:exists}/{controller=Home}/{action=Index}/{id?}") |> ignore
+                template = "{area:exists}/{controller=Customer}/{action=Index}/{id?}") |> ignore
             routes.MapRoute(
                 name = "default",
                 template = "{controller=Home}/{action=Index}/{id?}") |> ignore

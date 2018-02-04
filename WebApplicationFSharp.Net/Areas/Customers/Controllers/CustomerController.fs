@@ -8,10 +8,11 @@ open Microsoft.FSharp.Linq.NullableOperators
 
 open WebApplicationFSharp.Net.Customers.Models
 
+[<Area("Customers")>]
 type CustomerController () =
     inherit Controller()
 
-    let _customers =
+    member val private _customers =
         [
             Customer (
                 Id = Nullable 12,
@@ -19,7 +20,7 @@ type CustomerController () =
                 CustomerName = "Asterix",
                 NAS = "046454286",
                 Amount = Nullable 90.34M,
-                BirthDate = Nullable (new DateTime(1008, 11, 1))
+                BirthDate = Nullable (new DateTime(1008, 11, 01))
             );
             Customer (
                 Id = Nullable 11,
@@ -27,7 +28,7 @@ type CustomerController () =
                 CustomerName = "Obelix",
                 NAS = "046454286",
                 Amount = Nullable 91.00M,
-                BirthDate = Nullable (new DateTime(972, 10, 5))
+                BirthDate = Nullable (new DateTime(972, 10, 05))
             );
             Customer (
                 Id = Nullable 0,
@@ -35,7 +36,7 @@ type CustomerController () =
                 CustomerName = "",
                 NAS = "000000000",
                 Amount = Nullable 0.00M,
-                BirthDate = Nullable (new DateTime(1, 1, 5))
+                BirthDate = Nullable (new DateTime(0001, 01, 01))
             )
         ]
 
@@ -54,15 +55,9 @@ type CustomerController () =
 
     // GET: /Customers/Customer/DisplayCustomer
     member this.DisplayCustomer (id: int) =
-        let filter (liste: Customer list): Customer =
-            List.find (fun x -> x.Id ?= id) liste
+        let findDefault customerList: Customer =
+            List.find (fun x -> x.Id ?= 0) customerList
+        let findById customerId customerList: Customer option =
+            List.tryFind (fun x -> x.Id ?= customerId) customerList
 
-        filter _customers |> this.DisplayCustomer
-        //let temp =
-        //    List.tryFind (fun x -> x.Id = id) _customers
-        //    |> fun temp2 ->
-        //        match temp2 with
-        //        | None -> List.find (fun x -> x.Id = 0) _customers
-        //        | _ -> Some temp2
-
-        //this.DisplayCustomer temp
+        defaultArg (findById id this._customers) (findDefault this._customers) |> this.DisplayCustomer
