@@ -20,6 +20,7 @@ type Customer () =
     member val NAS : string = null with get, set
 
     [<Required(ErrorMessage = "The field {0} is required")>]
+    [<Remote("IsAmountValide", "Customer", AdditionalFields = "NAS", ErrorMessage = "The field {0} must be greater than zero if NAS is informed.")>]
     member val Amount : Nullable<decimal> = Nullable() with get, set
 
     [<DataType(DataType.Date)>]

@@ -59,3 +59,11 @@ type CustomerController () =
             List.tryFind (fun x -> x.Id ?= customerId) customerList
 
         defaultArg (findById id _customers) (findDefault _customers) |> this.DisplayCustomer
+
+    // GET: /Customers/Customer/IsAmountValide
+    member this.IsAmountValide (obj: Customer) =
+        match obj.NAS with
+        | null -> this.Json(true)
+        | _ -> match obj.Amount with
+               | x when x ?> 0M -> this.Json(true)
+               | _ -> this.Json(false)
