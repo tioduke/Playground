@@ -65,5 +65,5 @@ type CustomerController () =
         match obj.NAS with
         | null -> this.Json(true)
         | _ -> match obj.Amount with
-               | x when x ?> 0M -> this.Json(true)
-               | _ -> this.Json(false)
+               | x when x ?= 0M -> this.Json(false)
+               | _ -> this.Json(true)
