@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "WebApplicationFSharp.Net.Tests"
+		},
+		{
+			"path": "WebApplication.Net"
 		}
 	]
 }
