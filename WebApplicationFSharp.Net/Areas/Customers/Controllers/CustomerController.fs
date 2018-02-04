@@ -1,8 +1,6 @@
 namespace WebApplicationFSharp.Net.Customers.Controllers
 
 open System
-open System.Collections.Generic
-open System.Linq
 open Microsoft.AspNetCore.Mvc
 open Microsoft.FSharp.Linq.NullableOperators
 
@@ -12,7 +10,7 @@ open WebApplicationFSharp.Net.Customers.Models
 type CustomerController () =
     inherit Controller()
 
-    member val private _customers =
+    let _customers =
         [
             Customer (
                 Id = Nullable 12,
@@ -60,4 +58,4 @@ type CustomerController () =
         let findById customerId customerList: Customer option =
             List.tryFind (fun x -> x.Id ?= customerId) customerList
 
-        defaultArg (findById id this._customers) (findDefault this._customers) |> this.DisplayCustomer
+        defaultArg (findById id _customers) (findDefault _customers) |> this.DisplayCustomer
