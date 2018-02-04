@@ -1,9 +1,5 @@
 ﻿namespace WebApplicationFSharp.Net
 
-open System
-open System.Collections.Generic
-open System.Linq
-open System.Threading.Tasks
 open Microsoft.AspNetCore.Builder
 open Microsoft.AspNetCore.Hosting
 open Microsoft.Extensions.Configuration
@@ -31,6 +27,9 @@ type Startup private () =
         app.UseStaticFiles() |> ignore
 
         app.UseMvc(fun routes ->
+            routes.MapRoute(
+                name = "areaRoute",
+                template = "{area:exists}/{controller=Home}/{action=Index}/{id?}") |> ignore
             routes.MapRoute(
                 name = "default",
                 template = "{controller=Home}/{action=Index}/{id?}") |> ignore

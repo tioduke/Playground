@@ -1,0 +1,28 @@
+@model WebApplicationFSharp.Net.Customers.Models.Customer
+
+@{
+    ViewBag.Title = "DisplayCustomer";
+}
+
+<div>
+    <br /><br /><br />
+    The customer id is @Html.DisplayFor(model => model.Id) <br />
+
+    The customer code is @Html.DisplayFor(model => model.CustomerCode) <br />
+
+    The customer name is @Html.DisplayFor(model => model.CustomerName) <br />
+
+    The customer NAS is @Html.DisplayFor(model => model.NAS) <br />
+
+    @if (Model.Amount > 100)
+    {
+        <div>This is a priveleged customer</div>
+    }
+    else
+    {
+        <div>This is a normal customer</div>
+    }
+
+    The customer birth date is @Html.DisplayFor(model => model.BirthDate) <br />
+
+</div>

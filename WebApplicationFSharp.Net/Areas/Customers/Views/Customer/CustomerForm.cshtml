@@ -1,0 +1,58 @@
+@model WebApplicationFSharp.Net.Customers.Models.Customer
+
+@{
+    ViewBag.Title = "CustomerForm";
+}
+
+<div>
+    @using (Html.BeginForm("DisplayCustomer", "Customer", FormMethod.Post))
+    {
+        <div>
+            <br /><br /><br />
+            <table>
+                <tr>
+                    <td>Enter customer id :- </td>
+                    <td>@Html.TextBoxFor(model => model.Id, new { @class = "form-control" })</td>
+                    <td>@Html.ValidationMessageFor(model => model.Id)</td>
+                </tr>
+                <tr>
+                    <td>Enter customer code : - </td>
+                    <td>@Html.TextBoxFor(model => model.CustomerCode, new { @class = "form-control" })</td>
+                    <td>@Html.ValidationMessageFor(model => model.CustomerCode)</td>
+                </tr>
+                <tr>
+                    <td>Enter customer name :- </td>
+                    <td>@Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control" })</td>
+                    <td>@Html.ValidationMessageFor(model => model.CustomerName)</td>
+                </tr>
+                <tr>
+                    <td>Enter NAS : - </td>
+                    <td>@Html.TextBoxFor(model => model.NAS, new { @class = "form-control" })</td>
+                    <td>@Html.ValidationMessageFor(model => model.NAS)</td>
+                </tr>
+                <tr>
+                    <td>Enter customer amount :- </td>
+                    <td>@Html.TextBoxFor(model => model.Amount, new { @class = "form-control" })</td>
+                    <td>@Html.ValidationMessageFor(model => model.Amount)</td>
+                </tr>
+                <tr>
+                    <td>Enter customer birth date :- </td>
+                    <td>@Html.EditorFor(model => model.BirthDate, new { @htmlAttributes = new { placeholder = "Enter birth date here..." }})</td>
+                    <td>@Html.ValidationMessageFor(model => model.BirthDate)</td>
+                </tr>
+                <tr>
+                    <td>Enter customer other date :- </td>
+                    <td>@Html.EditorFor(model => model.OtherDate, new { @htmlAttributes = new { placeholder = "Enter other date here..." }})</td>
+                    <td>@Html.ValidationMessageFor(model => model.OtherDate)</td>
+                </tr>
+            </table>
+            <input type="submit" value="Submit customer data" />
+            <br /><br /> @Html.ValidationSummary()
+        </div>
+    }
+</div>
+
+@section scripts
+{
+    <script src="~/js/custom.validation.js"></script>
+}

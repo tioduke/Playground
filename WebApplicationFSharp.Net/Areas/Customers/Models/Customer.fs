@@ -8,7 +8,7 @@ type Customer () =
 
     [<Required(ErrorMessage = "The field {0} is required")>]
     [<Range(10, 99)>]
-    member val Id : int = null with get, set
+    member val Id : Nullable<int> = Nullable() with get, set
 
     [<Required(ErrorMessage = "The field {0} is required")>]
     [<StringLength(4)>]
@@ -20,12 +20,12 @@ type Customer () =
     member val NAS : string = null with get, set
 
     [<Required(ErrorMessage = "The field {0} is required")>]
-    member val Amount : decimal = null with get, set
+    member val Amount : Nullable<decimal> = Nullable() with get, set
 
     [<DataType(DataType.Date)>]
     [<DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)>]
-    member val BirthDate : DateTime = null with get, set
+    member val BirthDate : Nullable<DateTime> = Nullable() with get, set
 
     [<DataType(DataType.Date)>]
     [<DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)>]
-    member val OtherDate : DateTime = null with get, set
+    member val OtherDate : Nullable<DateTime> = Nullable() with get, set
