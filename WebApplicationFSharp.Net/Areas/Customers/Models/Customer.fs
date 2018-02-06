@@ -3,7 +3,6 @@ namespace WebApplicationFSharp.Net.Customers.Models
 open System
 open System.ComponentModel.DataAnnotations
 open Microsoft.AspNetCore.Mvc
-open Microsoft.FSharp.Linq.NullableOperators
 
 type Customer () =
 
@@ -23,11 +22,6 @@ type Customer () =
     [<Required(ErrorMessage = "The field {0} is required")>]
     [<Remote("IsAmountValide", "Customer", AdditionalFields = "NAS", ErrorMessage = "The field {0} must be greater than zero if NAS is informed.")>]
     member val Amount : Nullable<decimal> = Nullable() with get, set
-
-    member this.Description
-        with get () = match this.Amount with
-                      | x when x ?> 100M -> "This is a priveleged customer"
-                      | _ -> "This is a normal customer"
 
     [<DataType(DataType.Date)>]
     [<DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)>]

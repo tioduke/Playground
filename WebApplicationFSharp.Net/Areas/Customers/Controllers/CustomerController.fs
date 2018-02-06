@@ -25,7 +25,7 @@ type CustomerController () =
                 CustomerCode = "1002",
                 CustomerName = "Obelix",
                 NAS = "046454286",
-                Amount = Nullable 91.00M,
+                Amount = Nullable 101.00M,
                 BirthDate = (Nullable <| DateTime(972, 10, 05))
             )
             Customer (
