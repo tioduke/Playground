@@ -14,14 +14,7 @@
 
     The customer NAS is @Html.DisplayFor(model => model.NAS) <br />
 
-    @if (Model.Amount > 100)
-    {
-        <div>This is a priveleged customer</div>
-    }
-    else
-    {
-        <div>This is a normal customer</div>
-    }
+    <div>@Html.DisplayFor(model => model.Description)</div>
 
     The customer birth date is @Html.DisplayFor(model => model.BirthDate) <br />
 

@@ -5,7 +5,7 @@
 }
 
 <div>
-    @using (Html.BeginForm("DisplayCustomer", "Customer", FormMethod.Post))
+    @using (Html.BeginForm("DisplayCustomer", "Customer", FormMethod.Post, new { name = "myFormId", id = "myFormId" }))
     {
         <div>
             <br /><br /><br />
@@ -55,4 +55,10 @@
 @section scripts
 {
     <script src="~/js/custom.validation.js"></script>
+    <script src="~/js/remote.validation.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            initializeRemotelyValidatingElementsWithAdditionalFields($("#myFormId"));
+        });
+    </script>
 }
