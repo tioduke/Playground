@@ -7,6 +7,7 @@ open WebApplicationFSharp.Net.Customers.Models
 [<Area("Customers")>]
 type CustomerVMController () =
     inherit Controller()
+
     let _customer = CustomerViewModel (TxtName = "Panoramix", TxtAmount = "1000")
 
     // GET: /Customers/CustomerVM/DisplayCustomer
