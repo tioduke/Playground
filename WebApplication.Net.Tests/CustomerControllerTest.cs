@@ -31,7 +31,7 @@ namespace WebApplication.Net.Tests
             // Assert
             Assert.Equal("DisplayCustomer", result.ViewName);
         }
-        
+
         [Fact]
         public void Validate_RequiredFields_Invalid()
         {
@@ -58,7 +58,7 @@ namespace WebApplication.Net.Tests
             Assert.Contains("is required", results[1].ErrorMessage);
             Assert.Contains("is required", results[2].ErrorMessage);
         }
-        
+
         [Fact]
         public void Validate_StringLengths_Invalid()
         {
@@ -84,7 +84,7 @@ namespace WebApplication.Net.Tests
             Assert.Contains("must be a string with a maximum length of", results[0].ErrorMessage);
             Assert.Contains("must be a string with a maximum length of", results[1].ErrorMessage);
         }
-        
+
         [Fact]
         public void Validate_NAS_Invalid()
         {
@@ -106,7 +106,7 @@ namespace WebApplication.Net.Tests
 
             // Assert
             Assert.False(isModelStateValide);
-            Assert.Equal(1, results.Count);
+            Assert.Single(results);
             Assert.Contains("is invalid", results[0].ErrorMessage);
         }
     }

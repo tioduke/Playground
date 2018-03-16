@@ -1,11 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Library</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <RuntimeFrameworkVersion>2.0.0</RuntimeFrameworkVersion>
-    <AssemblyName>DataAccess.Net</AssemblyName>
-    <Description>DataAccess.Net Library</Description>
   </PropertyGroup>
 
   <ItemGroup>
