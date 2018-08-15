@@ -11,7 +11,7 @@ namespace UnderstandingDependencyInjection.Net
             //setup our DI
             var serviceProvider = ContainerRegistration.ConfigureServices();
 
-            //do the actual work here
+            //do the actual work here.
             var worker = serviceProvider.GetService<IWorker>();
             worker.DoSomeWork();
         }
