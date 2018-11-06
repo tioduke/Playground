@@ -19,22 +19,8 @@ namespace DataAccess.Net.Tests.Repositories
             if (criteria == null || criteria.Id == null)
                 throw new ArgumentException("criteria");
 
-            var customerDictionary = new Dictionary<long, Customer>();
-            return base.ExecuteReaderRequest<Address>(CustomerSql.SqlSelectCustomer,
-                                                      (customer, address) =>
-                                                      {
-                                                        Customer customerEntry;
-
-                                                        if (!customerDictionary.TryGetValue(customer.Id, out customerEntry))
-                                                        {
-                                                            customerEntry = customer;
-                                                            customerEntry.Addresses = new List<Address>();
-                                                            customerDictionary.Add(customerEntry.Id, customerEntry);
-                                                        }
-
-                                                        customerEntry.Addresses.Add(address);
-                                                        return customerEntry;
-                                                      }, criteria, "ADDRESS_ID").SingleOrDefault();
+            this._mappingDictionary = new Dictionary<long, Customer>();
+            return base.ExecuteReaderRequest<Address>(CustomerSql.SqlSelectCustomer, this.MappingFunction, criteria, "ADDRESS_ID").SingleOrDefault();
         }
 
         public IEnumerable<Customer> Find(CustomerCriteria criteria)
@@ -42,22 +28,29 @@ namespace DataAccess.Net.Tests.Repositories
             if (criteria == null || criteria.CustomerCode == null)
                 throw new ArgumentException("criteria");
 
-            var customerDictionary = new Dictionary<long, Customer>();
-            return base.ExecuteReaderRequest<Address>(CustomerSql.SqlSelectCustomers,
-                                                      (customer, address) =>
-                                                      {
-                                                        Customer customerEntry;
-
-                                                        if (!customerDictionary.TryGetValue(customer.Id, out customerEntry))
-                                                        {
-                                                            customerEntry = customer;
-                                                            customerEntry.Addresses = new List<Address>();
-                                                            customerDictionary.Add(customerEntry.Id, customerEntry);
-                                                        }
-
-                                                        customerEntry.Addresses.Add(address);
-                                                        return customerEntry;
-                                                      }, criteria, "ADDRESS_ID");
+            this._mappingDictionary = new Dictionary<long, Customer>();
+            return base.ExecuteReaderRequest<Address>(CustomerSql.SqlSelectCustomers, this.MappingFunction, criteria, "ADDRESS_ID");
         }
+
+        #region Customer, Address mapping
+
+        private IDictionary<long, Customer> _mappingDictionary;
+
+        private Customer MappingFunction(Customer customer, Address address)
+        {
+            Customer customerEntry;
+
+            if (!this._mappingDictionary.TryGetValue(customer.Id, out customerEntry))
+            {
+                customerEntry = customer;
+                customerEntry.Addresses = new List<Address>();
+                this._mappingDictionary.Add(customerEntry.Id, customerEntry);
+            }
+
+            customerEntry.Addresses.Add(address);
+            return customerEntry;
+        }
+
+        #endregion
     }
 }
