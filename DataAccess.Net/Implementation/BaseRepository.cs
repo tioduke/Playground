@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Dapper;
@@ -18,7 +19,7 @@ namespace DataAccess.Net.Implementation
             this._accesDB = accesDB;
             this._dbExecutor = dbExecutor;
 
-            //Initialize Column Mapper 
+            //Initialize Column Mapper
             SqlMapper.SetTypeMap(typeof(TEntity), new ColumnAttributeTypeMapper<TEntity>());
         }
 
@@ -27,9 +28,10 @@ namespace DataAccess.Net.Implementation
             get { return this._accesDB.GetConnection(); }
         }
 
-        protected IEnumerable<TEntity> ExecuteReaderRequest(string sql, object param)
+        protected long GetSequence(string sequence)
         {
-            return this._dbExecutor.ExecuteReader<TEntity>(this.Connection, sql, param);
+            var sql = string.Format("select {0}.nextval from dual", sequence);
+            return this._dbExecutor.ExecuteReader<long>(this.Connection, sql).SingleOrDefault();
         }
 
         protected int ExecuteNonQueryRequest(string sql, object param)
@@ -37,10 +39,16 @@ namespace DataAccess.Net.Implementation
             return this._dbExecutor.ExecuteNonQuery(this.Connection, sql, param);
         }
 
-        protected long GetSequence(string sequence)
+        protected IEnumerable<TEntity> ExecuteReaderRequest(string sql, object param)
         {
-            var sql = string.Format("select {0}.nextval from dual", sequence);
-            return this._dbExecutor.ExecuteReader<long>(this.Connection, sql).SingleOrDefault();
+            return this._dbExecutor.ExecuteReader<TEntity>(this.Connection, sql, param);
+        }
+
+        protected IEnumerable<TEntity> ExecuteReaderRequest<TNested>(string sql, Func<TEntity, TNested, TEntity> map, object param, string splitOn)
+        {
+            //Initialize Column Mapper for nested entity
+            SqlMapper.SetTypeMap(typeof(TNested), new ColumnAttributeTypeMapper<TNested>());
+            return this._dbExecutor.ExecuteReader<TEntity, TNested>(this.Connection, sql, map, param, splitOn).Distinct();
         }
     }
 }
