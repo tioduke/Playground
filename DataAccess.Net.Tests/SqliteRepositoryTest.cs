@@ -29,7 +29,7 @@ namespace DataAccess.Net.Tests
         {
             _accesBd.ReleaseConnection();
         }
-        
+
         [Fact]
         public void CustomerRepository_FindById_EntityFound()
         {
@@ -38,17 +38,18 @@ namespace DataAccess.Net.Tests
 
             //Act
             var resultat = _sqliteRepository.FindById(new CustomerCriteria { Id = 1L });
-            
+
             //Assert
             Assert.Equal(1L, resultat.Id);
             Assert.Equal("A", resultat.CustomerCode);
             Assert.Equal("Asterix", resultat.CustomerName);
             Assert.Equal("111111111", resultat.NAS);
+            Assert.Equal(2, resultat.Addresses.Count);
             Assert.Equal(10.2m, resultat.Amount);
             Assert.Equal(new DateTime(1933, 1, 1), resultat.BirthDate);
             Assert.Equal(new DateTime(2017, 4, 1), resultat.OtherDate);
         }
-        
+
         [Fact]
         public void CustomerRepository_Find_EntitiesFound()
         {
@@ -57,7 +58,7 @@ namespace DataAccess.Net.Tests
 
             //Act
             var resultat = _sqliteRepository.Find(new CustomerCriteria { CustomerCode = "A" });
-            
+
             //Assert
             Assert.Equal(2, resultat.Count());
             var entity1 = resultat.SingleOrDefault(x => x.Id == 1L);
@@ -65,6 +66,7 @@ namespace DataAccess.Net.Tests
             Assert.Equal(1L, entity1.Id);
             Assert.Equal("A", entity1.CustomerCode);
             Assert.Equal("Asterix", entity1.CustomerName);
+            Assert.Equal(2, entity1.Addresses.Count);
             Assert.Equal("111111111", entity1.NAS);
             Assert.Equal(10.2m, entity1.Amount);
             Assert.Equal(new DateTime(1933, 1, 1), entity1.BirthDate);
@@ -73,6 +75,7 @@ namespace DataAccess.Net.Tests
             Assert.Equal("A", entity2.CustomerCode);
             Assert.Equal("Obelix", entity2.CustomerName);
             Assert.Equal("333333333", entity2.NAS);
+            Assert.Equal(1, entity1.Addresses.Count);
             Assert.Equal(11.14m, entity2.Amount);
             Assert.Equal(new DateTime(1934, 2, 3), entity2.BirthDate);
             Assert.Equal(new DateTime(2017, 4, 1), entity2.OtherDate);

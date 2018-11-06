@@ -19,7 +19,13 @@ namespace DataAccess.Net.Tests.Repositories
             if (criteria == null || criteria.Id == null)
                 throw new ArgumentException("criteria");
 
-            return base.ExecuteReaderRequest(CustomerSql.SqlSelectCustomer, criteria).SingleOrDefault();
+            return base.ExecuteReaderRequest<Address>(CustomerSql.SqlSelectCustomer,
+                                                      (customer, address) =>
+                                                      {
+                                                        customer.Addresses = customer.Addresses ?? new List<Address>();
+                                                        customer.Addresses.Add(address);
+                                                        return customer;
+                                                      }, criteria, "ADDRESS_ID").SingleOrDefault();
         }
 
         public IEnumerable<Customer> Find(CustomerCriteria criteria)
@@ -27,8 +33,13 @@ namespace DataAccess.Net.Tests.Repositories
             if (criteria == null || criteria.CustomerCode == null)
                 throw new ArgumentException("criteria");
 
-            return base.ExecuteReaderRequest(CustomerSql.SqlSelectCustomers, criteria);
+            return base.ExecuteReaderRequest<Address>(CustomerSql.SqlSelectCustomers,
+                                                      (customer, address) =>
+                                                      {
+                                                        customer.Addresses = customer.Addresses ?? new List<Address>();
+                                                        customer.Addresses.Add(address);
+                                                        return customer;
+                                                      }, criteria, "ADDRESS_ID");
         }
-        
     }
 }
