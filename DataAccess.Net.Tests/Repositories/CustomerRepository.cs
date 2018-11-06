@@ -19,12 +19,21 @@ namespace DataAccess.Net.Tests.Repositories
             if (criteria == null || criteria.Id == null)
                 throw new ArgumentException("criteria");
 
+            var customerDictionary = new Dictionary<long, Customer>();
             return base.ExecuteReaderRequest<Address>(CustomerSql.SqlSelectCustomer,
                                                       (customer, address) =>
                                                       {
-                                                        customer.Addresses = customer.Addresses ?? new List<Address>();
-                                                        customer.Addresses.Add(address);
-                                                        return customer;
+                                                        Customer customerEntry;
+
+                                                        if (!customerDictionary.TryGetValue(customer.Id, out customerEntry))
+                                                        {
+                                                            customerEntry = customer;
+                                                            customerEntry.Addresses = new List<Address>();
+                                                            customerDictionary.Add(customerEntry.Id, customerEntry);
+                                                        }
+
+                                                        customerEntry.Addresses.Add(address);
+                                                        return customerEntry;
                                                       }, criteria, "ADDRESS_ID").SingleOrDefault();
         }
 
@@ -33,12 +42,21 @@ namespace DataAccess.Net.Tests.Repositories
             if (criteria == null || criteria.CustomerCode == null)
                 throw new ArgumentException("criteria");
 
+            var customerDictionary = new Dictionary<long, Customer>();
             return base.ExecuteReaderRequest<Address>(CustomerSql.SqlSelectCustomers,
                                                       (customer, address) =>
                                                       {
-                                                        customer.Addresses = customer.Addresses ?? new List<Address>();
-                                                        customer.Addresses.Add(address);
-                                                        return customer;
+                                                        Customer customerEntry;
+
+                                                        if (!customerDictionary.TryGetValue(customer.Id, out customerEntry))
+                                                        {
+                                                            customerEntry = customer;
+                                                            customerEntry.Addresses = new List<Address>();
+                                                            customerDictionary.Add(customerEntry.Id, customerEntry);
+                                                        }
+
+                                                        customerEntry.Addresses.Add(address);
+                                                        return customerEntry;
                                                       }, criteria, "ADDRESS_ID");
         }
     }
