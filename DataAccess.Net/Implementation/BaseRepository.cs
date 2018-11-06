@@ -48,6 +48,7 @@ namespace DataAccess.Net.Implementation
         {
             //Initialize Column Mapper for nested entity
             SqlMapper.SetTypeMap(typeof(TNested), new ColumnAttributeTypeMapper<TNested>());
+
             return this._dbExecutor.ExecuteReader<TEntity, TNested>(this.Connection, sql, map, param, splitOn).Distinct();
         }
     }
