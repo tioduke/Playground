@@ -43,13 +43,5 @@ namespace DataAccess.Net.Implementation
         {
             return this._dbExecutor.ExecuteReader<TEntity>(this.Connection, sql, param);
         }
-
-        protected IEnumerable<TEntity> ExecuteReaderRequest<TNested>(string sql, Func<TEntity, TNested, TEntity> map, object param, string splitOn)
-        {
-            //Initialize Column Mapper for nested entity
-            SqlMapper.SetTypeMap(typeof(TNested), new ColumnAttributeTypeMapper<TNested>());
-
-            return this._dbExecutor.ExecuteReader<TEntity, TNested>(this.Connection, sql, map, param, splitOn).Distinct();
-        }
     }
 }

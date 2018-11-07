@@ -8,7 +8,7 @@ using DataAccess.Net.Tests.Entities;
 namespace DataAccess.Net.Tests.Repositories
 {
     public class CustomerRepository :
-        BaseRepository<Customer>,
+        BaseRepositoryMulti<Customer, Address>,
         IReadableRepository<Customer, CustomerCriteria>
     {
         public CustomerRepository(ICtrlAccesDB accesDB, IDbExecutor dbExec)
@@ -20,7 +20,7 @@ namespace DataAccess.Net.Tests.Repositories
                 throw new ArgumentException("criteria");
 
             this._mappingDictionary = new Dictionary<long, Customer>();
-            return base.ExecuteReaderRequest<Address>(CustomerSql.SqlSelectCustomer, this.MappingFunction, criteria, "ADDRESS_ID").SingleOrDefault();
+            return base.ExecuteReaderRequest(CustomerSql.SqlSelectCustomer, this.MappingFunction, criteria, "ADDRESS_ID").SingleOrDefault();
         }
 
         public IEnumerable<Customer> Find(CustomerCriteria criteria)
@@ -29,7 +29,7 @@ namespace DataAccess.Net.Tests.Repositories
                 throw new ArgumentException("criteria");
 
             this._mappingDictionary = new Dictionary<long, Customer>();
-            return base.ExecuteReaderRequest<Address>(CustomerSql.SqlSelectCustomers, this.MappingFunction, criteria, "ADDRESS_ID");
+            return base.ExecuteReaderRequest(CustomerSql.SqlSelectCustomers, this.MappingFunction, criteria, "ADDRESS_ID");
         }
 
         #region Customer, Address mapping
