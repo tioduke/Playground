@@ -10,6 +10,7 @@ namespace DataAccess.Net.Implementation
 {
     public abstract class BaseRepositoryMulti<TEntity, TNested>
         where TEntity: class
+        where TNested: class
     {
         private readonly ICtrlAccesDB _accesDB;
         private readonly IDbExecutor _dbExecutor;
