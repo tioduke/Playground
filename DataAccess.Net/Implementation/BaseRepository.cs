@@ -43,5 +43,14 @@ namespace DataAccess.Net.Implementation
         {
             return this._dbExecutor.ExecuteReader<TEntity>(this.Connection, sql, param);
         }
+
+        protected IEnumerable<TEntity> ExecuteReaderRequest<TFirst, TSecond>(string sql, object param, Func<TFirst, TSecond, TEntity> map, string splitOn)
+        {
+            //Initialize Column Mappers
+            SqlMapper.SetTypeMap(typeof(TFirst), new ColumnAttributeTypeMapper<TFirst>());
+            SqlMapper.SetTypeMap(typeof(TSecond), new ColumnAttributeTypeMapper<TSecond>());
+
+            return this._dbExecutor.ExecuteReader<TFirst, TSecond, TEntity>(this.Connection, sql, map, param, splitOn).Distinct();
+        }
     }
 }

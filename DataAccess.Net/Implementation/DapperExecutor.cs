@@ -18,9 +18,9 @@ namespace DataAccess.Net.Implementation
             return cn.Query<T>(query, param);
         }
 
-        public IEnumerable<T> ExecuteReader<T, S>(IDbConnection cn, string query, Func<T, S, T> map, object param = null, string splitOn = "id")
+        public IEnumerable<T> ExecuteReader<R, S, T>(IDbConnection cn, string query, Func<R, S, T> map, object param = null, string splitOn = "id")
         {
-            return cn.Query<T, S, T>(query, map, param, splitOn: splitOn);
+            return cn.Query<R, S, T>(query, map, param, splitOn: splitOn);
         }
     }
 }

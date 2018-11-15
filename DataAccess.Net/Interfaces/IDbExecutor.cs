@@ -8,6 +8,6 @@ namespace DataAccess.Net.Interfaces
     {
         int ExecuteNonQuery(IDbConnection cn, string query, object param = null);
         IEnumerable<T> ExecuteReader<T>(IDbConnection cn, string query, object param = null);
-        IEnumerable<T> ExecuteReader<T, S>(IDbConnection cn, string query, Func<T, S, T> map, object param = null, string splitOn = "id");
+        IEnumerable<T> ExecuteReader<R, S, T>(IDbConnection cn, string query, Func<R, S, T> map, object param = null, string splitOn = "id");
     }
 }
