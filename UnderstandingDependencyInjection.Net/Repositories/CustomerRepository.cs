@@ -17,7 +17,7 @@ namespace UnderstandingDependencyInjection.Net.Repositories
         public Customer FindById(CustomerCriteria criteria)
         {
             if (criteria == null || criteria.Id == null)
-                throw new ArgumentException("criteria");
+                throw new ArgumentException(nameof(criteria));
 
             return base.ExecuteReaderRequest(CustomerSql.SqlSelectCustomer, criteria).SingleOrDefault();
         }
@@ -25,10 +25,10 @@ namespace UnderstandingDependencyInjection.Net.Repositories
         public IEnumerable<Customer> Find(CustomerCriteria criteria)
         {
             if (criteria == null || criteria.CustomerCode == null)
-                throw new ArgumentException("criteria");
+                throw new ArgumentException(nameof(criteria));
 
             return base.ExecuteReaderRequest(CustomerSql.SqlSelectCustomers, criteria);
         }
-        
+
     }
 }
