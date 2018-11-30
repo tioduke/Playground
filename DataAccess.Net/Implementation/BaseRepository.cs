@@ -39,6 +39,11 @@ namespace DataAccess.Net.Implementation
             return this._dbExecutor.ExecuteNonQuery(this.Connection, sql, param);
         }
 
+        protected int ExecuteCountRequest(string sql, object param)
+        {
+            return this._dbExecutor.ExecuteReader<int>(this.Connection, sql, param).Single();
+        }
+
         protected IEnumerable<TEntity> ExecuteReaderRequest(string sql, object param)
         {
             return this._dbExecutor.ExecuteReader<TEntity>(this.Connection, sql, param);

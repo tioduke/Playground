@@ -4,6 +4,18 @@ namespace DataAccess.Net.Tests.Repositories
 {
     internal class CustomerSql
     {
+        internal static string SqlCountCustomers
+        {
+            get
+            {
+                return new StringBuilder()
+                    .Append("Select Count(1)")
+                    .Append("From CUSTOMER ")
+                    .Append("Where CODE = :CustomerCode ")
+                    .ToString();
+            }
+        }
+
         internal static string SqlSelectCustomer
         {
             get

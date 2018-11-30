@@ -31,6 +31,19 @@ namespace DataAccess.Net.Tests
         }
 
         [Fact]
+        public void CustomerRepository_Count_ReturnsCountOfTwo()
+        {
+            //Arrange
+            CreateInMemoryDB(_accesBd.GetConnection());
+
+            //Act
+            var resultat = _sqliteRepository.Count(new CustomerCriteria { CustomerCode = "A" });
+
+            //Assert
+            Assert.Equal(2, resultat);
+        }
+
+        [Fact]
         public void CustomerRepository_FindById_EntityFound()
         {
             //Arrange

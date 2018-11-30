@@ -14,6 +14,14 @@ namespace DataAccess.Net.Tests.Repositories
         public CustomerRepository(ICtrlAccesDB accesDB, IDbExecutor dbExec)
             : base(accesDB, dbExec) { }
 
+        public int Count(CustomerCriteria criteria)
+        {
+            if (criteria == null || criteria.CustomerCode == null)
+                throw new ArgumentException(nameof(criteria));
+
+            return base.ExecuteCountRequest(CustomerSql.SqlCountCustomers, criteria);
+        }
+
         public Customer FindById(CustomerCriteria criteria)
         {
             if (criteria == null || criteria.Id == null)
