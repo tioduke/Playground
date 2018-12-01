@@ -6,6 +6,15 @@ namespace WebAPIApplication.Net.Repositories
 {
     internal class CustomerSql
     {
+        internal static string SqlCountCustomers(CustomerCriteria criteria)
+        {
+            return new StringBuilder()
+                .Append("Select ")
+                .Append("Count(1) ")
+                .Append(CustomerSql.SqlClauseWhere(criteria))
+                .ToString();
+        }
+
         internal static string SqlSelectCustomer
         {
             get
@@ -103,6 +112,5 @@ namespace WebAPIApplication.Net.Repositories
                     .ToString();
             }
         }
-
     }
 }

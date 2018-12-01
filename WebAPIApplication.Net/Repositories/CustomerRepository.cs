@@ -15,10 +15,18 @@ namespace WebAPIApplication.Net.Repositories
         public CustomerRepository(ICtrlAccesDB accesDB, IDbExecutor dbExec)
             : base(accesDB, dbExec) { }
 
+        public int Count(CustomerCriteria criteria)
+        {
+            if (criteria == null || criteria.Id == null)
+                throw new ArgumentException(nameof(criteria));
+
+            return base.ExecuteCountRequest(CustomerSql.SqlCountCustomers(criteria), criteria);
+        }
+
         public Customer FindById(CustomerCriteria criteria)
         {
             if (criteria == null || criteria.Id == null)
-                throw new ArgumentException("criteria");
+                throw new ArgumentException(nameof(criteria));
 
             return base.ExecuteReaderRequest(CustomerSql.SqlSelectCustomer, criteria).SingleOrDefault();
         }
@@ -26,11 +34,11 @@ namespace WebAPIApplication.Net.Repositories
         public IEnumerable<Customer> Find(CustomerCriteria criteria)
         {
             if (criteria == null)
-                throw new ArgumentException("criteria");
+                throw new ArgumentException(nameof(criteria));
 
             return base.ExecuteReaderRequest(CustomerSql.SqlSelectCustomers(criteria), criteria);
         }
-        
+
         public long GetSequence()
         {
             throw new NotImplementedException();
@@ -39,7 +47,7 @@ namespace WebAPIApplication.Net.Repositories
         public int Insert(Customer entity)
         {
             if (entity == null)
-                throw new ArgumentException("entity");
+                throw new ArgumentException(nameof(entity));
 
             return base.ExecuteNonQueryRequest(CustomerSql.SqlInsert, entity);
         }
@@ -47,7 +55,7 @@ namespace WebAPIApplication.Net.Repositories
         public int Update(Customer entity, CustomerCriteria criteria)
         {
             if (entity == null)
-                throw new ArgumentException("entity");
+                throw new ArgumentException(nameof(entity));
 
             return base.ExecuteNonQueryRequest(CustomerSql.SqlUpdate, entity);
         }
@@ -55,10 +63,9 @@ namespace WebAPIApplication.Net.Repositories
         public int Delete(CustomerCriteria criteria)
         {
             if (criteria == null || criteria.Id == null)
-                throw new ArgumentException("criteria");
+                throw new ArgumentException(nameof(criteria));
 
             return base.ExecuteNonQueryRequest(CustomerSql.SqlDelete, criteria);
         }
-
     }
 }
