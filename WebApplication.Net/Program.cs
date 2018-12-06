@@ -1,4 +1,4 @@
-using System.IO;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace WebApplication.Net
@@ -7,15 +7,12 @@ namespace WebApplication.Net
     {
         public static void Main(string[] args)
         {
-            var host = new WebHostBuilder()
-                .UseUrls("http://0.0.0.0:5000/")
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .Build();
-
-            host.Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseUrls("http://0.0.0.0:5000/")
+                .UseStartup<Startup>();
     }
 }

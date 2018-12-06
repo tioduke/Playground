@@ -6,15 +6,13 @@ open Microsoft.AspNetCore.Hosting
 module Program =
     let exitCode = 0
 
-    let BuildWebHost args =
+    let CreateWebHostBuilder args =
         WebHost
             .CreateDefaultBuilder(args)
-            .UseUrls("http://0.0.0.0:5000/")
-            .UseStartup<Startup>()
-            .Build()
+            .UseStartup<Startup>();
 
     [<EntryPoint>]
     let main args =
-        BuildWebHost(args).Run()
+        CreateWebHostBuilder(args).Build().Run()
 
         exitCode

@@ -2,6 +2,7 @@
 
 open Microsoft.AspNetCore.Builder
 open Microsoft.AspNetCore.Hosting
+open Microsoft.AspNetCore.Mvc
 open Microsoft.Extensions.Configuration
 open Microsoft.Extensions.DependencyInjection
 
@@ -14,7 +15,7 @@ type Startup private () =
     // This method gets called by the runtime. Use this method to add services to the container.
     member this.ConfigureServices(services: IServiceCollection) =
         // Add framework services.
-        services.AddMvc() |> ignore
+        services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2) |> ignore
         services.AddSession() |> ignore
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -24,8 +25,12 @@ type Startup private () =
             app.UseDeveloperExceptionPage() |> ignore
         else
             app.UseExceptionHandler("/Home/Error") |> ignore
+            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            app.UseHsts() |> ignore
 
+        app.UseHttpsRedirection() |> ignore
         app.UseStaticFiles() |> ignore
+        app.UseSession() |> ignore
 
         app.UseMvc(fun routes ->
             routes.MapRoute(
