@@ -8,6 +8,9 @@ target/
 # ignore all .metadata directories
 .metadata/
 
+# ignore all .ionide directories
+.ionide/
+
 # ignore all files ending with ~
 *~ 
 
