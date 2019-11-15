@@ -17,6 +17,7 @@ namespace UnderstandingDependencyInjection.Net
         {
             return new ServiceCollection()
                 .AddScoped<IWorker, Worker>()
+                .AddScoped<IReadableRepository<Customer, Unused>, VoidCustomerRepository>()
                 .AddScoped<IReadableRepository<Customer, CustomerCriteria>, CustomerRepository>()
                 .AddScoped<IDbExecutor, DapperExecutor>()
                 .AddScoped<ICtrlAccesDB>(x => new SqliteCtrlAccesDB("DataSource=Resources/database.sqlite"))

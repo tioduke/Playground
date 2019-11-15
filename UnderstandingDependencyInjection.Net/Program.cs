@@ -14,6 +14,7 @@ namespace UnderstandingDependencyInjection.Net
             //do the actual work here.
             var worker = serviceProvider.GetService<IWorker>();
             worker.DoSomeWork();
+            worker.DoSomeVoidWork();
         }
     }
 }
