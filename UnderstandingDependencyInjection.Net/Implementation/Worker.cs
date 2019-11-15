@@ -6,15 +6,15 @@ namespace UnderstandingDependencyInjection.Net.Implementation
 {
     public class Worker : IWorker
     {
-        private readonly IReadableRepository<Customer, Unused> _voidCustomerRepository;
+        private readonly IReadableRepository<Customer> _otherCustomerRepository;
         private readonly IReadableRepository<Customer, CustomerCriteria> _customerRepository;
 
-        public Worker(ICtrlAccesDB accesBd, 
-                      IReadableRepository<Customer, Unused> voidCustomerRepository,
+        public Worker(ICtrlAccesDB accesBd,
+                      IReadableRepository<Customer> otherCustomerRepository,
                       IReadableRepository<Customer, CustomerCriteria> customerRepository)
         {
             this._customerRepository = customerRepository;
-            this._voidCustomerRepository = voidCustomerRepository;
+            this._otherCustomerRepository = otherCustomerRepository;
         }
 
         public void DoSomeWork()
@@ -23,18 +23,18 @@ namespace UnderstandingDependencyInjection.Net.Implementation
 
             foreach (var customer in customers)
             {
-                System.Console.WriteLine(string.Format("Customer : Id={0}, Name={1}, Birth date={2}", 
+                System.Console.WriteLine(string.Format("Customer : Id={0}, Name={1}, Birth date={2}",
                                                        customer.Id, customer.CustomerName, customer.BirthDate));
             }
         }
 
-        public void DoSomeVoidWork()
+        public void DoSomeOtherWork()
         {
-            var customers = this._voidCustomerRepository.Find(Unused.Instance);
+            var customers = this._otherCustomerRepository.Find();
 
             foreach (var customer in customers)
             {
-                System.Console.WriteLine(string.Format("Customer : Id={0}, Name={1}, Birth date={2}", 
+                System.Console.WriteLine(string.Format("Customer : Id={0}, Name={1}, Birth date={2}",
                                                        customer.Id, customer.CustomerName, customer.BirthDate));
             }
         }

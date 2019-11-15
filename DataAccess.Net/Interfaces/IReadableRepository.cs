@@ -2,6 +2,12 @@
 
 namespace DataAccess.Net.Interfaces
 {
+    public interface IReadableRepository<out TEntity>
+    {
+        int Count();
+        IEnumerable<TEntity> Find();
+    }
+
     public interface IReadableRepository<out TEntity, in TCriteria>
     {
         int Count(TCriteria criteres);

@@ -9,10 +9,16 @@ namespace UnderstandingDependencyInjection.Net.Repositories
 {
     public class CustomerRepository :
         BaseRepository<Customer>,
+        IReadableRepository<Customer>,
         IReadableRepository<Customer, CustomerCriteria>
     {
         public CustomerRepository(ICtrlAccesDB accesDB, IDbExecutor dbExec)
             : base(accesDB, dbExec) { }
+
+        public int Count()
+        {
+            return base.ExecuteCountRequest(CustomerSql.SqlCountAllCustomers, null);
+        }
 
         public int Count(CustomerCriteria criteria)
         {
@@ -28,6 +34,11 @@ namespace UnderstandingDependencyInjection.Net.Repositories
                 throw new ArgumentException(nameof(criteria));
 
             return base.ExecuteReaderRequest(CustomerSql.SqlSelectCustomer, criteria).SingleOrDefault();
+        }
+
+        public IEnumerable<Customer> Find()
+        {
+            return base.ExecuteReaderRequest(CustomerSql.SqlSelectAllCustomers, null);
         }
 
         public IEnumerable<Customer> Find(CustomerCriteria criteria)

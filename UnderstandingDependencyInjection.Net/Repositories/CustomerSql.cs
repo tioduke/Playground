@@ -17,6 +17,18 @@ namespace UnderstandingDependencyInjection.Net.Repositories
             }
         }
 
+        internal static string SqlCountAllCustomers
+        {
+            get
+            {
+                return new StringBuilder()
+                    .Append("Select ")
+                    .Append("Count(1) ")
+                    .Append("From CUSTOMER ")
+                    .ToString();
+            }
+        }
+
         internal static string SqlSelectCustomer
         {
             get
@@ -51,6 +63,25 @@ namespace UnderstandingDependencyInjection.Net.Repositories
                     .Append("OTHER_DATE ")
                     .Append("From CUSTOMER ")
                     .Append("Where CODE = :CustomerCode ")
+                    .Append("Order By ID")
+                    .ToString();
+            }
+        }
+
+        internal static string SqlSelectAllCustomers
+        {
+            get
+            {
+                return new StringBuilder()
+                    .Append("Select ")
+                    .Append("ID, ")
+                    .Append("CODE, ")
+                    .Append("NAME, ")
+                    .Append("NAS, ")
+                    .Append("AMOUNT, ")
+                    .Append("BIRTH_DATE, ")
+                    .Append("OTHER_DATE ")
+                    .Append("From CUSTOMER ")
                     .Append("Order By ID")
                     .ToString();
             }
