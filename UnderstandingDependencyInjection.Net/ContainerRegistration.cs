@@ -20,7 +20,7 @@ namespace UnderstandingDependencyInjection.Net
                 .AddScoped<IReadableRepository<Customer>, CustomerRepository>()
                 .AddScoped<IReadableRepository<Customer, CustomerCriteria>, CustomerRepository>()
                 .AddScoped<IDbExecutor, DapperExecutor>()
-                .AddScoped<ICtrlAccesDB>(x => new SqliteCtrlAccesDB("DataSource=Resources/database.sqlite"))
+                .AddScoped<ICtrlAccesDB>(x => new SqliteAccesDB("DataSource=Resources/database.sqlite"))
                 .BuildServiceProvider();
         }
     }

@@ -36,7 +36,7 @@ namespace DataAccess.Net.Tests.Repositories
             if (criteria == null || criteria.CustomerCode == null)
                 throw new ArgumentException(nameof(criteria));
 
-            this._mappingDictionary = new Dictionary<long, Customer>();
+            _mappingDictionary = new Dictionary<long, Customer>();
             return base.ExecuteReaderRequest<Customer, Address>(CustomerSql.SqlSelectCustomers, criteria, this.MappingFunction, "ADDRESS_ID");
         }
 
@@ -48,11 +48,11 @@ namespace DataAccess.Net.Tests.Repositories
         {
             Customer customerEntry;
 
-            if (!this._mappingDictionary.TryGetValue(customer.Id, out customerEntry))
+            if (!_mappingDictionary.TryGetValue(customer.Id, out customerEntry))
             {
                 customerEntry = customer;
                 customerEntry.Addresses = new List<Address>();
-                this._mappingDictionary.Add(customerEntry.Id, customerEntry);
+                _mappingDictionary.Add(customerEntry.Id, customerEntry);
             }
 
             customerEntry.Addresses.Add(address);

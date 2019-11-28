@@ -16,11 +16,8 @@ namespace DataAccess.Net.Implementation
 
         protected BaseRepository(ICtrlAccesDB accesDB, IDbExecutor dbExecutor)
         {
-            this._accesDB = accesDB;
-            this._dbExecutor = dbExecutor;
-
-            //Initialize Column Mapper
-            SqlMapper.SetTypeMap(typeof(TEntity), new ColumnAttributeTypeMapper<TEntity>());
+            _accesDB = accesDB;
+            _dbExecutor = dbExecutor;
         }
 
         private IDbConnection Connection
@@ -31,22 +28,25 @@ namespace DataAccess.Net.Implementation
         protected long GetSequence(string sequence)
         {
             var sql = string.Format("select {0}.nextval from dual", sequence);
-            return this._dbExecutor.ExecuteReader<long>(this.Connection, sql).SingleOrDefault();
+            return _dbExecutor.ExecuteReader<long>(Connection, sql).SingleOrDefault();
         }
 
         protected int ExecuteNonQueryRequest(string sql, object param)
         {
-            return this._dbExecutor.ExecuteNonQuery(this.Connection, sql, param);
+            return _dbExecutor.ExecuteNonQuery(Connection, sql, param);
         }
 
         protected int ExecuteCountRequest(string sql, object param)
         {
-            return this._dbExecutor.ExecuteReader<int>(this.Connection, sql, param).Single();
+            return _dbExecutor.ExecuteReader<int>(Connection, sql, param).Single();
         }
 
         protected IEnumerable<TEntity> ExecuteReaderRequest(string sql, object param)
         {
-            return this._dbExecutor.ExecuteReader<TEntity>(this.Connection, sql, param);
+            //Initialize Column Mapper
+            SqlMapper.SetTypeMap(typeof(TEntity), new ColumnAttributeTypeMapper<TEntity>());
+
+            return _dbExecutor.ExecuteReader<TEntity>(Connection, sql, param);
         }
 
         protected IEnumerable<TEntity> ExecuteReaderRequest<TFirst, TSecond>(string sql, object param, Func<TFirst, TSecond, TEntity> map, string splitOn)
@@ -55,7 +55,7 @@ namespace DataAccess.Net.Implementation
             SqlMapper.SetTypeMap(typeof(TFirst), new ColumnAttributeTypeMapper<TFirst>());
             SqlMapper.SetTypeMap(typeof(TSecond), new ColumnAttributeTypeMapper<TSecond>());
 
-            return this._dbExecutor.ExecuteReader<TFirst, TSecond, TEntity>(this.Connection, sql, map, param, splitOn).Distinct();
+            return _dbExecutor.ExecuteReader<TFirst, TSecond, TEntity>(Connection, sql, map, param, splitOn).Distinct();
         }
     }
 }

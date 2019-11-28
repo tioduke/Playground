@@ -39,12 +39,12 @@ namespace DataAccess.Net.Attributes
 
         public FallbackTypeMapper(IEnumerable<SqlMapper.ITypeMap> mappers)
         {
-            this._mappers = mappers;
+            _mappers = mappers;
         }
 
         public ConstructorInfo FindConstructor(string[] names, Type[] types)
         {
-            foreach (var mapper in this._mappers)
+            foreach (var mapper in _mappers)
             {
                 try
                 {
@@ -63,7 +63,7 @@ namespace DataAccess.Net.Attributes
 
         public SqlMapper.IMemberMap GetConstructorParameter(ConstructorInfo constructor, string columnName)
         {
-            foreach (var mapper in this._mappers)
+            foreach (var mapper in _mappers)
             {
                 try
                 {
@@ -82,7 +82,7 @@ namespace DataAccess.Net.Attributes
 
         public SqlMapper.IMemberMap GetMember(string columnName)
         {
-            foreach (var mapper in this._mappers)
+            foreach (var mapper in _mappers)
             {
                 try
                 {
@@ -101,7 +101,7 @@ namespace DataAccess.Net.Attributes
 
         public ConstructorInfo FindExplicitConstructor()
         {
-            return this._mappers
+            return _mappers
                 .Select(mapper => mapper.FindExplicitConstructor())
                 .FirstOrDefault(result => result != null);
         }

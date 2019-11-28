@@ -31,7 +31,7 @@ namespace WebAPIApplication.Net
             services.AddScoped<IReadableRepository<Customer, CustomerCriteria>, CustomerRepository>()
                     .AddScoped<IWritableRepository<Customer, CustomerCriteria>, CustomerRepository>()
                     .AddScoped<IDbExecutor, DapperExecutor>()
-                    .AddScoped<ICtrlAccesDB>(x => new SqliteCtrlAccesDB("DataSource=Resources/database.sqlite"));
+                    .AddScoped<ICtrlAccesDB>(x => new SqliteAccesDB("DataSource=Resources/database.sqlite"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

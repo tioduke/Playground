@@ -5,42 +5,42 @@ using DataAccess.Net.Interfaces;
 
 namespace DataAccess.Net.Implementation.Sqlite
 {
-    public class SqliteCtrlAccesDB : ICtrlAccesDB, IDisposable
+    public class SqliteAccesDB : ICtrlAccesDB, IDisposable
     {
         private string _connectionString;
         private IDbConnection _connection;
 
-        public SqliteCtrlAccesDB(string connectionString)
+        public SqliteAccesDB(string connectionString)
         {
-            this._connectionString = connectionString;
+            _connectionString = connectionString;
         }
 
         public void Dispose()
         {
-            this.ReleaseConnection();
+            ReleaseConnection();
         }
 
         public void ReleaseConnection()
         {
-            if (this._connection != null)
+            if (_connection != null)
             {
-                this._connection.Close();
-                this._connection = null;
+                _connection.Close();
+                _connection = null;
             }
         }
 
         public IDbConnection GetConnection()
         {
-            if (this._connection == null)
+            if (_connection == null)
             {
-                this._connection = new SqliteConnection
+                _connection = new SqliteConnection
                 {
-                    ConnectionString = this._connectionString
+                    ConnectionString = _connectionString
                 };
-                this._connection.Open();
+                _connection.Open();
             }
 
-            return this._connection;
+            return _connection;
         }
     }
 }

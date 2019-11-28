@@ -1,16 +1,16 @@
 using System;
 using System.Data;
-using MySql.Data.MySqlClient;
+using Oracle.ManagedDataAccess.Client;
 using DataAccess.Net.Interfaces;
 
 namespace DataAccess.Net.Implementation.Sqlite
 {
-    public class MySqlAccesDB : ICtrlAccesDB, IDisposable
+    public class OracleAccesDB : ICtrlAccesDB, IDisposable
     {
         private string _connectionString;
         private IDbConnection _connection;
 
-        public MySqlAccesDB(string connectionString)
+        public OracleAccesDB(string connectionString)
         {
             _connectionString = connectionString;
         }
@@ -33,7 +33,7 @@ namespace DataAccess.Net.Implementation.Sqlite
         {
             if (_connection == null)
             {
-                _connection = new MySqlConnection
+                _connection = new OracleConnection
                 {
                     ConnectionString = _connectionString
                 };

@@ -21,7 +21,7 @@ namespace DataAccess.Net.Tests
 
         public SqliteRepositoryTest()
         {
-            _accesBd = new SqliteCtrlAccesDB("DataSource=:memory:");
+            _accesBd = new SqliteAccesDB("DataSource=:memory:");
             _sqliteRepository = new CustomerRepository(_accesBd, new DapperExecutor());
         }
 
