@@ -27,8 +27,8 @@ namespace DataAccess.Net.Tests.Repositories
             if (criteria == null || criteria.Id == null)
                 throw new ArgumentException(nameof(criteria));
 
-            this._mappingDictionary = new Dictionary<long, Customer>();
-            return base.ExecuteReaderRequest<Customer, Address>(CustomerSql.SqlSelectCustomer, criteria, this.MappingFunction, "ADDRESS_ID").SingleOrDefault();
+            _mappingDictionary = new Dictionary<long, Customer>();
+            return base.ExecuteReaderRequest<Customer, Address>(CustomerSql.SqlSelectCustomer, criteria, MappingFunction, "ADDRESS_ID").SingleOrDefault();
         }
 
         public IEnumerable<Customer> Find(CustomerCriteria criteria)
@@ -37,7 +37,7 @@ namespace DataAccess.Net.Tests.Repositories
                 throw new ArgumentException(nameof(criteria));
 
             _mappingDictionary = new Dictionary<long, Customer>();
-            return base.ExecuteReaderRequest<Customer, Address>(CustomerSql.SqlSelectCustomers, criteria, this.MappingFunction, "ADDRESS_ID");
+            return base.ExecuteReaderRequest<Customer, Address>(CustomerSql.SqlSelectCustomers, criteria, MappingFunction, "ADDRESS_ID");
         }
 
         #region Customer, Address mapping

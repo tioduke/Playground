@@ -22,7 +22,7 @@ namespace DataAccess.Net.Implementation
 
         private IDbConnection Connection
         {
-            get { return this._accesDB.GetConnection(); }
+            get { return _accesDB.GetConnection(); }
         }
 
         protected long GetSequence(string sequence)

@@ -10,12 +10,12 @@ namespace DataAccess.Net.Implementation.MySql
 
         public MySqlClobParameter(string value)
         {
-            this._value = value;
+            _value = value;
         }
 
         public void AddParameter(IDbCommand command, string name)
         {
-            var param = new MySqlParameter(name, MySqlDbType.LongText) { Value = this._value };
+            var param = new MySqlParameter(name, MySqlDbType.LongText) { Value = _value };
 
             command.Parameters.Add(param);
         }
