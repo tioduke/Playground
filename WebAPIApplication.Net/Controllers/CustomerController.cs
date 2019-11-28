@@ -15,8 +15,8 @@ namespace WebAPIApplication.Net.Controllers
         public CustomerController(IReadableRepository<Customer, CustomerCriteria> customerReadableRepository,
                                   IWritableRepository<Customer, CustomerCriteria> customerWritableRepository)
         {
-            this._customerReadableRepository = customerReadableRepository;
-            this._customerWritableRepository = customerWritableRepository;
+            _customerReadableRepository = customerReadableRepository;
+            _customerWritableRepository = customerWritableRepository;
         }
 
         // GET api/customer
@@ -24,18 +24,18 @@ namespace WebAPIApplication.Net.Controllers
         public IEnumerable<Customer> Get()
         {
             var criteria = new CustomerCriteria();
-            return this._customerReadableRepository.Find(criteria);
+            return _customerReadableRepository.Find(criteria);
         }
 
         // GET api/customer/5
         [HttpGet("{id}")]
         public Customer Get(int id)
         {
-            var criteria = new CustomerCriteria 
-            { 
-                Id = id 
+            var criteria = new CustomerCriteria
+            {
+                Id = id
             };
-            return this._customerReadableRepository.FindById(criteria);
+            return _customerReadableRepository.FindById(criteria);
         }
 
         // GET api/customer/code/A
@@ -46,14 +46,14 @@ namespace WebAPIApplication.Net.Controllers
             {
                 CustomerCode = customerCode
             };
-            return this._customerReadableRepository.Find(criteria);
+            return _customerReadableRepository.Find(criteria);
         }
 
         // POST api/customer
         [HttpPost]
         public void Post([FromBody]Customer value)
         {
-            this._customerWritableRepository.Insert(value);
+            _customerWritableRepository.Insert(value);
         }
 
         // PUT api/customer/5
@@ -70,18 +70,18 @@ namespace WebAPIApplication.Net.Controllers
                 BirthDate = value.BirthDate,
                 OtherDate = value.OtherDate
             };
-            this._customerWritableRepository.Update(entity);
+            _customerWritableRepository.Update(entity);
         }
 
         // DELETE api/customer/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var criteria = new CustomerCriteria 
-            { 
-                Id = id 
+            var criteria = new CustomerCriteria
+            {
+                Id = id
             };
-            this._customerWritableRepository.Delete(criteria);
+            _customerWritableRepository.Delete(criteria);
         }
     }
 }

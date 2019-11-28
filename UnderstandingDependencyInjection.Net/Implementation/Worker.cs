@@ -13,13 +13,13 @@ namespace UnderstandingDependencyInjection.Net.Implementation
                       IReadableRepository<Customer> otherCustomerRepository,
                       IReadableRepository<Customer, CustomerCriteria> customerRepository)
         {
-            this._customerRepository = customerRepository;
-            this._otherCustomerRepository = otherCustomerRepository;
+            _customerRepository = customerRepository;
+            _otherCustomerRepository = otherCustomerRepository;
         }
 
         public void DoSomeWork()
         {
-            var customers = this._customerRepository.Find(new CustomerCriteria { CustomerCode = "A" });
+            var customers = _customerRepository.Find(new CustomerCriteria { CustomerCode = "A" });
 
             foreach (var customer in customers)
             {
@@ -30,7 +30,7 @@ namespace UnderstandingDependencyInjection.Net.Implementation
 
         public void DoSomeOtherWork()
         {
-            var customers = this._otherCustomerRepository.Find();
+            var customers = _otherCustomerRepository.Find();
 
             foreach (var customer in customers)
             {
