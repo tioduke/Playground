@@ -9,6 +9,7 @@ using DataAccess.Net.Interfaces;
 using DataAccess.Net.Implementation;
 using DataAccess.Net.Implementation.Sqlite;
 using WebAPIApplication.Net.Entities;
+using WebAPIApplication.Net.Filters;
 using WebAPIApplication.Net.Repositories;
 
 namespace WebAPIApplication.Net
@@ -26,6 +27,12 @@ namespace WebAPIApplication.Net
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            // Add global filters.
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(new ValidateModelStateAttribute());
+            });
 
             // Add application services.
             services.AddScoped<IReadableRepository<Customer, CustomerCriteria>, CustomerRepository>()

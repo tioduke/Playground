@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using DataAccess.Net.Attributes;
 
 namespace WebAPIApplication.Net.Entities
@@ -8,12 +9,15 @@ namespace WebAPIApplication.Net.Entities
         [Column(Name = "ID")]
         public long Id { get; set; }
 
+        [Required]
         [Column(Name = "CODE")]
         public string CustomerCode { get; set; }
 
+        [Required]
         [Column(Name = "NAME")]
         public string CustomerName { get; set; }
-        
+
+        [Required]
         [Column(Name = "NAS")]
         public string NAS { get; set; }
 
