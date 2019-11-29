@@ -69,7 +69,7 @@ namespace DataAccess.Net.Tests
         }
 
         [Fact, IntegrationTest]
-        public void Find_EntitiesExistInDB_EntitiesFound()
+        public void Find_ElementsExistInDB_EntitiesFound()
         {
             //Arrange
             CreateInMemoryDB(_accesBd.GetConnection());
@@ -127,6 +127,5 @@ namespace DataAccess.Net.Tests
                 }
             }
         }
-
     }
 }
