@@ -32,7 +32,7 @@ namespace DataAccess.Net.Tests
         }
 
         [Fact, IntegrationTest]
-        public void CustomerRepository_Count_ReturnsCountOfTwo()
+        public void Count_TwoElementsInDB_ReturnsCountOfTwo()
         {
             //Arrange
             CreateInMemoryDB(_accesBd.GetConnection());
@@ -45,7 +45,7 @@ namespace DataAccess.Net.Tests
         }
 
         [Fact, IntegrationTest]
-        public void CustomerRepository_FindById_EntityFound()
+        public void FindById_ElementExistsInDB_EntityFound()
         {
             //Arrange
             CreateInMemoryDB(_accesBd.GetConnection());
@@ -69,7 +69,7 @@ namespace DataAccess.Net.Tests
         }
 
         [Fact, IntegrationTest]
-        public void CustomerRepository_Find_EntitiesFound()
+        public void Find_EntitiesExistInDB_EntitiesFound()
         {
             //Arrange
             CreateInMemoryDB(_accesBd.GetConnection());
