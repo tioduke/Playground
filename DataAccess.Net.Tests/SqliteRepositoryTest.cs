@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.Data.Sqlite;
 using Xunit;
+using Xunit.Categories;
 
 using DataAccess.Net.Interfaces;
 using DataAccess.Net.Implementation;
@@ -30,7 +31,7 @@ namespace DataAccess.Net.Tests
             _accesBd.ReleaseConnection();
         }
 
-        [Fact]
+        [Fact, IntegrationTest]
         public void CustomerRepository_Count_ReturnsCountOfTwo()
         {
             //Arrange
@@ -43,7 +44,7 @@ namespace DataAccess.Net.Tests
             Assert.Equal(2, resultat);
         }
 
-        [Fact]
+        [Fact, IntegrationTest]
         public void CustomerRepository_FindById_EntityFound()
         {
             //Arrange
@@ -67,7 +68,7 @@ namespace DataAccess.Net.Tests
             Assert.Equal("asterix@village.gaulois.fr", address2.AdressValue);
         }
 
-        [Fact]
+        [Fact, IntegrationTest]
         public void CustomerRepository_Find_EntitiesFound()
         {
             //Arrange
