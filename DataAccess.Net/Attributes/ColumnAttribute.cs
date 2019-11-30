@@ -18,14 +18,12 @@ namespace DataAccess.Net.Attributes
             : base(new SqlMapper.ITypeMap[]
             {
                 new CustomPropertyTypeMap(
-                    typeof (T),
+                    typeof(T),
                     (type, columnName) =>
                         type.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-                            .FirstOrDefault(prop =>
-                                prop.GetCustomAttributes(false)
-                                    .OfType<ColumnAttribute>()
-                                    .Any(attr => attr.Name == columnName)
-                            )
+                            .FirstOrDefault(prop => prop.GetCustomAttributes(false)
+                                                        .OfType<ColumnAttribute>()
+                                                        .Any(attr => attr.Name == columnName))
                     ),
                 new DefaultTypeMap(typeof (T))
             })
@@ -61,6 +59,12 @@ namespace DataAccess.Net.Attributes
             return null;
         }
 
+        public ConstructorInfo FindExplicitConstructor()
+        {
+            return _mappers.Select(mapper => mapper.FindExplicitConstructor())
+                           .FirstOrDefault(result => result != null);
+        }
+
         public SqlMapper.IMemberMap GetConstructorParameter(ConstructorInfo constructor, string columnName)
         {
             foreach (var mapper in _mappers)
@@ -72,6 +76,9 @@ namespace DataAccess.Net.Attributes
                     {
                         return result;
                     }
+                }
+                catch (NotSupportedException)
+                {
                 }
                 catch (NotImplementedException)
                 {
@@ -98,13 +105,5 @@ namespace DataAccess.Net.Attributes
             }
             return null;
         }
-
-        public ConstructorInfo FindExplicitConstructor()
-        {
-            return _mappers
-                .Select(mapper => mapper.FindExplicitConstructor())
-                .FirstOrDefault(result => result != null);
-        }
     }
-
 }

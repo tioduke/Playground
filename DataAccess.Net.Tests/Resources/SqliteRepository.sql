@@ -11,15 +11,15 @@ CREATE TABLE CUSTOMER
 Insert into CUSTOMER
    (CUSTOMER_ID, CODE, NAME, NAS, AMOUNT, BIRTH_DATE, OTHER_DATE)
  Values
-   (1, 'A', 'Asterix', '111111111', 10.2, '1933-01-01', '2017-04-01');
+   (1, 'A', 'Asterix', '111111111', 10.2, datetime('1933-01-01'), datetime('2017-04-01'));
 Insert into CUSTOMER
    (CUSTOMER_ID, CODE, NAME, NAS, AMOUNT, BIRTH_DATE, OTHER_DATE)
  Values
-   (2, 'B', 'Panoramix', '222222222', 23.14, '1920-02-01', '2017-04-02');
+   (2, 'B', 'Panoramix', '222222222', 23.14, datetime('1920-02-01'), datetime('2017-04-02'));
 Insert into CUSTOMER
    (CUSTOMER_ID, CODE, NAME, NAS, AMOUNT, BIRTH_DATE, OTHER_DATE)
  Values
-   (3, 'A', 'Obelix', '333333333', 11.14, '1934-02-03', '2017-04-01');
+   (3, 'A', 'Obelix', '333333333', 11.14, datetime('1934-02-03'), datetime('2017-04-01'));
 
 CREATE TABLE ADDRESS
 (

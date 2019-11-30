@@ -19,7 +19,7 @@ namespace DataAccess.Net.Tests.Entities
         public string NAS { get; set; }
 
         [Column(Name = "AMOUNT")]
-        public Decimal? Amount { get; set; }
+        public decimal? Amount { get; set; }
 
         [Column(Name = "BIRTH_DATE")]
         public DateTime? BirthDate { get; set; }

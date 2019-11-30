@@ -1,9 +1,5 @@
 using System;
-using System.IO;
-using System.Data;
 using System.Linq;
-using System.Reflection;
-using Microsoft.Data.Sqlite;
 using Xunit;
 using Xunit.Categories;
 
@@ -15,7 +11,7 @@ using DataAccess.Net.Tests.Repositories;
 
 namespace DataAccess.Net.Tests
 {
-    public class SqliteRepositoryTest : IDisposable
+    public class SqliteRepositoryTest : DbTester, IDisposable
     {
         private ICtrlAccesDB _accesBd;
         private readonly IReadableRepository<Customer, CustomerCriteria> _sqliteRepository;
@@ -24,6 +20,8 @@ namespace DataAccess.Net.Tests
         {
             _accesBd = new SqliteAccesDB("DataSource=:memory:");
             _sqliteRepository = new CustomerRepository(_accesBd, new DapperExecutor());
+
+            base.CreateInMemoryDB(_accesBd.GetConnection());
         }
 
         public void Dispose()
@@ -35,7 +33,6 @@ namespace DataAccess.Net.Tests
         public void Count_TwoElementsInDB_ReturnsCountOfTwo()
         {
             //Arrange
-            CreateInMemoryDB(_accesBd.GetConnection());
 
             //Act
             var resultat = _sqliteRepository.Count(new CustomerCriteria { CustomerCode = "A" });
@@ -48,7 +45,6 @@ namespace DataAccess.Net.Tests
         public void FindById_ElementExistsInDB_EntityFound()
         {
             //Arrange
-            CreateInMemoryDB(_accesBd.GetConnection());
 
             //Act
             var resultat = _sqliteRepository.FindById(new CustomerCriteria { Id = 1L });
@@ -72,13 +68,12 @@ namespace DataAccess.Net.Tests
         public void Find_ElementsExistInDB_EntitiesFound()
         {
             //Arrange
-            CreateInMemoryDB(_accesBd.GetConnection());
 
             //Act
-            var resultat = _sqliteRepository.Find(new CustomerCriteria { CustomerCode = "A" });
+            var resultat = _sqliteRepository.Find(new CustomerCriteria { CustomerCode = "A" }).ToList();
 
             //Assert
-            Assert.Equal(2, resultat.Count());
+            Assert.Equal(2, resultat.Count);
             var entity1 = resultat.SingleOrDefault(x => x.Id == 1L);
             var entity2 = resultat.SingleOrDefault(x => x.Id == 3L);
             Assert.Equal(1L, entity1.Id);
@@ -104,28 +99,6 @@ namespace DataAccess.Net.Tests
             Assert.Equal(1, entity2.Addresses.Count);
             var address3 = entity2.Addresses.SingleOrDefault(x => x.Id == 4L);
             Assert.Equal("204 rue de La Gaule", address3.AdressValue);
-        }
-
-        private void CreateInMemoryDB(IDbConnection connection)
-        {
-            var command = new SqliteCommand(GetSqlCommands("SqliteRepository.sql"), (SqliteConnection)connection);
-            command.ExecuteNonQuery();
-        }
-
-        private static string GetSqlCommands(string fileName)
-        {
-            var resourceName = "DataAccess.Net.Tests.Resources." + fileName;
-            var assembly = Assembly.Load(new AssemblyName("DataAccess.Net.Tests"));
-
-            using (var stream = assembly.GetManifestResourceStream(resourceName))
-            {
-                if (stream == null) throw new FileNotFoundException();
-
-                using (var reader = new StreamReader(stream))
-                {
-                    return reader.ReadToEnd();
-                }
-            }
         }
     }
 }
