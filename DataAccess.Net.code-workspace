@@ -1,10 +1,10 @@
 {
 	"folders": [
 		{
-			"path": "DataAccess.Net"
+			"path": "FrameworkPrototype.Net/DataAccess.Net"
 		},
 		{
-			"path": "DataAccess.Net.Tests"
+			"path": "FrameworkPrototype.Net/DataAccess.Net.Tests"
 		}
 	],
 	"settings": {}

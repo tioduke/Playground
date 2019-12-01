@@ -1,10 +1,10 @@
 {
 	"folders": [
 		{
-			"path": "UnderstandingDependencyInjection.Net"
+			"path": "FrameworkPrototype.Net/UnderstandingDependencyInjection.Net"
 		},
 		{
-			"path": "DataAccess.Net"
+			"path": "FrameworkPrototype.Net/DataAccess.Net"
 		}
 	],
 	"settings": {}
