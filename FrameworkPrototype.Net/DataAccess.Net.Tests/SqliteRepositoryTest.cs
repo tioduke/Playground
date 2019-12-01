@@ -42,12 +42,12 @@ namespace DataAccess.Net.Tests
         }
 
         [Fact, IntegrationTest]
-        public void FindById_ElementExistsInDB_EntityFound()
+        public void Find_ElementExistsInDB_EntityFound()
         {
             //Arrange
 
             //Act
-            var resultat = _sqliteRepository.FindById(new CustomerCriteria { Id = 1L });
+            var resultat = _sqliteRepository.Find(new CustomerCriteria { Id = 1L });
 
             //Assert
             Assert.Equal(1L, resultat.Id);
@@ -65,12 +65,12 @@ namespace DataAccess.Net.Tests
         }
 
         [Fact, IntegrationTest]
-        public void Find_ElementsExistInDB_EntitiesFound()
+        public void FindMany_ElementsExistInDB_EntitiesFound()
         {
             //Arrange
 
             //Act
-            var resultat = _sqliteRepository.Find(new CustomerCriteria { CustomerCode = "A" }).ToList();
+            var resultat = _sqliteRepository.FindMany(new CustomerCriteria { CustomerCode = "A" }).ToList();
 
             //Assert
             Assert.Equal(2, resultat.Count);

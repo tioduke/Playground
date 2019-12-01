@@ -28,7 +28,7 @@ namespace UnderstandingDependencyInjection.Net.Repositories
             return base.ExecuteCountRequest(CustomerSql.SqlCountCustomers, criteria);
         }
 
-        public Customer FindById(CustomerCriteria criteria)
+        public Customer Find(CustomerCriteria criteria)
         {
             if (criteria == null || criteria.Id == null)
                 throw new ArgumentException(nameof(criteria));
@@ -36,12 +36,12 @@ namespace UnderstandingDependencyInjection.Net.Repositories
             return base.ExecuteReaderRequest(CustomerSql.SqlSelectCustomer, criteria).SingleOrDefault();
         }
 
-        public IEnumerable<Customer> Find()
+        public IEnumerable<Customer> FindMany()
         {
             return base.ExecuteReaderRequest(CustomerSql.SqlSelectAllCustomers, null);
         }
 
-        public IEnumerable<Customer> Find(CustomerCriteria criteria)
+        public IEnumerable<Customer> FindMany(CustomerCriteria criteria)
         {
             if (criteria == null || criteria.CustomerCode == null)
                 throw new ArgumentException(nameof(criteria));

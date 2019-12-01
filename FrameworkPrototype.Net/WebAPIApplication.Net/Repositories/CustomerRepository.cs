@@ -23,7 +23,7 @@ namespace WebAPIApplication.Net.Repositories
             return base.ExecuteCountRequest(CustomerSql.SqlCountCustomers(criteria), criteria);
         }
 
-        public Customer FindById(CustomerCriteria criteria)
+        public Customer Find(CustomerCriteria criteria)
         {
             if (criteria == null || criteria.Id == null)
                 throw new ArgumentException(nameof(criteria));
@@ -31,7 +31,7 @@ namespace WebAPIApplication.Net.Repositories
             return base.ExecuteReaderRequest(CustomerSql.SqlSelectCustomer, criteria).SingleOrDefault();
         }
 
-        public IEnumerable<Customer> Find(CustomerCriteria criteria)
+        public IEnumerable<Customer> FindMany(CustomerCriteria criteria)
         {
             if (criteria == null)
                 throw new ArgumentException(nameof(criteria));

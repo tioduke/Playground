@@ -22,7 +22,7 @@ namespace DataAccess.Net.Tests.Repositories
             return base.ExecuteCountRequest(CustomerSql.SqlCountCustomers, criteria);
         }
 
-        public Customer FindById(CustomerCriteria criteria)
+        public Customer Find(CustomerCriteria criteria)
         {
             if (criteria == null || criteria.Id == null)
                 throw new ArgumentException(nameof(criteria));
@@ -31,7 +31,7 @@ namespace DataAccess.Net.Tests.Repositories
             return base.ExecuteReaderRequest<Customer, Address>(CustomerSql.SqlSelectCustomer, criteria, MappingFunction, "ADDRESS_ID").SingleOrDefault();
         }
 
-        public IEnumerable<Customer> Find(CustomerCriteria criteria)
+        public IEnumerable<Customer> FindMany(CustomerCriteria criteria)
         {
             if (criteria == null || criteria.CustomerCode == null)
                 throw new ArgumentException(nameof(criteria));

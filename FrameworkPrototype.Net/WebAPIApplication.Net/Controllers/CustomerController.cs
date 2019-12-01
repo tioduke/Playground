@@ -24,7 +24,7 @@ namespace WebAPIApplication.Net.Controllers
         public IEnumerable<Customer> Get()
         {
             var criteria = new CustomerCriteria();
-            return _customerReadableRepository.Find(criteria);
+            return _customerReadableRepository.FindMany(criteria);
         }
 
         // GET api/customer/5
@@ -35,7 +35,7 @@ namespace WebAPIApplication.Net.Controllers
             {
                 Id = id
             };
-            return _customerReadableRepository.FindById(criteria);
+            return _customerReadableRepository.Find(criteria);
         }
 
         // GET api/customer/code/A
@@ -46,7 +46,7 @@ namespace WebAPIApplication.Net.Controllers
             {
                 CustomerCode = customerCode
             };
-            return _customerReadableRepository.Find(criteria);
+            return _customerReadableRepository.FindMany(criteria);
         }
 
         // POST api/customer

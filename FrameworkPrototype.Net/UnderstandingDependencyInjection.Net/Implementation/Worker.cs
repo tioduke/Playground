@@ -19,7 +19,7 @@ namespace UnderstandingDependencyInjection.Net.Implementation
 
         public void DoSomeWork()
         {
-            var customers = _customerRepository.Find(new CustomerCriteria { CustomerCode = "A" });
+            var customers = _customerRepository.FindMany(new CustomerCriteria { CustomerCode = "A" });
 
             foreach (var customer in customers)
             {
@@ -30,7 +30,7 @@ namespace UnderstandingDependencyInjection.Net.Implementation
 
         public void DoSomeOtherWork()
         {
-            var customers = _otherCustomerRepository.Find();
+            var customers = _otherCustomerRepository.FindMany();
 
             foreach (var customer in customers)
             {

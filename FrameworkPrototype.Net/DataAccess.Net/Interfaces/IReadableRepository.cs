@@ -5,13 +5,13 @@ namespace DataAccess.Net.Interfaces
     public interface IReadableRepository<out TEntity>
     {
         int Count();
-        IEnumerable<TEntity> Find();
+        IEnumerable<TEntity> FindMany();
     }
 
     public interface IReadableRepository<out TEntity, in TCriteria>
     {
         int Count(TCriteria criteres);
-        TEntity FindById(TCriteria criteres);
-        IEnumerable<TEntity> Find(TCriteria criteres);
+        TEntity Find(TCriteria criteres);
+        IEnumerable<TEntity> FindMany(TCriteria criteres);
     }
 }
