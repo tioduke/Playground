@@ -7,36 +7,48 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/DataAccess.Net.Tests/DataAccess.Net.Tests.csproj",
+                "${workspaceFolder}/FrameworkPrototype.Net.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "publish",
+            "label": "clean",
             "command": "dotnet",
             "type": "process",
             "args": [
-                "publish",
-                "${workspaceFolder}/DataAccess.Net.Tests/DataAccess.Net.Tests.csproj",
+                "clean",
+                "${workspaceFolder}/FrameworkPrototype.Net.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "watch",
+            "label": "test DataAccess.Net",
             "command": "dotnet",
             "type": "process",
             "args": [
-                "watch",
-                "run",
+                "test",
                 "${workspaceFolder}/DataAccess.Net.Tests/DataAccess.Net.Tests.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
+            "group": "test",
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "run UnderstandingDependencyInjection.Net",
+            "type": "shell",
+            "command": "dotnet run --project \"${workspaceFolder}/UnderstandingDependencyInjection.Net/UnderstandingDependencyInjection.Net.csproj\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "run WebAPIApplication.Net",
+            "type": "shell",
+            "command": "dotnet run --project \"${workspaceFolder}/WebAPIApplication.Net/WebAPIApplication.Net.csproj\"",
+            "problemMatcher": []
         }
     ]
 }
