@@ -24,8 +24,6 @@ namespace DataAccess.Net.Tests
 
             _accesBd = new OracleAccesDB(connectionString);
             _oracleRepository = new CustomerRepository(_accesBd, new DapperExecutor());
-
-            base.PopulateOracleDB(_accesBd.GetConnection());
         }
 
         public void Dispose()
@@ -37,6 +35,7 @@ namespace DataAccess.Net.Tests
         public void Count_TwoElementsInDB_ReturnsCountOfTwo()
         {
             //Arrange
+            PopulateOracleDB(_accesBd.GetConnection());
 
             //Act
             var resultat = _oracleRepository.Count(new CustomerCriteria { CustomerCode = "A" });
@@ -49,6 +48,7 @@ namespace DataAccess.Net.Tests
         public void Find_ElementExistsInDB_EntityFound()
         {
             //Arrange
+            PopulateOracleDB(_accesBd.GetConnection());
 
             //Act
             var resultat = _oracleRepository.Find(new CustomerCriteria { Id = 1L });
@@ -72,6 +72,7 @@ namespace DataAccess.Net.Tests
         public void FindMany_ElementsExistInDB_EntitiesFound()
         {
             //Arrange
+            PopulateOracleDB(_accesBd.GetConnection());
 
             //Act
             var resultat = _oracleRepository.FindMany(new CustomerCriteria { CustomerCode = "A" }).ToList();
@@ -80,6 +81,7 @@ namespace DataAccess.Net.Tests
             Assert.Equal(2, resultat.Count);
             var entity1 = resultat.SingleOrDefault(x => x.Id == 1L);
             var entity2 = resultat.SingleOrDefault(x => x.Id == 3L);
+
             Assert.Equal(1L, entity1.Id);
             Assert.Equal("A", entity1.CustomerCode);
             Assert.Equal("Asterix", entity1.CustomerName);

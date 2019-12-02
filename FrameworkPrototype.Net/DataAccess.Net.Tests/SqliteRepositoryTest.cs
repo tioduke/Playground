@@ -20,8 +20,6 @@ namespace DataAccess.Net.Tests
         {
             _accesBd = new SqliteAccesDB("DataSource=:memory:");
             _sqliteRepository = new CustomerRepository(_accesBd, new DapperExecutor());
-
-            base.CreateInMemoryDB(_accesBd.GetConnection());
         }
 
         public void Dispose()
@@ -33,6 +31,7 @@ namespace DataAccess.Net.Tests
         public void Count_TwoElementsInDB_ReturnsCountOfTwo()
         {
             //Arrange
+            CreateInMemoryDB(_accesBd.GetConnection());
 
             //Act
             var resultat = _sqliteRepository.Count(new CustomerCriteria { CustomerCode = "A" });
@@ -45,6 +44,7 @@ namespace DataAccess.Net.Tests
         public void Find_ElementExistsInDB_EntityFound()
         {
             //Arrange
+            CreateInMemoryDB(_accesBd.GetConnection());
 
             //Act
             var resultat = _sqliteRepository.Find(new CustomerCriteria { Id = 1L });
@@ -68,6 +68,7 @@ namespace DataAccess.Net.Tests
         public void FindMany_ElementsExistInDB_EntitiesFound()
         {
             //Arrange
+            CreateInMemoryDB(_accesBd.GetConnection());
 
             //Act
             var resultat = _sqliteRepository.FindMany(new CustomerCriteria { CustomerCode = "A" }).ToList();
@@ -76,6 +77,7 @@ namespace DataAccess.Net.Tests
             Assert.Equal(2, resultat.Count);
             var entity1 = resultat.SingleOrDefault(x => x.Id == 1L);
             var entity2 = resultat.SingleOrDefault(x => x.Id == 3L);
+
             Assert.Equal(1L, entity1.Id);
             Assert.Equal("A", entity1.CustomerCode);
             Assert.Equal("Asterix", entity1.CustomerName);

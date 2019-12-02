@@ -21,9 +21,7 @@ namespace DataAccess.Net.Tests.Attributes
             {
                 ConnectionString = "DataSource=:memory:"
             };
-
             _dbConnexion.Open();
-            base.CreateInMemoryDB(_dbConnexion);
         }
 
         public void Dispose()
@@ -35,6 +33,8 @@ namespace DataAccess.Net.Tests.Attributes
         public void Query_TypeMapped_RetournsEntityWithProperties()
         {
             //Arrange
+            CreateInMemoryDB(_dbConnexion);
+
             var sql = "select * from CUSTOMER where CUSTOMER_ID = :Id";
             SqlMapper.SetTypeMap(typeof(Customer), new ColumnAttributeTypeMapper<Customer>());
 
@@ -44,6 +44,7 @@ namespace DataAccess.Net.Tests.Attributes
             //Assert
             Assert.NotEmpty(resultat);
             Assert.Equal(1L, resultat[0].Id);
+            Assert.Equal("A", resultat[0].CustomerCode);
             Assert.Equal("Asterix", resultat[0].CustomerName);
             Assert.Equal("111111111", resultat[0].NAS);
             Assert.Equal(10.2m, resultat[0].Amount);
@@ -55,7 +56,9 @@ namespace DataAccess.Net.Tests.Attributes
         public void Query_TypeNotMapped_RetournsEntityWithProperties()
         {
             //Arrange
-            var sql = "select CUSTOMER_ID as Id, NAME as CustomerName, NAS, AMOUNT as Amount, BIRTH_DATE as BirthDate, OTHER_DATE as OtherDate from CUSTOMER where CUSTOMER_ID = :Id";
+            CreateInMemoryDB(_dbConnexion);
+
+            var sql = "select CUSTOMER_ID as Id, CODE as CustomerCode, NAME as CustomerName, NAS, AMOUNT as Amount, BIRTH_DATE as BirthDate, OTHER_DATE as OtherDate from CUSTOMER where CUSTOMER_ID = :Id";
             SqlMapper.SetTypeMap(typeof(Customer), null);
 
             //Act
@@ -64,6 +67,7 @@ namespace DataAccess.Net.Tests.Attributes
             //Assert
             Assert.NotEmpty(resultat);
             Assert.Equal(1L, resultat[0].Id);
+            Assert.Equal("A", resultat[0].CustomerCode);
             Assert.Equal("Asterix", resultat[0].CustomerName);
             Assert.Equal("111111111", resultat[0].NAS);
             Assert.Equal(10.2m, resultat[0].Amount);
@@ -75,6 +79,8 @@ namespace DataAccess.Net.Tests.Attributes
         public void Query_TypeMappedByConstructorParameters_RetournsEntityWithProperties()
         {
             //Arrange
+            CreateInMemoryDB(_dbConnexion);
+
             var sql = "select * from CUSTOMER where CUSTOMER_ID = :Id";
             SqlMapper.SetTypeMap(typeof(CustomerWithParameters), new ColumnAttributeTypeMapper<CustomerWithParameters>());
 
@@ -84,6 +90,7 @@ namespace DataAccess.Net.Tests.Attributes
             //Assert
             Assert.NotEmpty(resultat);
             Assert.Equal(1L, resultat[0].Id);
+            Assert.Equal("A", resultat[0].CustomerCode);
             Assert.Equal("Asterix", resultat[0].CustomerName);
             Assert.Equal("111111111", resultat[0].NAS);
             Assert.Equal(10.2m, resultat[0].Amount);
