@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Microsoft.Extensions.Configuration;
 using Xunit;
 using Xunit.Categories;
 
@@ -18,7 +19,10 @@ namespace DataAccess.Net.Tests
 
         public OracleRepositoryTest()
         {
-            _accesBd = new OracleAccesDB("Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=xe)));User Id=dev;Password=dev;");
+            var config = new ConfigurationBuilder().AddJsonFile("oracle.json").Build();
+            var connectionString = config["connectionString"];
+
+            _accesBd = new OracleAccesDB(connectionString);
             _oracleRepository = new CustomerRepository(_accesBd, new DapperExecutor());
 
             base.PopulateOracleDB(_accesBd.GetConnection());

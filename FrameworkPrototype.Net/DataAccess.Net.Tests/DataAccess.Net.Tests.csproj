@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="oracle.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="xunit.runner.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -23,6 +29,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.Sqlite" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.categories" Version="2.0.4" />
