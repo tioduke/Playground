@@ -2,6 +2,7 @@ using System.IO;
 using System.Data;
 using System.Reflection;
 using Microsoft.Data.Sqlite;
+using Oracle.ManagedDataAccess.Client;
 
 namespace DataAccess.Net.Tests
 {
@@ -10,6 +11,12 @@ namespace DataAccess.Net.Tests
         protected void CreateInMemoryDB(IDbConnection connection)
         {
             var command = new SqliteCommand(GetSqlCommands("SqliteRepository.sql"), (SqliteConnection)connection);
+            command.ExecuteNonQuery();
+        }
+
+        protected void PopulateOracleDB(IDbConnection connection)
+        {
+            var command = new OracleCommand(GetSqlCommands("OracleRepository.sql"), (OracleConnection)connection);
             command.ExecuteNonQuery();
         }
 

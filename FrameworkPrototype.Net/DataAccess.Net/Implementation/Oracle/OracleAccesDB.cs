@@ -3,7 +3,7 @@ using System.Data;
 using Oracle.ManagedDataAccess.Client;
 using DataAccess.Net.Interfaces;
 
-namespace DataAccess.Net.Implementation.Sqlite
+namespace DataAccess.Net.Implementation.Oracle
 {
     public class OracleAccesDB : ICtrlAccesDB, IDisposable
     {

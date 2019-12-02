@@ -3,7 +3,7 @@ using System.Data;
 using MySql.Data.MySqlClient;
 using DataAccess.Net.Interfaces;
 
-namespace DataAccess.Net.Implementation.Sqlite
+namespace DataAccess.Net.Implementation.MySql
 {
     public class MySqlAccesDB : ICtrlAccesDB, IDisposable
     {
