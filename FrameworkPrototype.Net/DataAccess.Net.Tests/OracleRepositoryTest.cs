@@ -14,12 +14,12 @@ namespace DataAccess.Net.Tests
     public class OracleRepositoryTest : DbTester, IDisposable
     {
         private ICtrlAccesDB _accesBd;
-        private readonly IReadableRepository<Customer, CustomerCriteria> _sqliteRepository;
+        private readonly IReadableRepository<Customer, CustomerCriteria> _oracleRepository;
 
         public OracleRepositoryTest()
         {
             _accesBd = new OracleAccesDB("Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=xe)));User Id=dev;Password=dev;");
-            _sqliteRepository = new CustomerRepository(_accesBd, new DapperExecutor());
+            _oracleRepository = new CustomerRepository(_accesBd, new DapperExecutor());
 
             base.PopulateOracleDB(_accesBd.GetConnection());
         }
@@ -35,7 +35,7 @@ namespace DataAccess.Net.Tests
             //Arrange
 
             //Act
-            var resultat = _sqliteRepository.Count(new CustomerCriteria { CustomerCode = "A" });
+            var resultat = _oracleRepository.Count(new CustomerCriteria { CustomerCode = "A" });
 
             //Assert
             Assert.Equal(2, resultat);
@@ -47,7 +47,7 @@ namespace DataAccess.Net.Tests
             //Arrange
 
             //Act
-            var resultat = _sqliteRepository.Find(new CustomerCriteria { Id = 1L });
+            var resultat = _oracleRepository.Find(new CustomerCriteria { Id = 1L });
 
             //Assert
             Assert.Equal(1L, resultat.Id);
@@ -70,7 +70,7 @@ namespace DataAccess.Net.Tests
             //Arrange
 
             //Act
-            var resultat = _sqliteRepository.FindMany(new CustomerCriteria { CustomerCode = "A" }).ToList();
+            var resultat = _oracleRepository.FindMany(new CustomerCriteria { CustomerCode = "A" }).ToList();
 
             //Assert
             Assert.Equal(2, resultat.Count);
