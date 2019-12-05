@@ -1,5 +1,8 @@
 using System;
-using Microsoft.Extensions.DependencyInjection;
+using System.IO;
+using System.Reflection;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 
 using DataAccess.Net.Interfaces;
 using DataAccess.Net.Implementation;
@@ -15,13 +18,20 @@ namespace UnderstandingDependencyInjection.Net
     {
         public static IServiceProvider ConfigureServices()
         {
-            return new ServiceCollection()
-                .AddScoped<IWorker, Worker>()
-                .AddScoped<IReadableRepository<Customer>, CustomerRepository>()
-                .AddScoped<IReadableRepository<Customer, CustomerCriteria>, CustomerRepository>()
-                .AddScoped<IDbExecutor, DapperExecutor>()
-                .AddScoped<ICtrlAccesDB>(x => new SqliteAccesDB("DataSource=Resources/database.sqlite"))
-                .BuildServiceProvider();
+            var currentPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+
+            // Create a container-builder and register dependencies
+            var builder = new ContainerBuilder();
+
+            // Register your own things directly with Autofac
+            builder.RegisterType<Worker>().As<IWorker>();
+            builder.RegisterType<CustomerRepository>().As<IReadableRepository<Customer>>();
+            builder.RegisterType<CustomerRepository>().As<IReadableRepository<Customer, CustomerCriteria>>();
+            builder.RegisterType<DapperExecutor>().As<IDbExecutor>();
+            builder.Register(x => new SqliteAccesDB($"DataSource={currentPath}/Resources/database.sqlite")).As<ICtrlAccesDB>();
+
+            var container = builder.Build();
+            return new AutofacServiceProvider(container);
         }
     }
 }
