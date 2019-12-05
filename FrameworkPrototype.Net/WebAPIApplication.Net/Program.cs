@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Autofac.Extensions.DependencyInjection;
 
 namespace WebAPIApplication.Net
 {
@@ -12,6 +13,7 @@ namespace WebAPIApplication.Net
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureServices(services => services.AddAutofac())
                 .UseUrls("http://0.0.0.0:5000/")
                 .UseStartup<Startup>();
     }
