@@ -6,9 +6,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/Debug/netcoreapp2.0/SerializationTest.Net.dll",
+            "program": "${workspaceFolder}/SerializationTest.Net/bin/Debug/netcoreapp2.2/SerializationTest.Net.dll",
             "args": [],
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/SerializationTest.Net",
             "stopAtEntry": false
         },
         {

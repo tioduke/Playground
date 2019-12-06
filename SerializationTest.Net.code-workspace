@@ -2,9 +2,6 @@
 	"folders": [
 		{
 			"path": "SerializationTest.Net"
-		},
-		{
-			"path": "SerializationTest.Net.Tests"
 		}
 	],
 	"settings": {}

@@ -3,15 +3,45 @@
     "tasks": [
         {
             "label": "build",
-            "type": "shell",
-            "command": "dotnet build \"${workspaceFolder}/../SerializationTest.Net.Tests\"",
-            "group": "build",
-            "problemMatcher": [ "$msCompile" ]
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/SerializationTest.Net.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "clean",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "clean",
+                "${workspaceFolder}/SerializationTest.Net.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "test",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "test",
+                "${workspaceFolder}/SerializationTest.Net.Tests/SerializationTest.Net.Tests.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "group": "test",
+            "problemMatcher": "$msCompile"
         },
         {
             "label": "run",
             "type": "shell",
-            "command": "dotnet run --project \"${workspaceFolder}/SerializationTest.Net.csproj\"",
+            "command": "dotnet run --project \"${workspaceFolder}/SerializationTest.Net/SerializationTest.Net.csproj\"",
             "problemMatcher": []
         }
     ]
