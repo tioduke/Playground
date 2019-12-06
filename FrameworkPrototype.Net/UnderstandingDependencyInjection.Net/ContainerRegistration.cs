@@ -18,8 +18,6 @@ namespace UnderstandingDependencyInjection.Net
     {
         public static IServiceProvider ConfigureServices()
         {
-            var currentPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-
             // Create a container-builder and register dependencies
             var builder = new ContainerBuilder();
 
@@ -28,6 +26,7 @@ namespace UnderstandingDependencyInjection.Net
             builder.RegisterType<CustomerRepository>().As<IReadableRepository<Customer>>();
             builder.RegisterType<CustomerRepository>().As<IReadableRepository<Customer, CustomerCriteria>>();
             builder.RegisterType<DapperExecutor>().As<IDbExecutor>();
+            var currentPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             builder.Register(x => new SqliteAccesDB($"DataSource={currentPath}/Resources/database.sqlite")).As<ICtrlAccesDB>();
 
             var container = builder.Build();

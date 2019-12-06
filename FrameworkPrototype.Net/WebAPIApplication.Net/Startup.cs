@@ -38,8 +38,6 @@ namespace WebAPIApplication.Net
                 options.Filters.Add(new ValidateModelStateAttribute());
             });
 
-            var currentPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-
             // Create a container-builder and register dependencies
             var builder = new ContainerBuilder();
 
@@ -50,6 +48,7 @@ namespace WebAPIApplication.Net
             builder.RegisterType<CustomerRepository>().As<IReadableRepository<Customer, CustomerCriteria>>();
             builder.RegisterType<CustomerRepository>().As<IWritableRepository<Customer, CustomerCriteria>>();
             builder.RegisterType<DapperExecutor>().As<IDbExecutor>();
+            var currentPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             builder.Register(x => new SqliteAccesDB($"DataSource={currentPath}/Resources/database.sqlite")).As<ICtrlAccesDB>();
 
             var container = builder.Build();
