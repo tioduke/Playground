@@ -11,6 +11,9 @@ target/
 # ignore all .ionide directories
 .ionide/
 
+# ignore solution explorer templates
+solution-explorer
+
 # ignore all files ending with ~
 *~ 
 
