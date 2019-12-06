@@ -1,4 +1,5 @@
 using Xunit;
+using Xunit.Categories;
 
 using WebApplication.Net.Customers.Models;
 
@@ -6,7 +7,7 @@ namespace WebApplication.Net.Tests
 {
     public class CustomerVmControllerTest
     {
-        [Fact]
+        [Fact, UnitTest]
         public void Validate_CustomerLevelColor_Success()
         {
             CustomerViewModel obj = new CustomerViewModel();

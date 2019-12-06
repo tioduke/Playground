@@ -3,15 +3,45 @@
     "tasks": [
         {
             "label": "build",
-            "type": "shell",
-            "command": "dotnet build \"${workspaceFolder}/../WebApplicationFSharp.Net.Tests\"",
-            "group": "build",
-            "problemMatcher": [ "$msCompile" ]
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/WebApplicationFSharp.Net.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "clean",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "clean",
+                "${workspaceFolder}/WebApplicationFSharp.Net.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "test",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "test",
+                "${workspaceFolder}/WebApplicationFSharp.Net.Tests/WebApplicationFSharp.Net.Tests.fsproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "group": "test",
+            "problemMatcher": "$msCompile"
         },
         {
             "label": "run",
             "type": "shell",
-            "command": "dotnet run --project \"${workspaceFolder}/WebApplicationFSharp.Net.fsproj\"",
+            "command": "dotnet run --project \"${workspaceFolder}/WebApplicationFSharp.Net/WebApplicationFSharp.Net.fsproj\"",
             "problemMatcher": []
         }
     ]

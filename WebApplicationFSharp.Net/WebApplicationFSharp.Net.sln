@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "WebApplicationFSharp.Net", "WebApplicationFSharp.Net.fsproj", "{02EDFC13-49DE-4AE2-97E1-1BB995B187B1}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "WebApplicationFSharp.Net", "WebApplicationFSharp.Net\WebApplicationFSharp.Net.fsproj", "{02EDFC13-49DE-4AE2-97E1-1BB995B187B1}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "WebApplicationFSharp.Net.Tests", "..\WebApplicationFSharp.Net.Tests\WebApplicationFSharp.Net.Tests.fsproj", "{3901099B-12EA-440E-9C20-EB1AC9AD5295}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "WebApplicationFSharp.Net.Tests", "WebApplicationFSharp.Net.Tests\WebApplicationFSharp.Net.Tests.fsproj", "{3901099B-12EA-440E-9C20-EB1AC9AD5295}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

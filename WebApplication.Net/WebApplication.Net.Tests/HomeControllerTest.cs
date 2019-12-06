@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
+using Xunit.Categories;
 
 using WebApplication.Net.FirstMVC.Controllers;
 
@@ -7,7 +8,7 @@ namespace WebApplication.Net.Tests
 {
     public class HomeControllerTest
     {
-        [Fact]
+        [Fact, UnitTest]
         public void Index_Success()
         {
             // Arrange
@@ -19,7 +20,5 @@ namespace WebApplication.Net.Tests
             // Assert
             Assert.Equal("HelloView", result.ViewName);
         }
-        
-        
     }
 }

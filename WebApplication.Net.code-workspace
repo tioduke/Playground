@@ -2,9 +2,6 @@
 	"folders": [
 		{
 			"path": "WebApplication.Net"
-		},
-		{
-			"path": "WebApplication.Net.Tests"
 		}
 	],
 	"settings": {}

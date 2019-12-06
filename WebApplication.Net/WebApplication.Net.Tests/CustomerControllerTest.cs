@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Xunit;
+using Xunit.Categories;
 
 using WebApplication.Net.Customers.Controllers;
 using WebApplication.Net.Customers.Models;
@@ -10,7 +11,7 @@ namespace WebApplication.Net.Tests
 {
     public class CustomerControllerTest
     {
-        [Fact]
+        [Fact, UnitTest]
         public void DisplayCustomer_Success()
         {
             // Arrange
@@ -32,7 +33,7 @@ namespace WebApplication.Net.Tests
             Assert.Equal("DisplayCustomer", result.ViewName);
         }
 
-        [Fact]
+        [Fact, UnitTest]
         public void Validate_RequiredFields_Invalid()
         {
             // Arrange
@@ -59,7 +60,7 @@ namespace WebApplication.Net.Tests
             Assert.Contains("is required", results[2].ErrorMessage);
         }
 
-        [Fact]
+        [Fact, UnitTest]
         public void Validate_StringLengths_Invalid()
         {
             // Arrange
@@ -85,7 +86,7 @@ namespace WebApplication.Net.Tests
             Assert.Contains("must be a string with a maximum length of", results[1].ErrorMessage);
         }
 
-        [Fact]
+        [Fact, UnitTest]
         public void Validate_NAS_Invalid()
         {
             // Arrange
