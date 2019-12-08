@@ -13,7 +13,7 @@ namespace UnderstandingDependencyInjection.Net
             //setup our DI
             var serviceProvider = ContainerRegistration.ConfigureServices();
 
-            //set the working directory (for the Datasource)
+            //set the working directory (for the DataSource)
             var assemblyDirectory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             Directory.SetCurrentDirectory(assemblyDirectory);
 

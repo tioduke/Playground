@@ -21,10 +21,10 @@ namespace WebAPIApplication.Net
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((builderContext, config) =>
-                {
-                    IHostingEnvironment env = builderContext.HostingEnvironment;
-                    config.AddJsonFile("autofac.json");
-                })
+                    {
+                        IHostingEnvironment env = builderContext.HostingEnvironment;
+                        config.AddJsonFile("autofac.json");
+                    })
                 .ConfigureServices(services => services.AddAutofac())
                 .UseUrls("http://0.0.0.0:5000/")
                 .UseStartup<Startup>();
