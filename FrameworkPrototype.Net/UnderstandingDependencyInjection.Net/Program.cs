@@ -1,3 +1,5 @@
+using System.IO;
+using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 
 using UnderstandingDependencyInjection.Net.Interfaces;
@@ -10,6 +12,10 @@ namespace UnderstandingDependencyInjection.Net
         {
             //setup our DI
             var serviceProvider = ContainerRegistration.ConfigureServices();
+
+            //set the working directory (for the Datasource)
+            var assemblyDirectory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            Directory.SetCurrentDirectory(assemblyDirectory);
 
             //do the actual work here.
             var worker = serviceProvider.GetService<IWorker>();
