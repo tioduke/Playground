@@ -1,20 +1,14 @@
 using System;
-using System.IO;
-using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Autofac;
+using Autofac.Configuration;
 using Autofac.Extensions.DependencyInjection;
 
-using DataAccess.Net.Interfaces;
-using DataAccess.Net.Implementation;
-using DataAccess.Net.Implementation.Sqlite;
-using WebAPIApplication.Net.Entities;
 using WebAPIApplication.Net.Filters;
-using WebAPIApplication.Net.Repositories;
 
 namespace WebAPIApplication.Net
 {
@@ -44,15 +38,10 @@ namespace WebAPIApplication.Net
             // Populate the service-descriptors added to 'IServiceCollection'
             builder.Populate(services);
 
-            // Register your own things directly with Autofac
-            builder.RegisterType<CustomerRepository>().As<IReadableRepository<Customer, CustomerCriteria>>();
-            builder.RegisterType<CustomerRepository>().As<IWritableRepository<Customer, CustomerCriteria>>();
-            builder.RegisterType<DapperExecutor>().As<IDbExecutor>();
-            var currentPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            builder.Register(x => new SqliteAccesDB($"DataSource={currentPath}/Resources/database.sqlite")).As<ICtrlAccesDB>();
+            // Register your own services within Autofac
+            builder.RegisterModule(new ConfigurationModule(Configuration));
 
-            var container = builder.Build();
-            return new AutofacServiceProvider(container);
+            return new AutofacServiceProvider(builder.Build());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
