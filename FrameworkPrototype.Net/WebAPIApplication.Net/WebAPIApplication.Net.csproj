@@ -3,13 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <EnableDefaultContentItems>false</EnableDefaultContentItems>
   </PropertyGroup>
 
-  <!--ItemGroup>
+  <ItemGroup>
     <Content Include="autofac.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup-->
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Resources/database.sqlite">
