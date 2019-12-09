@@ -2,8 +2,8 @@ using System.IO;
 using System.Reflection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using Autofac.Extensions.DependencyInjection;
 
 namespace WebAPIApplication.Net
 {
