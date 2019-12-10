@@ -1,8 +1,8 @@
 using System.IO;
 using System.Reflection;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Autofac.Extensions.DependencyInjection;
 
 namespace WebAPIApplication.Net
@@ -18,14 +18,16 @@ namespace WebAPIApplication.Net
             CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+        public static IHostBuilder CreateWebHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                })
                 .ConfigureAppConfiguration((builderContext, config) =>
-                    {
-                        IHostingEnvironment env = builderContext.HostingEnvironment;
-                        config.AddJsonFile("appsettings.json");
-                    })
-                .ConfigureServices(services => services.AddAutofac())
-                .UseStartup<Startup>();
+                {
+                    config.AddJsonFile("appsettings.json");
+                })
+                .UseServiceProviderFactory(new AutofacServiceProviderFactory());
     }
 }
