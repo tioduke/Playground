@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 using DataAccess.Net.Interfaces;
 using WebAPIApplication.Net.Entities;
+using WebAPIApplication.Net.Filters;
 
 namespace WebAPIApplication.Net.Controllers
 {
@@ -21,6 +22,7 @@ namespace WebAPIApplication.Net.Controllers
 
         // GET api/customer
         [HttpGet]
+        [TypeFilter(typeof(ValidateMaxReturnedItemsFilter))]
         public IEnumerable<Customer> Get()
         {
             var criteria = new CustomerCriteria();
@@ -40,6 +42,7 @@ namespace WebAPIApplication.Net.Controllers
 
         // GET api/customer/code/A
         [HttpGet("code/{customerCode}")]
+        [TypeFilter(typeof(ValidateMaxReturnedItemsFilter))]
         public IEnumerable<Customer> Get(string customerCode)
         {
             var criteria = new CustomerCriteria

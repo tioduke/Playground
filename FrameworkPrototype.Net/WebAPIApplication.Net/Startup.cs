@@ -27,7 +27,7 @@ namespace WebAPIApplication.Net
             // Add global filters.
             services.AddMvc(options =>
             {
-                options.Filters.Add(new ValidateModelStateAttribute());
+                options.Filters.Add(new ValidateModelStateFilter());
             });
         }
 

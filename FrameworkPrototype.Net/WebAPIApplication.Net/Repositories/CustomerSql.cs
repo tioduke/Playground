@@ -11,6 +11,7 @@ namespace WebAPIApplication.Net.Repositories
             return new StringBuilder()
                 .Append("Select ")
                 .Append("Count(1) ")
+                .Append("From CUSTOMER ")
                 .Append(CustomerSql.SqlClauseWhere(criteria))
                 .ToString();
         }

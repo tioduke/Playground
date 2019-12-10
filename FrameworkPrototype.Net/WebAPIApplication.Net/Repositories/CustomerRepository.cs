@@ -17,7 +17,7 @@ namespace WebAPIApplication.Net.Repositories
 
         public int Count(CustomerCriteria criteria)
         {
-            if (criteria == null || criteria.Id == null)
+            if (criteria == null)
                 throw new ArgumentException(nameof(criteria));
 
             return base.ExecuteCountRequest(CustomerSql.SqlCountCustomers(criteria), criteria);
