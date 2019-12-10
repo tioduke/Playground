@@ -39,7 +39,7 @@ namespace WebAPIApplication.Net
             builder.Populate(services);
 
             // Register your own services within Autofac
-            builder.RegisterModule(new ConfigurationModule(Configuration));
+            builder.RegisterModule(new ConfigurationModule(Configuration.GetSection("autofac")));
 
             return new AutofacServiceProvider(builder.Build());
         }

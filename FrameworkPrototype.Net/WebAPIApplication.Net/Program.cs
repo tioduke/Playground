@@ -23,7 +23,7 @@ namespace WebAPIApplication.Net
                 .ConfigureAppConfiguration((builderContext, config) =>
                     {
                         IHostingEnvironment env = builderContext.HostingEnvironment;
-                        config.AddJsonFile("autofac.json");
+                        config.AddJsonFile("appsettings.json");
                     })
                 .ConfigureServices(services => services.AddAutofac())
                 .UseUrls("http://0.0.0.0:5000/")
