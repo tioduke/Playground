@@ -7,15 +7,15 @@ using WebAPIApplication.Net.Mvc;
 
 namespace WebAPIApplication.Net.Filters
 {
-    public sealed class ValidateMaxReturnedItemsFilter : IActionFilter
+    public sealed class ValidateMaxItemsFilter : IActionFilter
     {
-        private readonly int _maxReturnedItems;
+        private readonly int _maxItems;
         private readonly IReadableRepository<Customer, CustomerCriteria> _customerReadableRepository;
 
-        public ValidateMaxReturnedItemsFilter(IConfiguration configuration,
-                                              IReadableRepository<Customer, CustomerCriteria> customerReadableRepository)
+        public ValidateMaxItemsFilter(IConfiguration configuration,
+                                      IReadableRepository<Customer, CustomerCriteria> customerReadableRepository)
         {
-            _maxReturnedItems = int.Parse(configuration["MaxReturnedItems"]);
+            _maxItems = int.Parse(configuration["MaxItems"]);
             _customerReadableRepository = customerReadableRepository;
         }
 
@@ -31,7 +31,7 @@ namespace WebAPIApplication.Net.Filters
                 CustomerCode = actionContext.GetArgumentValue("customerCode") as string
             };
             var count = _customerReadableRepository.Count(criteria);
-            if (count > _maxReturnedItems)
+            if (count > _maxItems)
             {
                 actionContext.Result = new PayloadTooLargeResult("Too many results obtained.");
             }

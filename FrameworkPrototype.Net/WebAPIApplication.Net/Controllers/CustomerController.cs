@@ -22,7 +22,7 @@ namespace WebAPIApplication.Net.Controllers
 
         // GET api/customer
         [HttpGet]
-        [TypeFilter(typeof(ValidateMaxReturnedItemsFilter))]
+        [TypeFilter(typeof(ValidateMaxItemsFilter))]
         public IEnumerable<Customer> Get()
         {
             var criteria = new CustomerCriteria();
@@ -42,7 +42,7 @@ namespace WebAPIApplication.Net.Controllers
 
         // GET api/customer/code/A
         [HttpGet("code/{customerCode}")]
-        [TypeFilter(typeof(ValidateMaxReturnedItemsFilter))]
+        [TypeFilter(typeof(ValidateMaxItemsFilter))]
         public IEnumerable<Customer> Get(string customerCode)
         {
             var criteria = new CustomerCriteria
