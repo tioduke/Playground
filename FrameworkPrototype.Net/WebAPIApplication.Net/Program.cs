@@ -26,6 +26,7 @@ namespace WebAPIApplication.Net
                 })
                 .ConfigureAppConfiguration((builderContext, config) =>
                 {
+                    config.AddJsonFile("autofac.json");
                     config.AddJsonFile("appsettings.json");
                 })
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory());
