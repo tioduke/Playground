@@ -1,6 +1,6 @@
 using System;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 using WebApplication.Net.Customers.Models;
 
@@ -41,9 +41,9 @@ namespace WebApplication.Net.Customers.Controllers
         // GET: /Customers/Json/sendJson
         public ActionResult sendJson()
         {
-            Customer obj = JsonConvert.DeserializeObject<Customer>(Request.Form["customer"]);
+            Customer obj = JsonSerializer.Deserialize<Customer>(Request.Form["customer"]);
             obj.CustomerName += " (modified)";
-            
+
             return PartialView("_Popup", obj);
         }
 

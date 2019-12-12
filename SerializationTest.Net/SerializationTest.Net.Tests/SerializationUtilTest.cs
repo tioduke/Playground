@@ -1,49 +1,41 @@
-using System.Collections.Generic;
+using AutoFixture;
 using Xunit;
 
 namespace SerializationTest.Net.Tests
 {
     public class SerializationUtilTest
     {
-        [Fact]
-        public void SerializationUtil_AssertObjectSerialization_String()
+        private readonly Fixture _fixture;
+
+        public SerializationUtilTest()
         {
-            //Arrange
-            string str = "Hello, world!";
-
-            //Act
-
-            //Assert
-            SerializationUtilTest.AssertObjectSerialization<string>(str);
+            _fixture = new Fixture();
         }
 
         [Fact]
-        public void SerializationUtil_AssertObjectSerialization_ClassA()
+        public void Clone_ObjectIsString_CopyAndObjectAreEqual()
         {
             //Arrange
-            ClassA obj = new ClassA
-            {
-                Property1 = new ClassB
-                {
-                    Property1 = 1,
-                    Property2 = "blablabla",
-                    Property3 = new List<string> { "uno", "dos" },
-                    Property4 = new Dictionary<string, object> { { "clave", "valor" } }
-                }
-            };
+            string str = _fixture.Create<string>();
 
             //Act
+            var copy = SerializationUtil.Clone(str);
 
             //Assert
-            SerializationUtilTest.AssertObjectSerialization<ClassA>(obj);
+            Assert.Equal(str, copy);
         }
 
-        private static void AssertObjectSerialization<T>(T source)
+        [Fact]
+        public void Clone_ObjectIsClassA_CopyAndObjectAreEqual()
         {
-            T copy = SerializationUtil.Clone<T>(source);
+            //Arrange
+            var obj = _fixture.Create<ClassA>();
 
-            Assert.True(copy.Equals(source));
+            //Act
+            var copy = SerializationUtil.Clone(obj);
+
+            //Assert
+            Assert.Equal(obj, copy);
         }
-
     }
 }

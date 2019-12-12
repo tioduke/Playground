@@ -13,8 +13,8 @@ namespace SerializationTest.Net
                     Property1 = 1,
                     Property2 = "blablabla",
                     Property3 = new List<string> { "uno", "dos" },
-                    Property4 = new Dictionary<string, object> { { "clave", "valor" } } 
-                } 
+                    Property4 = new Dictionary<int, string> { { 42, "valor" } }
+                }
             };
 
             var stream = SerializationUtil.Serialize<ClassA>(obj);
