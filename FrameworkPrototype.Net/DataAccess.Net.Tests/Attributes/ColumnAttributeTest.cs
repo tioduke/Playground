@@ -29,7 +29,7 @@ namespace DataAccess.Net.Tests.Attributes
             _dbConnexion.Close();
         }
 
-        [Fact, UnitTest]
+        [Fact, IntegrationTest]
         public void Query_TypeMapped_RetournsEntityWithProperties()
         {
             //Arrange
@@ -52,7 +52,7 @@ namespace DataAccess.Net.Tests.Attributes
             Assert.Equal(new DateTime(2017, 4, 1), resultat[0].OtherDate);
         }
 
-        [Fact, UnitTest]
+        [Fact, IntegrationTest]
         public void Query_TypeNotMapped_RetournsEntityWithProperties()
         {
             //Arrange
@@ -75,7 +75,7 @@ namespace DataAccess.Net.Tests.Attributes
             Assert.Equal(new DateTime(2017, 4, 1), resultat[0].OtherDate);
         }
 
-        [Fact, UnitTest]
+        [Fact, IntegrationTest]
         public void Query_TypeMappedByConstructorParameters_RetournsEntityWithProperties()
         {
             //Arrange
