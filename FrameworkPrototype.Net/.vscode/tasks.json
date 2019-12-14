@@ -26,13 +26,16 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "test DataAccess.Net",
+            "label": "test",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "test",
-                "${workspaceFolder}/DataAccess.Net.Tests/DataAccess.Net.Tests.csproj",
+                "${workspaceFolder}/FrameworkPrototype.Net.sln",
                 "/property:GenerateFullPaths=true",
+                "/property:CollectCoverage=true",
+                "/property:CoverletOutputFormat=lcov",
+                "/property:CoverletOutput=${workspaceFolder}/coverage/lcov.info",
                 "/consoleloggerparameters:NoSummary"
             ],
             "group": "test",
