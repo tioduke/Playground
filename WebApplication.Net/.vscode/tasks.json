@@ -31,9 +31,12 @@
             "type": "process",
             "args": [
                 "test",
-                "${workspaceFolder}/WebApplication.Net.Tests/WebApplication.Net.Tests.csproj",
+                "${workspaceFolder}/WebApplication.Net.sln",
                 "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "/consoleloggerparameters:NoSummary",
+                "/property:CollectCoverage=true",
+                "/property:CoverletOutputFormat=lcov",
+                "/property:CoverletOutput=${workspaceFolder}/coverage/lcov.info"
             ],
             "group": "test",
             "problemMatcher": "$msCompile"

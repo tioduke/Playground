@@ -33,7 +33,10 @@
                 "test",
                 "${workspaceFolder}/SerializationTest.Net.Tests/SerializationTest.Net.Tests.csproj",
                 "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "/consoleloggerparameters:NoSummary",
+                "/property:CollectCoverage=true",
+                "/property:CoverletOutputFormat=lcov",
+                "/property:CoverletOutput=${workspaceFolder}/coverage/lcov.info"
             ],
             "group": "test",
             "problemMatcher": "$msCompile"
