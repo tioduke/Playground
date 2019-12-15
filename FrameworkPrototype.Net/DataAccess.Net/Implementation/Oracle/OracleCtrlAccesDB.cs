@@ -5,12 +5,12 @@ using DataAccess.Net.Interfaces;
 
 namespace DataAccess.Net.Implementation.Oracle
 {
-    public class OracleAccesDB : ICtrlAccesDB, IDisposable
+    public class OracleCtrlAccesDB : ICtrlAccesDB, IDisposable
     {
         private string _connectionString;
         private IDbConnection _connection;
 
-        public OracleAccesDB(string connectionString)
+        public OracleCtrlAccesDB(string connectionString)
         {
             _connectionString = connectionString;
         }

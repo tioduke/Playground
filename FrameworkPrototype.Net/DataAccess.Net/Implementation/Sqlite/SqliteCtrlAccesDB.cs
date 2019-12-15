@@ -5,12 +5,12 @@ using DataAccess.Net.Interfaces;
 
 namespace DataAccess.Net.Implementation.Sqlite
 {
-    public class SqliteAccesDB : ICtrlAccesDB, IDisposable
+    public class SqliteCtrlAccesDB : ICtrlAccesDB, IDisposable
     {
         private string _connectionString;
         private IDbConnection _connection;
 
-        public SqliteAccesDB(string connectionString)
+        public SqliteCtrlAccesDB(string connectionString)
         {
             _connectionString = connectionString;
         }
