@@ -2,7 +2,7 @@
     "defaultAssembly": "UnderstandingDependencyInjection.Net",
     "components": [
         {
-            "type": "DataAccess.Net.Implementation.Sqlite.SqliteAccesDB, DataAccess.Net",
+            "type": "DataAccess.Net.Implementation.Sqlite.SqliteCtrlAccesDB, DataAccess.Net",
             "services": [
                 {
                     "type": "DataAccess.Net.Interfaces.ICtrlAccesDB, DataAccess.Net"
