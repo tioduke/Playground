@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 namespace WebAPIApplication.Net.Mvc
 {
    [DefaultStatusCode(DefaultStatusCode)]
-    public class PayloadTooLargeResult : ObjectResult
+    public class RangeNotSatisfiableResult : ObjectResult
     {
-        private const int DefaultStatusCode = StatusCodes.Status413PayloadTooLarge;
+        private const int DefaultStatusCode = StatusCodes.Status416RangeNotSatisfiable;
 
-        public PayloadTooLargeResult([ActionResultObjectValue] object error)
+        public RangeNotSatisfiableResult([ActionResultObjectValue] object error)
             : base(error)
         {
             StatusCode = DefaultStatusCode;

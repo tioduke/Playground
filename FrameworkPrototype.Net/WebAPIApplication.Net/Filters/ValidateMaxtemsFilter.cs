@@ -33,7 +33,7 @@ namespace WebAPIApplication.Net.Filters
             var count = _customerReadableRepository.Count(criteria);
             if (count > _maxItems)
             {
-                actionContext.Result = new PayloadTooLargeResult("Too many results obtained.");
+                actionContext.Result = new RangeNotSatisfiableResult("Too many results obtained.");
             }
         }
     }
