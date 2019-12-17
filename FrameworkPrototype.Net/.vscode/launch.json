@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/UnderstandingDependencyInjection.Net/bin/Debug/netcoreapp2.2/UnderstandingDependencyInjection.Net.dll",
+            "program": "${workspaceFolder}/UnderstandingDependencyInjection.Net/bin/Debug/netcoreapp3.1/UnderstandingDependencyInjection.Net.dll",
             "args": [],
             "cwd": "${workspaceFolder}/UnderstandingDependencyInjection.Net",
             "console": "internalConsole",
