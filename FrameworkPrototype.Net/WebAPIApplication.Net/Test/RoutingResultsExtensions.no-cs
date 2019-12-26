@@ -1,0 +1,64 @@
+using System;
+using System.Net.Http;
+using System.Reflection;
+using Microsoft.AspNetCore.Mvc.Internal;
+using Microsoft.AspNetCore.Routing;
+
+namespace WebAPIApplication.Net.Test
+{
+    public static class RoutingResultExtensions
+    {
+        public static RoutingResult GetRoutingResult(this HttpConfiguration httpConfig, HttpMethod method, string relativeUrl)
+        {
+            var httpRequest = new HttpRequestMessage(method, $"http://revenuquebec.ca/{relativeUrl}");
+
+            // RouteData
+            var routeData = httpConfig.Routes.GetRouteData(httpRequest);
+            httpRequest.Properties[HttpPropertyKeys.HttpRouteDataKey] = routeData;
+
+            // Controller info
+            var controllerSelector = new DefaultHttpControllerSelector(httpConfig);
+            HttpControllerDescriptor controllerDescriptor;
+            try
+            {
+                controllerDescriptor = controllerSelector.SelectController(httpRequest);
+            }
+            catch (HttpResponseException) // La route n'est pas trouvée
+            {
+                return null;
+            }
+
+            // Action info
+            var controllerContext = new HttpControllerContext(httpConfig, routeData, httpRequest)
+            {
+                ControllerDescriptor = controllerDescriptor
+            };
+            var actionSelector = new ControllerActionInvoker();
+            HttpActionDescriptor actionDescriptor;
+            try
+            {
+                actionDescriptor = actionSelector.SelectAction(controllerContext);
+            }
+            catch (HttpResponseException) // La route n'est pas trouvée
+            {
+                return null;
+            }
+
+            return new RoutingResult
+            {
+                ControllerType = controllerDescriptor.ControllerType,
+                ActionMethodInfo = ((ReflectedHttpActionDescriptor)actionDescriptor).MethodInfo
+            };
+        }
+
+        #region RoutingResult
+
+        public class RoutingResult
+        {
+            public Type ControllerType { get; internal set; }
+            public MethodInfo ActionMethodInfo { get; internal set; }
+        }
+
+        #endregion
+    }
+}
