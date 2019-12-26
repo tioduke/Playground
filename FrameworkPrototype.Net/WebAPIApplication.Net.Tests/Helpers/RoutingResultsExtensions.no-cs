@@ -4,7 +4,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Mvc.Internal;
 using Microsoft.AspNetCore.Routing;
 
-namespace WebAPIApplication.Net.Test
+namespace WebAPIApplication.Net.Tests.Helpers
 {
     public static class RoutingResultExtensions
     {
