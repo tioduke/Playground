@@ -1,10 +1,13 @@
-using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Xunit;
 using Xunit.Categories;
 
 using WebAPIApplication.Net.Entities;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Collections.Generic;
+using System.Net;
 
 namespace WebAPIApplication.Net.Tests.Controllers
 {
@@ -28,6 +31,20 @@ namespace WebAPIApplication.Net.Tests.Controllers
 
             //Assert
             Assert.NotNull(response);
+            Assert.True(response.Content.IsContentTypeJson());
+            var content = await response.Content.ReadAsAsync<object>();
+            Assert.NotNull(content);
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+       }
+    }
+
+    internal static class HttpContextExtensions
+    {
+        internal static bool IsContentTypeJson(this HttpContent httpContent)
+        {
+            return httpContent == null
+                ? false
+                : httpContent.Headers.ContentType.MediaType == "application/json";
         }
     }
 }
