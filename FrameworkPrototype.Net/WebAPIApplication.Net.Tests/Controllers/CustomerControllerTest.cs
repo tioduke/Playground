@@ -1,13 +1,10 @@
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Xunit;
 using Xunit.Categories;
 
 using WebAPIApplication.Net.Entities;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.Collections.Generic;
-using System.Net;
 
 namespace WebAPIApplication.Net.Tests.Controllers
 {
