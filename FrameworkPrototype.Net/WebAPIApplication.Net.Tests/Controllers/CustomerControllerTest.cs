@@ -24,7 +24,7 @@ namespace WebAPIApplication.Net.Tests.Controllers
             var customer = new Customer();
 
             //Act
-            var response = await _client.PostAsJsonAsync("http://0.0.0.0:5000/api/Customer", customer);
+            var response = await _client.PostAsJsonAsync("http://localhost:5000/api/Customer", customer);
 
             //Assert
             Assert.NotNull(response);
