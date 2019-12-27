@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIApplication.Net", "We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIApplication.Net.Tests", "WebAPIApplication.Net.Tests\WebAPIApplication.Net.Tests.csproj", "{2EE8FF6D-E236-4CC3-AB7C-D126D87C2105}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Configuration.Net", "Configuration.Net\Configuration.Net.csproj", "{9B784218-A1B4-433B-9F11-F6B54B3C0D50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,5 +88,17 @@ Global
 		{2EE8FF6D-E236-4CC3-AB7C-D126D87C2105}.Release|x64.Build.0 = Release|Any CPU
 		{2EE8FF6D-E236-4CC3-AB7C-D126D87C2105}.Release|x86.ActiveCfg = Release|Any CPU
 		{2EE8FF6D-E236-4CC3-AB7C-D126D87C2105}.Release|x86.Build.0 = Release|Any CPU
+		{9B784218-A1B4-433B-9F11-F6B54B3C0D50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B784218-A1B4-433B-9F11-F6B54B3C0D50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B784218-A1B4-433B-9F11-F6B54B3C0D50}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9B784218-A1B4-433B-9F11-F6B54B3C0D50}.Debug|x64.Build.0 = Debug|Any CPU
+		{9B784218-A1B4-433B-9F11-F6B54B3C0D50}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9B784218-A1B4-433B-9F11-F6B54B3C0D50}.Debug|x86.Build.0 = Debug|Any CPU
+		{9B784218-A1B4-433B-9F11-F6B54B3C0D50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B784218-A1B4-433B-9F11-F6B54B3C0D50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B784218-A1B4-433B-9F11-F6B54B3C0D50}.Release|x64.ActiveCfg = Release|Any CPU
+		{9B784218-A1B4-433B-9F11-F6B54B3C0D50}.Release|x64.Build.0 = Release|Any CPU
+		{9B784218-A1B4-433B-9F11-F6B54B3C0D50}.Release|x86.ActiveCfg = Release|Any CPU
+		{9B784218-A1B4-433B-9F11-F6B54B3C0D50}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

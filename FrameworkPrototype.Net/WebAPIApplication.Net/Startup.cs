@@ -36,7 +36,8 @@ namespace WebAPIApplication.Net
         public void ConfigureContainer(ContainerBuilder builder)
         {
             // Register your own services within Autofac.
-            builder.RegisterModule(new ConfigurationModule(Configuration));
+            var module = new ConfigurationModule(Configuration.GetSection("autofac"));
+            builder.RegisterModule(module);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
