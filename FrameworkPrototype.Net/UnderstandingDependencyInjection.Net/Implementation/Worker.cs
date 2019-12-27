@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Options;
+
 using DataAccess.Net.Interfaces;
 using UnderstandingDependencyInjection.Net.Entities;
 using UnderstandingDependencyInjection.Net.Interfaces;
@@ -6,19 +8,24 @@ namespace UnderstandingDependencyInjection.Net.Implementation
 {
     public class Worker : IWorker
     {
+        private readonly Config _config;
         private readonly IReadableRepository<Customer> _otherCustomerRepository;
         private readonly IReadableRepository<Customer, CustomerCriteria> _customerRepository;
 
-        public Worker(ICtrlAccesDB accesBd,
+        public Worker(IOptions<Config> config, 
+                      ICtrlAccesDB accesBd,
                       IReadableRepository<Customer> otherCustomerRepository,
                       IReadableRepository<Customer, CustomerCriteria> customerRepository)
         {
+            _config = config.Value;
             _customerRepository = customerRepository;
             _otherCustomerRepository = otherCustomerRepository;
         }
 
         public void DoSomeWork()
         {
+            System.Console.WriteLine($"Username={_config.Username}, Passwrod={_config.Password}");
+            
             var customers = _customerRepository.FindMany(new CustomerCriteria { CustomerCode = "A" });
 
             foreach (var customer in customers)

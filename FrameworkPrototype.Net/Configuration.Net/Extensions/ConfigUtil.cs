@@ -1,37 +1,45 @@
 using System;
-using Microsoft.Extensions.Configuration;
 using Autofac;
 using Autofac.Configuration;
 using Autofac.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Configuration.Net.Extensions
 {
     public static class ConfigUtil
     {
-        public static IConfiguration LoadJsonConfig(string jsonConfigPath)
-        {
-            var config = new ConfigurationBuilder();
-            config.AddJsonFile(jsonConfigPath);
-
-            return config.Build();
-        }
-
         public static IConfiguration LoadXmlConfig(string xmlConfigPath)
         {
-            var config = new ConfigurationBuilder();
-            config.AddXmlFile(xmlConfigPath);
-
-            return config.Build();
+            return new ConfigurationBuilder().AddXmlFile(xmlConfigPath).Build();
         }
 
-        public static IServiceProvider ConfigureContainer(this IConfiguration configuration, string sectionName)
+        public static IConfiguration LoadJsonConfig(string jsonConfigPath)
         {
-            // Register the ConfigurationModule with Autofac.
+            return new ConfigurationBuilder().AddJsonFile(jsonConfigPath).Build();
+        }
+
+        public static IServiceProvider GetServiceProvider(this ContainerBuilder builder)
+        {
+            return new AutofacServiceProvider(builder.Build());
+        }
+
+        public static ContainerBuilder ConfigureContainer(this ContainerBuilder builder, IConfiguration configuration, string sectionName)
+        {
             var module = new ConfigurationModule(configuration.GetSection(sectionName));
-            var builder = new ContainerBuilder();
             builder.RegisterModule(module);
 
-            return new AutofacServiceProvider(builder.Build());
+            return builder;
+        }
+
+        public static ContainerBuilder ConfigureOptions<T>(this ContainerBuilder builder, IConfiguration configuration, string sectionName) where T : class
+        {
+            var services = new ServiceCollection();
+            services.AddOptions();
+            services.Configure<T>(configuration.GetSection(sectionName));
+
+            builder.Populate(services);
+            return builder;
         }
     }
 }
