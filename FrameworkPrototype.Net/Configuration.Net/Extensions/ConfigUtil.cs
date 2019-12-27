@@ -9,22 +9,17 @@ namespace Configuration.Net.Extensions
 {
     public static class ConfigUtil
     {
-        public static IConfiguration LoadXmlConfig(string xmlConfigPath)
-        {
-            return new ConfigurationBuilder().AddXmlFile(xmlConfigPath).Build();
-        }
-
         public static IConfiguration LoadJsonConfig(string jsonConfigPath)
         {
             return new ConfigurationBuilder().AddJsonFile(jsonConfigPath).Build();
         }
 
-        public static IServiceProvider GetServiceProvider(this ContainerBuilder builder)
+        public static IConfiguration LoadXmlConfig(string xmlConfigPath)
         {
-            return new AutofacServiceProvider(builder.Build());
+            return new ConfigurationBuilder().AddXmlFile(xmlConfigPath).Build();
         }
 
-        public static ContainerBuilder ConfigureContainer(this ContainerBuilder builder, IConfiguration configuration, string sectionName)
+        public static ContainerBuilder ConfigureIOC(this ContainerBuilder builder, IConfiguration configuration, string sectionName)
         {
             var module = new ConfigurationModule(configuration.GetSection(sectionName));
             builder.RegisterModule(module);
@@ -40,6 +35,11 @@ namespace Configuration.Net.Extensions
 
             builder.Populate(services);
             return builder;
+        }
+
+        public static IServiceProvider GetServiceProvider(this ContainerBuilder builder)
+        {
+            return new AutofacServiceProvider(builder.Build());
         }
     }
 }

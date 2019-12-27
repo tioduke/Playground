@@ -13,7 +13,7 @@ namespace UnderstandingDependencyInjection.Net
             var configuration = ConfigUtil.LoadJsonConfig("appsettings.json");
 
             var builder = new ContainerBuilder();
-            return builder.ConfigureContainer(configuration, "autofac")
+            return builder.ConfigureIOC(configuration, "autofac")
                           .ConfigureOptions<Config>(configuration, "config")
                           .GetServiceProvider();
 
