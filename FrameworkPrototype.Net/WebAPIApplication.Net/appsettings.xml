@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<appsettings>
+  <Logging>
+    <Log-Level Default="Information" Microsoft="Warning" Microsoft.Hosting.Lifetime="Information" /> 
+  </Logging>
+  <AllowedHosts>*</AllowedHosts>
+  <maxItems>100</maxItems>
+  <autofac defaultAssembly="WebAPIApplication.Net">
+    <components name="0">
+      <type>DataAccess.Net.Implementation.Sqlite.SqliteCtrlAccesDB, DataAccess.Net</type>
+      <services name="0" type="DataAccess.Net.Interfaces.ICtrlAccesDB, DataAccess.Net" />
+      <instanceScope>single-instance</instanceScope>
+      <parameters>
+        <connectionString>DataSource=Resources/database.sqlite</connectionString>
+      </parameters>
+      </components>
+      <components name="1">
+        <type>DataAccess.Net.Implementation.DapperExecutor, DataAccess.Net</type>
+        <services name="0" type="DataAccess.Net.Interfaces.IDbExecutor, DataAccess.Net" />
+      </components>
+      <components name="2">
+        <type>WebAPIApplication.Net.Repositories.CustomerRepository</type>
+        <services name="0" type="DataAccess.Net.Interfaces.IReadableRepository`2[[WebAPIApplication.Net.Entities.Customer, WebAPIApplication.Net],[WebAPIApplication.Net.Entities.CustomerCriteria, WebAPIApplication.Net]], DataAccess.Net" />
+        <services name="1" type="DataAccess.Net.Interfaces.IWritableRepository`2[[WebAPIApplication.Net.Entities.Customer, WebAPIApplication.Net],[WebAPIApplication.Net.Entities.CustomerCriteria, WebAPIApplication.Net]], DataAccess.Net" />
+      </components>
+  </autofac>
+</appsettings>
