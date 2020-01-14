@@ -25,7 +25,7 @@
   <ItemGroup>
     <PackageReference Include="Autofac.Configuration" Version="4.1.0"/>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.1"/>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="3.1.0"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="3.1.1"/>
   </ItemGroup>
 
 </Project>
