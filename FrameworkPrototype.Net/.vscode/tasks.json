@@ -32,11 +32,10 @@
             "args": [
                 "test",
                 "${workspaceFolder}/FrameworkPrototype.Net.sln",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary",
                 "/property:CollectCoverage=true",
-                "/property:CoverletOutputFormat=lcov",
-                "/property:CoverletOutput=coverage/lcov.info"
+                "/property:CoverletOutputFormat=\"json,lcov\"",
+                "/property:CoverletOutput=${workspaceFolder}/coverage/",
+                "/property:MergeWith=${workspaceFolder}/coverage/coverage.json"
             ],
             "group": "test",
             "problemMatcher": "$msCompile"
