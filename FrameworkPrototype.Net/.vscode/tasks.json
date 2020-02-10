@@ -32,6 +32,8 @@
             "args": [
                 "test",
                 "${workspaceFolder}/FrameworkPrototype.Net.sln",
+                "--filter \"Category=UnitTest|Category=IntegrationTest\"",
+                "/property:ExcludeByAttribute=\"GeneratedCodeAttribute\"",
                 "/property:CollectCoverage=true",
                 "/property:CoverletOutputFormat=\"json,lcov\"",
                 "/property:CoverletOutput=${workspaceFolder}/coverage/",

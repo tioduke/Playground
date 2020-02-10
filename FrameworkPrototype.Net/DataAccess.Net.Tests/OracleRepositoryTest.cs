@@ -32,7 +32,7 @@ namespace DataAccess.Net.Tests
             _accesBd.ReleaseConnection();
         }
 
-        [Fact, IntegrationTest]
+        [Fact, SystemTest]
         public void Count_TwoElementsInDB_ReturnsCountOfTwo()
         {
             using (var scope = new TransactionScope(TransactionScopeOption.Suppress))
@@ -50,7 +50,7 @@ namespace DataAccess.Net.Tests
             }
         }
 
-        [Fact, IntegrationTest]
+        [Fact, SystemTest]
         public void Find_ElementExistsInDB_EntityFound()
         {
             using (var scope = new TransactionScope(TransactionScopeOption.Suppress))
@@ -79,7 +79,7 @@ namespace DataAccess.Net.Tests
             }
         }
 
-        [Fact, IntegrationTest]
+        [Fact, SystemTest]
         public void FindMany_ElementsExistInDB_EntitiesFound()
         {
             using (var scope = new TransactionScope(TransactionScopeOption.Suppress))
