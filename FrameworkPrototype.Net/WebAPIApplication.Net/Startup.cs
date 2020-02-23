@@ -1,12 +1,13 @@
 using Autofac;
 using Autofac.Configuration;
+using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-using WebAPIApplication.Net.Filters;
+using WebAPIApplication.Net.Exceptions;
 
 namespace WebAPIApplication.Net
 {
@@ -24,10 +25,14 @@ namespace WebAPIApplication.Net
         {
             services.AddControllers();
 
-            // Add global filters.
-            services.AddMvc(options =>
+            //Map custom Exceptions to ProblemDetails
+            services.AddProblemDetails(setup =>
             {
-                options.Filters.Add(new ValidateModelStateFilter());
+                setup.Map<TooManyResultsException>(exception => new StatusCodeProblemDetails(TooManyResultsException.Status)
+                {
+                    Title = TooManyResultsException.Title,
+                    Detail = exception.Message
+                });
             });
         }
 
@@ -48,11 +53,13 @@ namespace WebAPIApplication.Net
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseProblemDetails();
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
 using DataAccess.Net.Interfaces;
@@ -7,13 +8,14 @@ using WebAPIApplication.Net.Filters;
 
 namespace WebAPIApplication.Net.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
-    public class CustomerController : Controller
+    public class CustomersController : Controller
     {
         private readonly IReadableRepository<Customer, CustomerCriteria> _customerReadableRepository;
         private readonly IWritableRepository<Customer, CustomerCriteria> _customerWritableRepository;
 
-        public CustomerController(IReadableRepository<Customer, CustomerCriteria> customerReadableRepository,
+        public CustomersController(IReadableRepository<Customer, CustomerCriteria> customerReadableRepository,
                                   IWritableRepository<Customer, CustomerCriteria> customerWritableRepository)
         {
             _customerReadableRepository = customerReadableRepository;
@@ -31,7 +33,7 @@ namespace WebAPIApplication.Net.Controllers
 
         // GET api/customer/5
         [HttpGet("{id}")]
-        public Customer Get(int id)
+        public Customer Get([Range(1, 1000)]int id)
         {
             var criteria = new CustomerCriteria
             {

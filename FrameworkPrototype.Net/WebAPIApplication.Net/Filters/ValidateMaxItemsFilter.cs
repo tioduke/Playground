@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 
 using DataAccess.Net.Interfaces;
 using WebAPIApplication.Net.Entities;
-using WebAPIApplication.Net.Mvc;
+using WebAPIApplication.Net.Exceptions;
 
 namespace WebAPIApplication.Net.Filters
 {
@@ -33,7 +33,7 @@ namespace WebAPIApplication.Net.Filters
             var count = _customerReadableRepository.Count(criteria);
             if (count > _maxItems)
             {
-                actionContext.Result = new RangeNotSatisfiableResult("Too many results obtained.");
+                throw new TooManyResultsException("Too many results obtained.");
             }
         }
     }
