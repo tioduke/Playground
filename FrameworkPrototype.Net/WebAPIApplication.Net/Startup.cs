@@ -25,12 +25,12 @@ namespace WebAPIApplication.Net
         {
             services.AddControllers();
 
-            //Map custom Exceptions to ProblemDetails
-            services.AddProblemDetails(setup =>
+            // Map custom Exceptions to ProblemDetails
+            services.AddProblemDetails(options =>
             {
-                setup.Map<TooManyResultsException>(exception => new StatusCodeProblemDetails(TooManyResultsException.Status)
+                options.Map<TooManyResultsException>(exception => new StatusCodeProblemDetails(exception.Status)
                 {
-                    Title = TooManyResultsException.Title,
+                    Title = exception.Title,
                     Detail = exception.Message
                 });
             });
@@ -52,8 +52,6 @@ namespace WebAPIApplication.Net
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

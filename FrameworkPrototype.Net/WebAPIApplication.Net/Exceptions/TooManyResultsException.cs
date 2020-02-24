@@ -1,13 +1,13 @@
 using System;
-using System.Net;
+using Microsoft.AspNetCore.Http;
 
 namespace WebAPIApplication.Net.Exceptions
 {
     [Serializable]
     public sealed class TooManyResultsException : Exception
     {
-        public const string Title = "Too many results";
-        public const int Status = (int)HttpStatusCode.RequestedRangeNotSatisfiable;
+        public string Title => "Too many results";
+        public int Status => StatusCodes.Status416RangeNotSatisfiable;
 
         public TooManyResultsException(string message)
             : base(message)
