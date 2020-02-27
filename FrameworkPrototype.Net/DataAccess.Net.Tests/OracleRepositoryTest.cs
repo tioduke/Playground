@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Transactions;
 using Microsoft.Extensions.Configuration;
 using Xunit;
@@ -33,7 +34,7 @@ namespace DataAccess.Net.Tests
         }
 
         [Fact, SystemTest]
-        public void Count_TwoElementsInDB_ReturnsCountOfTwo()
+        public async Task Count_TwoElementsInDB_ReturnsCountOfTwo()
         {
             using (var scope = new TransactionScope(TransactionScopeOption.Suppress))
             {
@@ -41,7 +42,7 @@ namespace DataAccess.Net.Tests
                 PopulateOracleDB(_accesBd.GetConnection());
 
                 //Act
-                var resultat = _oracleRepository.Count(new CustomerCriteria { CustomerCode = "A" });
+                var resultat = await _oracleRepository.Count(new CustomerCriteria { CustomerCode = "A" });
 
                 //Assert
                 Assert.Equal(2, resultat);
@@ -51,7 +52,7 @@ namespace DataAccess.Net.Tests
         }
 
         [Fact, SystemTest]
-        public void Find_ElementExistsInDB_EntityFound()
+        public async Task Find_ElementExistsInDB_EntityFound()
         {
             using (var scope = new TransactionScope(TransactionScopeOption.Suppress))
             {
@@ -59,7 +60,7 @@ namespace DataAccess.Net.Tests
                 PopulateOracleDB(_accesBd.GetConnection());
 
                 //Act
-                var resultat = _oracleRepository.Find(new CustomerCriteria { Id = 1L });
+                var resultat = await _oracleRepository.Find(new CustomerCriteria { Id = 1L });
 
                 //Assert
                 Assert.Equal(1L, resultat.Id);
@@ -80,7 +81,7 @@ namespace DataAccess.Net.Tests
         }
 
         [Fact, SystemTest]
-        public void FindMany_ElementsExistInDB_EntitiesFound()
+        public async Task FindMany_ElementsExistInDB_EntitiesFound()
         {
             using (var scope = new TransactionScope(TransactionScopeOption.Suppress))
             {
@@ -88,7 +89,7 @@ namespace DataAccess.Net.Tests
                 PopulateOracleDB(_accesBd.GetConnection());
 
                 //Act
-                var resultat = _oracleRepository.FindMany(new CustomerCriteria { CustomerCode = "A" }).ToList();
+                var resultat = (await _oracleRepository.FindMany(new CustomerCriteria { CustomerCode = "A" })).ToList();
 
                 //Assert
                 Assert.Equal(2, resultat.Count);

@@ -4,7 +4,7 @@
     <Log-Level Default="Information" Microsoft="Warning" Microsoft.Hosting.Lifetime="Information" />
   </Logging>
   <AllowedHosts>*</AllowedHosts>
-  <maxItems>100</maxItems>
+  <maxItems>2</maxItems>
   <autofac defaultAssembly="WebAPIApplication.Net">
     <components name="0">
       <type>DataAccess.Net.Implementation.Sqlite.SqliteCtrlAccesDB, DataAccess.Net</type>

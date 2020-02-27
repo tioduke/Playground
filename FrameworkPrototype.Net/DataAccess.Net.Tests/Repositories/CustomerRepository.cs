@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DataAccess.Net.Interfaces;
 using DataAccess.Net.Implementation;
 using DataAccess.Net.Tests.Entities;
@@ -14,30 +15,30 @@ namespace DataAccess.Net.Tests.Repositories
         public CustomerRepository(ICtrlAccesDB accesDB, IDbExecutor dbExec)
             : base(accesDB, dbExec) { }
 
-        public int Count(CustomerCriteria criteria)
+        public async Task<int> Count(CustomerCriteria criteria)
         {
             if (criteria == null || criteria.CustomerCode == null)
                 throw new ArgumentException(nameof(criteria));
 
-            return base.ExecuteCountRequest(CustomerSql.SqlCountCustomers, criteria);
+            return await base.ExecuteCountRequest(CustomerSql.SqlCountCustomers, criteria);
         }
 
-        public Customer Find(CustomerCriteria criteria)
+        public async Task<Customer> Find(CustomerCriteria criteria)
         {
             if (criteria == null || criteria.Id == null)
                 throw new ArgumentException(nameof(criteria));
 
             _mappingDictionary = new Dictionary<long, Customer>();
-            return base.ExecuteReaderRequest<Customer, Address>(CustomerSql.SqlSelectCustomer, criteria, MappingFunction, "ADDRESS_ID").SingleOrDefault();
+            return (await base.ExecuteReaderRequest<Customer, Address>(CustomerSql.SqlSelectCustomer, criteria, MappingFunction, "ADDRESS_ID")).SingleOrDefault();
         }
 
-        public IEnumerable<Customer> FindMany(CustomerCriteria criteria)
+        public async Task<IEnumerable<Customer>> FindMany(CustomerCriteria criteria)
         {
             if (criteria == null || criteria.CustomerCode == null)
                 throw new ArgumentException(nameof(criteria));
 
             _mappingDictionary = new Dictionary<long, Customer>();
-            return base.ExecuteReaderRequest<Customer, Address>(CustomerSql.SqlSelectCustomers, criteria, MappingFunction, "ADDRESS_ID");
+            return await base.ExecuteReaderRequest<Customer, Address>(CustomerSql.SqlSelectCustomers, criteria, MappingFunction, "ADDRESS_ID");
         }
 
         #region Customer, Address mapping

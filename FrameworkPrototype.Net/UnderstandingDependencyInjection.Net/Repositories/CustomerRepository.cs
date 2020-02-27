@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DataAccess.Net.Interfaces;
 using DataAccess.Net.Implementation;
 using UnderstandingDependencyInjection.Net.Entities;
@@ -15,38 +16,38 @@ namespace UnderstandingDependencyInjection.Net.Repositories
         public CustomerRepository(ICtrlAccesDB accesDB, IDbExecutor dbExec)
             : base(accesDB, dbExec) { }
 
-        public int Count()
+        public async Task<int> Count()
         {
-            return base.ExecuteCountRequest(CustomerSql.SqlCountAllCustomers, null);
+            return await base.ExecuteCountRequest(CustomerSql.SqlCountAllCustomers, null);
         }
 
-        public int Count(CustomerCriteria criteria)
+        public async Task<int> Count(CustomerCriteria criteria)
         {
             if (criteria == null || criteria.CustomerCode == null)
                 throw new ArgumentException(nameof(criteria));
 
-            return base.ExecuteCountRequest(CustomerSql.SqlCountCustomers, criteria);
+            return await base.ExecuteCountRequest(CustomerSql.SqlCountCustomers, criteria);
         }
 
-        public Customer Find(CustomerCriteria criteria)
+        public async Task<Customer> Find(CustomerCriteria criteria)
         {
             if (criteria == null || criteria.Id == null)
                 throw new ArgumentException(nameof(criteria));
 
-            return base.ExecuteReaderRequest(CustomerSql.SqlSelectCustomer, criteria).SingleOrDefault();
+            return (await base.ExecuteReaderRequest(CustomerSql.SqlSelectCustomer, criteria)).SingleOrDefault();
         }
 
-        public IEnumerable<Customer> FindMany()
+        public async Task<IEnumerable<Customer>> FindMany()
         {
-            return base.ExecuteReaderRequest(CustomerSql.SqlSelectAllCustomers, null);
+            return await base.ExecuteReaderRequest(CustomerSql.SqlSelectAllCustomers, null);
         }
 
-        public IEnumerable<Customer> FindMany(CustomerCriteria criteria)
+        public async Task<IEnumerable<Customer>> FindMany(CustomerCriteria criteria)
         {
             if (criteria == null || criteria.CustomerCode == null)
                 throw new ArgumentException(nameof(criteria));
 
-            return base.ExecuteReaderRequest(CustomerSql.SqlSelectCustomers, criteria);
+            return await base.ExecuteReaderRequest(CustomerSql.SqlSelectCustomers, criteria);
         }
     }
 }

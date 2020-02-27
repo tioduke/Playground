@@ -1,10 +1,12 @@
-﻿namespace DataAccess.Net.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace DataAccess.Net.Interfaces
 {
     public interface IWritableRepository<in TEntity, in TCriteria>
     {
-        long GetSequence();
-        int Insert(TEntity entite);
-        int Update(TEntity entite, TCriteria criteres=default(TCriteria));
-        int Delete(TCriteria criteres);
+        Task<long> GetSequence();
+        Task<int> Insert(TEntity entite);
+        Task<int> Update(TEntity entite, TCriteria criteres=default(TCriteria));
+        Task<int> Delete(TCriteria criteres);
     }
 }

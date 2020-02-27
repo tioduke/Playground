@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DataAccess.Net.Interfaces
 {
-    public interface IReadableRepository<out TEntity>
+    public interface IReadableRepository<TEntity>
     {
-        int Count();
-        IEnumerable<TEntity> FindMany();
+        Task<int> Count();
+        Task<IEnumerable<TEntity>> FindMany();
     }
 
-    public interface IReadableRepository<out TEntity, in TCriteria>
+    public interface IReadableRepository<TEntity, TCriteria>
     {
-        int Count(TCriteria criteres);
-        TEntity Find(TCriteria criteres);
-        IEnumerable<TEntity> FindMany(TCriteria criteres);
+        Task<int> Count(TCriteria criteres);
+        Task<TEntity> Find(TCriteria criteres);
+        Task<IEnumerable<TEntity>> FindMany(TCriteria criteres);
     }
 }

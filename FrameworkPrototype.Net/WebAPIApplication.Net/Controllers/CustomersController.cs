@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 using DataAccess.Net.Interfaces;
@@ -25,45 +26,45 @@ namespace WebAPIApplication.Net.Controllers
         // GET api/customer
         [HttpGet]
         [TypeFilter(typeof(ValidateMaxItemsFilter))]
-        public IEnumerable<Customer> Get()
+        public async Task<IEnumerable<Customer>> Get()
         {
             var criteria = new CustomerCriteria();
-            return _customerReadableRepository.FindMany(criteria);
+            return await _customerReadableRepository.FindMany(criteria);
         }
 
         // GET api/customer/5
         [HttpGet("{id}")]
-        public Customer Get([Range(1, 1000)]int id)
+        public async Task<Customer> Get([Range(1, 1000)]int id)
         {
             var criteria = new CustomerCriteria
             {
                 Id = id
             };
-            return _customerReadableRepository.Find(criteria);
+            return await _customerReadableRepository.Find(criteria);
         }
 
         // GET api/customer/code/A
         [HttpGet("code/{customerCode}")]
         [TypeFilter(typeof(ValidateMaxItemsFilter))]
-        public IEnumerable<Customer> Get(string customerCode)
+        public async Task<IEnumerable<Customer>> Get(string customerCode)
         {
             var criteria = new CustomerCriteria
             {
                 CustomerCode = customerCode
             };
-            return _customerReadableRepository.FindMany(criteria);
+            return await _customerReadableRepository.FindMany(criteria);
         }
 
         // POST api/customer
         [HttpPost]
-        public void Post([FromBody]Customer value)
+        public async Task Post([FromBody]Customer value)
         {
-            _customerWritableRepository.Insert(value);
+            await _customerWritableRepository.Insert(value);
         }
 
         // PUT api/customer/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Customer value)
+        public async Task Put(int id, [FromBody]Customer value)
         {
             var entity = new Customer
             {
@@ -75,18 +76,18 @@ namespace WebAPIApplication.Net.Controllers
                 BirthDate = value.BirthDate,
                 OtherDate = value.OtherDate
             };
-            _customerWritableRepository.Update(entity);
+            await _customerWritableRepository.Update(entity);
         }
 
         // DELETE api/customer/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
             var criteria = new CustomerCriteria
             {
                 Id = id
             };
-            _customerWritableRepository.Delete(criteria);
+            await _customerWritableRepository.Delete(criteria);
         }
     }
 }

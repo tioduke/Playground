@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Transactions;
 using Xunit;
 using Xunit.Categories;
@@ -29,15 +30,15 @@ namespace DataAccess.Net.Tests
         }
 
         [Fact, IntegrationTest]
-        public void Count_TwoElementsInDB_ReturnsCountOfTwo()
+        public async Task Count_TwoElementsInDB_ReturnsCountOfTwo()
         {
-            using (var scope = new TransactionScope(TransactionScopeOption.Required))
+            using (var scope = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
             {
                 //Arrange
                 CreateInMemoryDB(_accesBd.GetConnection());
 
                 //Act
-                var resultat = _sqliteRepository.Count(new CustomerCriteria { CustomerCode = "A" });
+                var resultat = await _sqliteRepository.Count(new CustomerCriteria { CustomerCode = "A" });
 
                 //Assert
                 Assert.Equal(2, resultat);
@@ -47,15 +48,15 @@ namespace DataAccess.Net.Tests
         }
 
         [Fact, IntegrationTest]
-        public void Find_ElementExistsInDB_EntityFound()
+        public async Task Find_ElementExistsInDB_EntityFound()
         {
-            using (var scope = new TransactionScope(TransactionScopeOption.Required))
+            using (var scope = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
             {
                 //Arrange
                 CreateInMemoryDB(_accesBd.GetConnection());
 
                 //Act
-                var resultat = _sqliteRepository.Find(new CustomerCriteria { Id = 1L });
+                var resultat = await _sqliteRepository.Find(new CustomerCriteria { Id = 1L });
 
                 //Assert
                 Assert.Equal(1L, resultat.Id);
@@ -76,15 +77,15 @@ namespace DataAccess.Net.Tests
          }
 
         [Fact, IntegrationTest]
-        public void FindMany_ElementsExistInDB_EntitiesFound()
+        public async Task FindMany_ElementsExistInDB_EntitiesFound()
         {
-            using (var scope = new TransactionScope(TransactionScopeOption.Required))
+            using (var scope = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
             {
                 //Arrange
                 CreateInMemoryDB(_accesBd.GetConnection());
 
                 //Act
-                var resultat = _sqliteRepository.FindMany(new CustomerCriteria { CustomerCode = "A" }).ToList();
+                var resultat = (await _sqliteRepository.FindMany(new CustomerCriteria { CustomerCode = "A" })).ToList();
 
                 //Assert
                 Assert.Equal(2, resultat.Count);

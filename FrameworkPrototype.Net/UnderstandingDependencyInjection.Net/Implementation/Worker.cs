@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 
 using DataAccess.Net.Interfaces;
@@ -12,7 +13,7 @@ namespace UnderstandingDependencyInjection.Net.Implementation
         private readonly IReadableRepository<Customer> _otherCustomerRepository;
         private readonly IReadableRepository<Customer, CustomerCriteria> _customerRepository;
 
-        public Worker(IOptions<Config> config, 
+        public Worker(IOptions<Config> config,
                       ICtrlAccesDB accesBd,
                       IReadableRepository<Customer> otherCustomerRepository,
                       IReadableRepository<Customer, CustomerCriteria> customerRepository)
@@ -22,11 +23,11 @@ namespace UnderstandingDependencyInjection.Net.Implementation
             _otherCustomerRepository = otherCustomerRepository;
         }
 
-        public void DoSomeWork()
+        public async Task DoSomeWork()
         {
             System.Console.WriteLine($"Username={_config.Username}, Passwrod={_config.Password}");
-            
-            var customers = _customerRepository.FindMany(new CustomerCriteria { CustomerCode = "A" });
+
+            var customers = await _customerRepository.FindMany(new CustomerCriteria { CustomerCode = "A" });
 
             foreach (var customer in customers)
             {
@@ -35,9 +36,9 @@ namespace UnderstandingDependencyInjection.Net.Implementation
             }
         }
 
-        public void DoSomeOtherWork()
+        public async Task DoSomeOtherWork()
         {
-            var customers = _otherCustomerRepository.FindMany();
+            var customers = await _otherCustomerRepository.FindMany();
 
             foreach (var customer in customers)
             {

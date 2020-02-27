@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DataAccess.Net.Interfaces;
 using DataAccess.Net.Implementation;
 using WebAPIApplication.Net.Entities;
@@ -15,57 +16,57 @@ namespace WebAPIApplication.Net.Repositories
         public CustomerRepository(ICtrlAccesDB accesDB, IDbExecutor dbExec)
             : base(accesDB, dbExec) { }
 
-        public int Count(CustomerCriteria criteria)
+        public async Task<int> Count(CustomerCriteria criteria)
         {
             if (criteria == null)
                 throw new ArgumentException(nameof(criteria));
 
-            return base.ExecuteCountRequest(CustomerSql.SqlCountCustomers(criteria), criteria);
+            return await base.ExecuteCountRequest(CustomerSql.SqlCountCustomers(criteria), criteria);
         }
 
-        public Customer Find(CustomerCriteria criteria)
+        public async Task<Customer> Find(CustomerCriteria criteria)
         {
             if (criteria == null || criteria.Id == null)
                 throw new ArgumentException(nameof(criteria));
 
-            return base.ExecuteReaderRequest(CustomerSql.SqlSelectCustomer, criteria).SingleOrDefault();
+            return (await base.ExecuteReaderRequest(CustomerSql.SqlSelectCustomer, criteria)).SingleOrDefault();
         }
 
-        public IEnumerable<Customer> FindMany(CustomerCriteria criteria)
+        public async Task<IEnumerable<Customer>> FindMany(CustomerCriteria criteria)
         {
             if (criteria == null)
                 throw new ArgumentException(nameof(criteria));
 
-            return base.ExecuteReaderRequest(CustomerSql.SqlSelectCustomers(criteria), criteria);
+            return await base.ExecuteReaderRequest(CustomerSql.SqlSelectCustomers(criteria), criteria);
         }
 
-        public long GetSequence()
+        public Task<long> GetSequence()
         {
             throw new NotImplementedException();
         }
 
-        public int Insert(Customer entity)
+        public async Task<int> Insert(Customer entity)
         {
             if (entity == null)
                 throw new ArgumentException(nameof(entity));
 
-            return base.ExecuteNonQueryRequest(CustomerSql.SqlInsert, entity);
+            return await base.ExecuteNonQueryRequest(CustomerSql.SqlInsert, entity);
         }
 
-        public int Update(Customer entity, CustomerCriteria criteria)
+        public async Task<int> Update(Customer entity, CustomerCriteria criteria)
         {
             if (entity == null)
                 throw new ArgumentException(nameof(entity));
 
-            return base.ExecuteNonQueryRequest(CustomerSql.SqlUpdate, entity);
+            return await base.ExecuteNonQueryRequest(CustomerSql.SqlUpdate, entity);
         }
 
-        public int Delete(CustomerCriteria criteria)
+        public async Task<int> Delete(CustomerCriteria criteria)
         {
             if (criteria == null || criteria.Id == null)
                 throw new ArgumentException(nameof(criteria));
 
-            return base.ExecuteNonQueryRequest(CustomerSql.SqlDelete, criteria);
+            return await base.ExecuteNonQueryRequest(CustomerSql.SqlDelete, criteria);
         }
     }
 }

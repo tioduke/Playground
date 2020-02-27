@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 
 using DataAccess.Net.Interfaces;
@@ -7,7 +8,7 @@ using WebAPIApplication.Net.Exceptions;
 
 namespace WebAPIApplication.Net.Filters
 {
-    public sealed class ValidateMaxItemsFilter : IActionFilter
+    public sealed class ValidateMaxItemsFilter : IAsyncActionFilter
     {
         private readonly int _maxItems;
         private readonly IReadableRepository<Customer, CustomerCriteria> _customerReadableRepository;
@@ -19,22 +20,19 @@ namespace WebAPIApplication.Net.Filters
             _customerReadableRepository = customerReadableRepository;
         }
 
-        public void OnActionExecuted(ActionExecutedContext actionContext)
-        {
-            //noop
-        }
-
-        public void OnActionExecuting(ActionExecutingContext actionContext)
+        public async Task OnActionExecutionAsync(ActionExecutingContext actionContext, ActionExecutionDelegate next)
         {
             var criteria = new CustomerCriteria
             {
                 CustomerCode = actionContext.GetArgumentValue("customerCode") as string
             };
-            var count = _customerReadableRepository.Count(criteria);
+            var count = await _customerReadableRepository.Count(criteria);
             if (count > _maxItems)
             {
                 throw new TooManyResultsException("Too many results obtained.");
             }
+
+            await next.Invoke();
         }
     }
 
