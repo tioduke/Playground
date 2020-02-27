@@ -29,7 +29,7 @@ namespace DataAccess.Net.Implementation
         protected async Task<long> GetSequence(string sequence)
         {
             var sql = string.Format("select {0}.nextval from dual", sequence);
-            return (await _dbExecutor.ExecuteReader<long>(Connection, sql)).SingleOrDefault();
+            return (await _dbExecutor.ExecuteReader<long>(Connection, sql)).Single();
         }
 
         protected async Task<int> ExecuteNonQueryRequest(string sql, object param)
