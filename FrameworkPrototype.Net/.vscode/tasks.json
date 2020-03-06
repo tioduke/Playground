@@ -11,7 +11,8 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
+            "group": "build",
+            "problemMatcher": ["$msCompile"]
         },
         {
             "label": "clean",
@@ -23,10 +24,27 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": ["$msCompile"]
         },
         {
             "label": "test",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "test",
+                "${workspaceFolder}/FrameworkPrototype.Net.sln"
+            ],
+            "group": "test",
+            "problemMatcher": ["$msCompile"]
+        },
+        {
+            "label": "coverage-clean",
+            "type": "shell",
+            "command": "rm -f \"${workspaceFolder}/coverage/coverage.json\"",
+            "problemMatcher": []
+        },
+        {
+            "label": "coverage",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -39,7 +57,8 @@
                 "/property:MergeWith=${workspaceFolder}/coverage/coverage.json"
             ],
             "group": "test",
-            "problemMatcher": "$msCompile"
+            "dependsOn": ["coverage-clean"],
+            "problemMatcher": ["$msCompile"]
         },
         {
             "label": "run UnderstandingDependencyInjection.Net",
