@@ -20,9 +20,7 @@
             "command": "dotnet",
             "args": [
                 "clean",
-                "${workspaceFolder}/FrameworkPrototype.Net.sln",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "${workspaceFolder}/FrameworkPrototype.Net.sln"
             ],
             "problemMatcher": ["$msCompile"]
         },
@@ -36,16 +34,6 @@
             ],
             "group": "test",
             "problemMatcher": ["$msCompile"]
-        },
-        {
-            "label": "coverage-clean",
-            "type": "shell",
-            "command": "rm -f \"${workspaceFolder}/coverage/coverage.json\"",
-            "presentation": {
-                "reveal": "silent",
-                "showReuseMessage": false
-            },
-            "problemMatcher": []
         },
         {
             "label": "coverage",
@@ -62,8 +50,23 @@
                 "/property:MergeWith=${workspaceFolder}/coverage/coverage.json"
             ],
             "group": "test",
-            "dependsOn": ["coverage-clean"],
+            "dependsOn": ["clean-coverage"],
             "problemMatcher": ["$msCompile"]
+        },
+        {
+            "label": "clean-coverage",
+            "type": "shell",
+            "linux": {
+                "command": "rm -f \"${workspaceFolder}/coverage/coverage.*\"",
+            },
+            "windows": {
+                "command": "del \"${workspaceFolder}\\coverage\\coverage.*\"",
+            },
+            "presentation": {
+                "reveal": "silent",
+                "showReuseMessage": false
+            },
+            "problemMatcher": []
         },
         {
             "label": "run UnderstandingDependencyInjection.Net",
