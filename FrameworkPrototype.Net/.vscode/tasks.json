@@ -37,18 +37,8 @@
         },
         {
             "label": "coverage",
-            "type": "process",
-            "command": "dotnet",
-            "args": [
-                "test",
-                "${workspaceFolder}/FrameworkPrototype.Net.sln",
-                "--filter \"Category=UnitTest|Category=IntegrationTest\"",
-                "/property:ExcludeByAttribute=\"GeneratedCodeAttribute\"",
-                "/property:CollectCoverage=true",
-                "/property:CoverletOutputFormat=\"json,lcov\"",
-                "/property:CoverletOutput=${workspaceFolder}/coverage/",
-                "/property:MergeWith=${workspaceFolder}/coverage/coverage.json"
-            ],
+            "type": "shell",
+            "command": "dotnet test --filter \"Category=UnitTest|Category=IntegrationTest\" ${workspaceFolder}/FrameworkPrototype.Net.sln /property:ExcludeByAttribute=GeneratedCodeAttribute /property:CollectCoverage=true /property:CoverletOutputFormat=\\\"json,lcov\\\" /property:CoverletOutput=${workspaceFolder}/coverage/ /property:MergeWith=${workspaceFolder}/coverage/coverage.json",
             "group": "test",
             "dependsOn": ["clean-coverage"],
             "problemMatcher": ["$msCompile"]
@@ -57,10 +47,10 @@
             "label": "clean-coverage",
             "type": "shell",
             "linux": {
-                "command": "rm -f \"${workspaceFolder}/coverage/coverage.*\"",
+                "command": "rm -f \"${workspaceFolder}/coverage/coverage.json\"",
             },
             "windows": {
-                "command": "del \"${workspaceFolder}\\coverage\\coverage.*\"",
+                "command": "del \"${workspaceFolder}\\coverage\\coverage.json\"",
             },
             "presentation": {
                 "reveal": "silent",
