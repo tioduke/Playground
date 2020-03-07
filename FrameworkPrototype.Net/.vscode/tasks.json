@@ -3,8 +3,8 @@
     "tasks": [
         {
             "label": "build",
-            "command": "dotnet",
             "type": "process",
+            "command": "dotnet",
             "args": [
                 "build",
                 "${workspaceFolder}/FrameworkPrototype.Net.sln",
@@ -16,8 +16,8 @@
         },
         {
             "label": "clean",
-            "command": "dotnet",
             "type": "process",
+            "command": "dotnet",
             "args": [
                 "clean",
                 "${workspaceFolder}/FrameworkPrototype.Net.sln",
@@ -28,8 +28,8 @@
         },
         {
             "label": "test",
-            "command": "dotnet",
             "type": "process",
+            "command": "dotnet",
             "args": [
                 "test",
                 "${workspaceFolder}/FrameworkPrototype.Net.sln"
@@ -49,8 +49,8 @@
         },
         {
             "label": "coverage",
-            "command": "dotnet",
             "type": "process",
+            "command": "dotnet",
             "args": [
                 "test",
                 "${workspaceFolder}/FrameworkPrototype.Net.sln",
