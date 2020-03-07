@@ -41,6 +41,10 @@
             "label": "coverage-clean",
             "type": "shell",
             "command": "rm -f \"${workspaceFolder}/coverage/coverage.json\"",
+            "presentation": {
+                "reveal": "silent",
+                "showReuseMessage": false
+            },
             "problemMatcher": []
         },
         {
