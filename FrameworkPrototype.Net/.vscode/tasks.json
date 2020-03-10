@@ -37,8 +37,19 @@
         },
         {
             "label": "coverage",
-            "type": "shell",
-            "command": "dotnet test --filter \"Category=UnitTest|Category=IntegrationTest\" ${workspaceFolder}/FrameworkPrototype.Net.sln /property:ExcludeByAttribute=GeneratedCodeAttribute /property:CollectCoverage=true /property:CoverletOutputFormat=\\\"json,lcov\\\" /property:CoverletOutput=${workspaceFolder}/coverage/ /property:MergeWith=${workspaceFolder}/coverage/coverage.json",
+            "type": "process",
+            "command": "dotnet",
+            "args": [
+                "test",
+                "--filter",
+                "\"Category=UnitTest|Category=IntegrationTest\"",
+                "${workspaceFolder}/FrameworkPrototype.Net.sln",
+                "/property:ExcludeByAttribute=GeneratedCodeAttribute",
+                "/property:CollectCoverage=true",
+                "/property:CoverletOutputFormat=json%2Clcov",
+                "/property:CoverletOutput=${workspaceFolder}/coverage/",
+                "/property:MergeWith=${workspaceFolder}/coverage/coverage.json"
+            ],
             "group": "test",
             "dependsOn": ["clean-coverage"],
             "problemMatcher": ["$msCompile"]
@@ -47,10 +58,10 @@
             "label": "clean-coverage",
             "type": "shell",
             "linux": {
-                "command": "rm -f \"${workspaceFolder}/coverage/coverage.json\"",
+                "command": "rm -f \"${workspaceFolder}\"/coverage/coverage.*",
             },
             "windows": {
-                "command": "del \"${workspaceFolder}\\coverage\\coverage.json\"",
+                "command": "del \"${workspaceFolder}\"\\coverage\\coverage.*",
             },
             "presentation": {
                 "reveal": "silent",
@@ -59,15 +70,25 @@
             "problemMatcher": []
         },
         {
-            "label": "run UnderstandingDependencyInjection.Net",
-            "type": "shell",
-            "command": "dotnet run --project \"${workspaceFolder}/UnderstandingDependencyInjection.Net/UnderstandingDependencyInjection.Net.csproj\"",
+            "label": "run WebAPIApplication.Net",
+            "type": "process",
+            "command": "dotnet",
+            "args": [
+                "run",
+                "--project",
+                "${workspaceFolder}/WebAPIApplication.Net/WebAPIApplication.Net.csproj"
+            ],
             "problemMatcher": []
         },
         {
-            "label": "run WebAPIApplication.Net",
-            "type": "shell",
-            "command": "dotnet run --project \"${workspaceFolder}/WebAPIApplication.Net/WebAPIApplication.Net.csproj\"",
+            "label": "run UnderstandingDependencyInjection.Net",
+            "type": "process",
+            "command": "dotnet",
+            "args": [
+                "run",
+                "--project",
+                "${workspaceFolder}/UnderstandingDependencyInjection.Net/UnderstandingDependencyInjection.Net.csproj"
+            ],
             "problemMatcher": []
         }
     ]
