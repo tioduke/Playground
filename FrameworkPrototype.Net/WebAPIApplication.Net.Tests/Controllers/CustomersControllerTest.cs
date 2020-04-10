@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -66,11 +65,11 @@ namespace WebAPIApplication.Net.Tests.Controllers
         internal static async Task<ProblemDetails> ReadAsProblemDetails(this HttpContent httpContent)
         {
             var content = await httpContent.ReadAsStringAsync();
-            var details = JsonConvert.DeserializeObject<ValidationProblemDetails>(content);
+            var details = JsonConvert.DeserializeObject<ProblemDetails>(content);
 
-            return details.Errors.Any()
+            return details.Detail != null
                 ? details
-                : JsonConvert.DeserializeObject<ProblemDetails>(content);
+                : JsonConvert.DeserializeObject<ValidationProblemDetails>(content);
         }
     }
 }
