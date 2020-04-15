@@ -50,20 +50,20 @@ namespace SerializationTest.Net.Tests
             var result = ConvertToString(value);
 
             //Assert
-            Assert.Equal("00000000000001234-", result);
+            Assert.Equal(ConvertToStringLegacy(value), result);
         }
 
         [Fact]
         public void ConvertToString_ValueLessThanZeroAndFloored_ConversionOK()
         {
             //Arrange
-            var value = -12.346m;
+            var value = -12.349m;
 
             //Act
             var result = ConvertToString(value);
 
             //Assert
-            Assert.Equal("00000000000001234-", result);
+            Assert.Equal(ConvertToStringLegacy(value), result);
         }
 
         [Fact]
@@ -76,27 +76,49 @@ namespace SerializationTest.Net.Tests
             var result = ConvertToString(value);
 
             //Assert
-            Assert.Equal("00000000000001234+", result);
+            Assert.Equal(ConvertToStringLegacy(value), result);
         }
 
         [Fact]
         public void ConvertToString_ValueLGreaterThanZeroAndFloored_ConversionOK()
         {
             //Arrange
-            var value = +12.346m;
+            var value = +12.349m;
 
             //Act
             var result = ConvertToString(value);
 
             //Assert
-            Assert.Equal("00000000000001234+", result);
+            Assert.Equal(ConvertToStringLegacy(value), result);
         }
 
         private string ConvertToString(decimal value)
         {
             return new StringBuilder()
-                .Append(Convert.ToString(Math.Floor(Math.Abs(value * 100))))
-                .Append(value < 0.0m ? "-" : "+").ToString().PadLeft(18, '0');
+                .Append(Convert.ToString(Math.Floor(Math.Abs(value) * 100)))
+                .Append(value < 0.0m ? "-" : "+").ToString().PadLeft(17, '0');
+        }
+
+        private string ConvertToStringLegacy(decimal value)
+        {
+            string result;
+            string valueAsString;
+
+            if (value < 0.0m)
+            {
+                result = "-";
+                valueAsString = value.ToString().Replace("-", "");
+            }
+            else
+            {
+                result = "+";
+                valueAsString = value.ToString().Replace("+", "");
+            }
+
+            result = Convert.ToString(Math.Floor(Convert.ToDecimal(valueAsString) * 100)) + result;
+            result = result.PadLeft(17, '0');
+
+            return result;
         }
     }
 }
