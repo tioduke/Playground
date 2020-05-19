@@ -20,7 +20,7 @@ namespace WebAPIApplication.Net.Tests.Controllers
         }
 
         [Fact, SystemTest]
-        public async Task Get_TooManyResults_RetunsRequestedRangeNotSatisfiable()
+        public async Task Get_TooManyResults_ReturnsRequestedRangeNotSatisfiable()
         {
             //Arrange
 
@@ -36,7 +36,7 @@ namespace WebAPIApplication.Net.Tests.Controllers
        }
 
         [Fact, SystemTest]
-        public async Task Post_InvalidCustomer_RetunsBadRequest()
+        public async Task Post_InvalidCustomer_ReturnsBadRequest()
         {
             //Arrange
             var customer = new Customer();

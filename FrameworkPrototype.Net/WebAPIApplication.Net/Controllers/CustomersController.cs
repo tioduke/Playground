@@ -17,13 +17,13 @@ namespace WebAPIApplication.Net.Controllers
         private readonly IWritableRepository<Customer, CustomerCriteria> _customerWritableRepository;
 
         public CustomersController(IReadableRepository<Customer, CustomerCriteria> customerReadableRepository,
-                                  IWritableRepository<Customer, CustomerCriteria> customerWritableRepository)
+                                   IWritableRepository<Customer, CustomerCriteria> customerWritableRepository)
         {
             _customerReadableRepository = customerReadableRepository;
             _customerWritableRepository = customerWritableRepository;
         }
 
-        // GET api/customer
+        // GET api/customers
         [HttpGet]
         [TypeFilter(typeof(ValidateMaxItemsFilter))]
         public async Task<IEnumerable<Customer>> Get()
@@ -32,7 +32,7 @@ namespace WebAPIApplication.Net.Controllers
             return await _customerReadableRepository.FindMany(criteria);
         }
 
-        // GET api/customer/5
+        // GET api/customers/5
         [HttpGet("{id}")]
         public async Task<Customer> Get([Range(1, 1000)]int id)
         {
@@ -43,7 +43,7 @@ namespace WebAPIApplication.Net.Controllers
             return await _customerReadableRepository.Find(criteria);
         }
 
-        // GET api/customer/code/A
+        // GET api/customers/code/A
         [HttpGet("code/{customerCode}")]
         [TypeFilter(typeof(ValidateMaxItemsFilter))]
         public async Task<IEnumerable<Customer>> Get(string customerCode)
@@ -55,14 +55,14 @@ namespace WebAPIApplication.Net.Controllers
             return await _customerReadableRepository.FindMany(criteria);
         }
 
-        // POST api/customer
+        // POST api/customers
         [HttpPost]
         public async Task Post([FromBody]Customer value)
         {
             await _customerWritableRepository.Insert(value);
         }
 
-        // PUT api/customer/5
+        // PUT api/customers/5
         [HttpPut("{id}")]
         public async Task Put(int id, [FromBody]Customer value)
         {
@@ -79,7 +79,7 @@ namespace WebAPIApplication.Net.Controllers
             await _customerWritableRepository.Update(entity);
         }
 
-        // DELETE api/customer/5
+        // DELETE api/customers/5
         [HttpDelete("{id}")]
         public async Task Delete(int id)
         {
