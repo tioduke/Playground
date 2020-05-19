@@ -8,8 +8,8 @@ namespace WebAPIApplication.Net.Tests.Routing
 {
     public class CustomersControllerTest
     {
-        [Fact, SystemTest]
-        public void Get_ValidRoute_CallsCorrespondingControllerAction()
+        [Fact, IntegrationTest]
+        public void Get_ValidRouteWithId_CallsCorrespondingControllerAction()
         {
             //Arrange
 

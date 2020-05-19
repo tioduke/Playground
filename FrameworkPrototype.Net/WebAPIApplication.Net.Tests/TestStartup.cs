@@ -3,12 +3,10 @@ using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MyTested.AspNetCore.Mvc;
+using NSubstitute;
 
-using DataAccess.Net.Implementation;
-using DataAccess.Net.Implementation.Sqlite;
 using DataAccess.Net.Interfaces;
 using WebAPIApplication.Net.Entities;
-using WebAPIApplication.Net.Repositories;
 
 namespace WebAPIApplication.Net.Tests
 {
@@ -33,7 +31,7 @@ namespace WebAPIApplication.Net.Tests
             // Call the base ConfigureServices method to register all your web application services.
             base.ConfigureServices(services);
 
-            // Add the 'MyTested.AspNetCore.Mvc' testing infrastructure afterward.
+            // Add the 'MyTested.AspNetCore.Mvc' testing infrastructure afterwards.
             // For API scenarios without views.
             services.AddControllersTesting();
 
@@ -46,10 +44,10 @@ namespace WebAPIApplication.Net.Tests
             base.ConfigureContainer(builder);
 
             // Replace all services which need to be mocked in the container.
-            builder.RegisterInstance(new SqliteCtrlAccesDB("bidon")).As<ICtrlAccesDB>();
-            builder.RegisterType<DapperExecutor>().As<IDbExecutor>();
-            builder.RegisterType<CustomerRepository>().As<IReadableRepository<Customer, CustomerCriteria>>();
-            builder.RegisterType<CustomerRepository>().As<IWritableRepository<Customer, CustomerCriteria>>();
+            var readableRepository = Substitute.For<IReadableRepository<Customer, CustomerCriteria>>();
+            var writableRepository = Substitute.For<IWritableRepository<Customer, CustomerCriteria>>();
+            builder.RegisterInstance(readableRepository).As<IReadableRepository<Customer, CustomerCriteria>>();
+            builder.RegisterInstance(writableRepository).As<IWritableRepository<Customer, CustomerCriteria>>();
         }
     }
 }
