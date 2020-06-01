@@ -48,7 +48,9 @@
                 "/property:CollectCoverage=true",
                 "/property:CoverletOutputFormat=json%2Clcov",
                 "/property:CoverletOutput=${workspaceFolder}/coverage/",
-                "/property:MergeWith=${workspaceFolder}/coverage/coverage.json"
+                "/property:MergeWith=${workspaceFolder}/coverage/coverage.json",
+                "-nr=false",
+                "-m:1"
             ],
             "group": "test",
             "dependsOn": ["clean-coverage"],
