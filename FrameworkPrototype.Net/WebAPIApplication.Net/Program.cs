@@ -1,5 +1,5 @@
+using System;
 using System.IO;
-using System.Reflection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -12,8 +12,7 @@ namespace WebAPIApplication.Net
         public static void Main(string[] args)
         {
             //set the working directory (for the DataSource)
-            var assemblyDirectory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            Directory.SetCurrentDirectory(assemblyDirectory);
+            Directory.SetCurrentDirectory(AppContext.BaseDirectory);
 
             CreateWebHostBuilder(args).Build().Run();
         }
