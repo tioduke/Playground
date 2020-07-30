@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.Serialization;
 using Microsoft.AspNetCore.Http;
 
 namespace WebAPIApplication.Net.Exceptions
@@ -11,6 +12,11 @@ namespace WebAPIApplication.Net.Exceptions
 
         public TooManyResultsException(string message)
             : base(message)
+        {
+        }
+
+        private TooManyResultsException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
     }
