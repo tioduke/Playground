@@ -1,11 +1,8 @@
 using System;
 using Autofac;
-using Autofac.Features.AttributeFilters;
 using Microsoft.Extensions.DependencyInjection;
 
 using Configuration.Net.Extensions;
-using UnderstandingDependencyInjection.Net.Implementation;
-using UnderstandingDependencyInjection.Net.Interfaces;
 
 namespace UnderstandingDependencyInjection.Net
 {
@@ -17,11 +14,9 @@ namespace UnderstandingDependencyInjection.Net
 
             var builder = new ContainerBuilder();
 
-            builder.ConfigureIOC(configuration, "autofac")
-                   .ConfigureOptions<Config>(configuration, "config")
-                   .RegisterType<Worker>().As<IWorker>().WithAttributeFiltering();
-
-            return builder.GetServiceProvider();
+            return builder.ConfigureIOC(configuration, "autofac")
+                .ConfigureOptions<Config>(configuration, "config")
+                .GetServiceProvider();
         }
     }
 }
