@@ -18,7 +18,7 @@ namespace UnderstandingDependencyInjection.Net.Implementation
 
         public async Task­<IEnumerable<Customer>> GetCustomers()
         {
-            return  await _otherCustomerRepository.FindMany();
+            return await _otherCustomerRepository.FindMany();
         }
     }
 }

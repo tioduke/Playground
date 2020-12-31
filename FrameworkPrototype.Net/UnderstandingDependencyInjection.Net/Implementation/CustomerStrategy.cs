@@ -18,7 +18,7 @@ namespace UnderstandingDependencyInjection.Net.Implementation
 
         public async Task­<IEnumerable<Customer>> GetCustomers()
         {
-            return  await _customerRepository.FindMany(new CustomerCriteria { CustomerCode = "A" });
+            return await _customerRepository.FindMany(new CustomerCriteria { CustomerCode = "A" });
         }
     }
 }
