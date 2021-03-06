@@ -1,3 +1,4 @@
+using BundlerMinifier.TagHelpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,11 @@ namespace WebApplication.Net
                     .AddNewtonsoftJson();
 
             services.AddSession();
+
+            services.AddBundles(options =>
+            {
+                options.AppendVersion = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

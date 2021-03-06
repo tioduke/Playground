@@ -4,9 +4,12 @@
         {
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/WebApplication.Net/bin/Debug/netcoreapp2.2/WebApplication.Net.dll",
+            "program": "${workspaceFolder}/WebApplication.Net/bin/Debug/netcoreapp3.1/WebApplication.Net.dll",
             "args": [],
             "cwd": "${workspaceFolder}/WebApplication.Net",
             "stopAtEntry": false,

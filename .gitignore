@@ -18,6 +18,9 @@ solution-explorer/
 coverage/
 lcov.info
 
+# Don't include bundled files in git
+**/wwwroot/bundles
+
 # ignore all files ending with ~
 *~ 
 
