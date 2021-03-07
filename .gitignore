@@ -43,11 +43,12 @@ lcov.info
 [Rr]eleases/
 x64/
 x86/
+!wwwroot/lib/**/build
 build/
 bld/
 [Bb]in/
 [Oo]bj/
-!wwwroot/lib/**/build
+
 
 # Visual Studio 2015 cache/options directory
 .vs/
