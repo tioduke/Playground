@@ -21,7 +21,7 @@ namespace WebApplication.Net.Customers.Controllers
         {
             Customer obj = new Customer();
             obj.CustomerCode = "c001";
-            return Json(obj/*, JsonRequestBehavior.AllowGet*/);
+            return Json(obj);
         }
 
         // GET: /Customers/Json/Index
