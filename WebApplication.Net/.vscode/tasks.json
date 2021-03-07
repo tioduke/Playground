@@ -45,6 +45,17 @@
             "command": "dotnet",
             "args": [
                 "test",
+                "${workspaceFolder}/WebApplication.Net.sln"
+            ],
+            "group": "test",
+            "problemMatcher": ["$msCompile"]
+        },
+        {
+            "label": "coverage",
+            "type": "process",
+            "command": "dotnet",
+            "args": [
+                "test",
                 "--filter",
                 "\"Category=UnitTest|Category=IntegrationTest\"",
                 "${workspaceFolder}/WebApplication.Net.sln",
