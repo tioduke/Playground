@@ -3,43 +3,61 @@
     "tasks": [
         {
             "label": "build",
-            "command": "dotnet",
             "type": "process",
+            "command": "dotnet",
             "args": [
                 "build",
                 "${workspaceFolder}/WebApplication.Net.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": ["$msCompile"]
         },
         {
             "label": "clean",
-            "command": "dotnet",
             "type": "process",
+            "command": "dotnet",
             "args": [
                 "clean",
-                "${workspaceFolder}/WebApplication.Net.sln",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "${workspaceFolder}/WebApplication.Net.sln"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": ["$msCompile"]
         },
         {
             "label": "test",
-            "command": "dotnet",
             "type": "process",
+            "command": "dotnet",
             "args": [
                 "test",
+                "--filter",
+                "\"Category=UnitTest|Category=IntegrationTest\"",
                 "${workspaceFolder}/WebApplication.Net.sln",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary",
+                "/property:ExcludeByAttribute=GeneratedCodeAttribute",
                 "/property:CollectCoverage=true",
-                "/property:CoverletOutputFormat=lcov",
-                "/property:CoverletOutput=coverage/lcov.info"
+                "/property:CoverletOutputFormat=json%2Clcov",
+                "/property:CoverletOutput=${workspaceFolder}/coverage/",
+                "/property:MergeWith=${workspaceFolder}/coverage/coverage.json",
+                "-nr:false",
+                "-m:1"
             ],
             "group": "test",
-            "problemMatcher": "$msCompile"
+            "dependsOn": ["clean-coverage"],
+            "problemMatcher": ["$msCompile"]
+        },
+        {
+            "label": "clean-coverage",
+            "type": "shell",
+            "linux": {
+                "command": "rm -f \"${workspaceFolder}\"/coverage/coverage.*",
+            },
+            "windows": {
+                "command": "del \"${workspaceFolder}\"\\coverage\\coverage.*",
+            },
+            "presentation": {
+                "reveal": "silent",
+                "showReuseMessage": false
+            },
+            "problemMatcher": []
         },
         {
             "label": "run",
