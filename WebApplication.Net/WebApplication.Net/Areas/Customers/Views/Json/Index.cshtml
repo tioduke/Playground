@@ -34,7 +34,7 @@
 
             $.post(url, {customer: JSON.stringify(_model)}, function(data) {
                 $('#popupContainer').html(data);
-    
+
                 $('#popupModal').modal('show');
             });
         }

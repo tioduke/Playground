@@ -37,7 +37,6 @@ namespace WebApplication.Net
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
