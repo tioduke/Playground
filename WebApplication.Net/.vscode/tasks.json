@@ -11,7 +11,23 @@
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
+            "dependsOn": ["clean-bundles"],
             "problemMatcher": ["$msCompile"]
+        },
+        {
+            "label": "clean-bundles",
+            "type": "shell",
+            "linux": {
+                "command": "rm -f \"${workspaceFolder}\"/WebApplication.Net/wwwroot/bundles/*",
+            },
+            "windows": {
+                "command": "del \"${workspaceFolder}\"\\WebApplication.Net\\wwwroot\\bundles\\*",
+            },
+            "presentation": {
+                "reveal": "silent",
+                "showReuseMessage": false
+            },
+            "problemMatcher": []
         },
         {
             "label": "clean",
