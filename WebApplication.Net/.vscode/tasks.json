@@ -21,11 +21,6 @@
                 "command": "rm -f \"${workspaceFolder}\"/WebApplication.Net/wwwroot/bundles/*",
             },
             "windows": {
-                "options": {
-                    "shell": {
-                        "executable": "cmd.exe"
-                    }
-                },
                 "command": "del \"${workspaceFolder}\"\\WebApplication.Net\\wwwroot\\bundles\\*",
             },
             "presentation": {
@@ -83,11 +78,6 @@
                 "command": "rm -f \"${workspaceFolder}\"/coverage/coverage.*",
             },
             "windows": {
-                "options": {
-                    "shell": {
-                        "executable": "cmd.exe"
-                    }
-                },
                 "command": "del \"${workspaceFolder}\"\\coverage\\coverage.*",
             },
             "presentation": {
