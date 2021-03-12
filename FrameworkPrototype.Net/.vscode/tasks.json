@@ -63,6 +63,11 @@
                 "command": "rm -f \"${workspaceFolder}\"/coverage/coverage.*",
             },
             "windows": {
+                "options": {
+                    "shell": {
+                        "executable": "cmd.exe"
+                    }
+                },
                 "command": "del \"${workspaceFolder}\"\\coverage\\coverage.*",
             },
             "presentation": {
