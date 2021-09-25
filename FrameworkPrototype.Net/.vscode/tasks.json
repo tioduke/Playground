@@ -63,7 +63,12 @@
                 "command": "rm -f \"${workspaceFolder}\"/coverage/coverage.*",
             },
             "windows": {
-                "command": "del \"${workspaceFolder}\"\\coverage\\coverage.*",
+                "options": {
+                    "shell": {
+                        "executable": "PowerShell"
+                    }
+                },
+                "command": "Remove-Item \"${workspaceFolder}\"\\coverage\\coverage.*",
             },
             "presentation": {
                 "reveal": "silent",
