@@ -24,7 +24,7 @@
   <ItemGroup>
     <PackageReference Include="Autofac.Configuration" Version="6.0.0"/>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0"/>
-    <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="6.1.0"/>
+    <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="6.2.0"/>
     <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="5.0.0"/>
   </ItemGroup>
 
