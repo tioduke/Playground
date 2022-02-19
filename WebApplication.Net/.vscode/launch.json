@@ -10,7 +10,7 @@
             },
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/WebApplication.Net/bin/Debug/netcoreapp5.0/WebApplication.Net.dll",
+            "program": "${workspaceFolder}/WebApplication.Net/bin/Debug/netcoreapp6.0/WebApplication.Net.dll",
             "args": [],
             "cwd": "${workspaceFolder}/WebApplication.Net",
             "console": "internalConsole",
