@@ -112,7 +112,7 @@ namespace DataAccess.Net.Tests
                 Assert.Equal(11.14m, entity2.Amount);
                 Assert.Equal(new DateTime(1934, 2, 3), entity2.BirthDate);
                 Assert.Equal(new DateTime(2017, 4, 1), entity2.OtherDate);
-                Assert.Equal(1, entity2.Addresses.Count);
+                Assert.Single(entity2.Addresses);
                 var address3 = entity2.Addresses.SingleOrDefault(x => x.Id == 4L);
                 Assert.Equal("204 rue de La Gaule", address3.AdressValue);
 
