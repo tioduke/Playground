@@ -1,10 +1,9 @@
 using System;
-using System.Runtime.Serialization;
 using Microsoft.AspNetCore.Http;
 
 namespace WebAPIApplication.Net.Exceptions
 {
-    [Serializable]
+
     public sealed class TooManyResultsException : Exception
     {
         public string Title => "Too many results";
@@ -12,11 +11,6 @@ namespace WebAPIApplication.Net.Exceptions
 
         public TooManyResultsException(string message)
             : base(message)
-        {
-        }
-
-        private TooManyResultsException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
         {
         }
     }
