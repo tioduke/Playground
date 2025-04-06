@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
@@ -29,7 +29,7 @@
     <PackageReference Include="Autofac.Configuration" Version="7.0.0"/>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0"/>
     <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="6.5.1"/>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="8.0.1"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="9.0.3"/>
   </ItemGroup>
 
 </Project>
