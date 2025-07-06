@@ -56,7 +56,7 @@ namespace WebApplication.Net.Customers.Controllers
         {
             if (ModelState.IsValid)
             {
-                obj.CustomerUrl = _urlHelper.Action("DisplayCustomer", "Customers", new { area = "Customer" });
+                obj.CustomerUrl = CreateUrl("DisplayCustomer", "Customer");
                 return View("DisplayCustomer", obj);
             }
             else
@@ -72,7 +72,7 @@ namespace WebApplication.Net.Customers.Controllers
             Customer objCustomer = Customers.Find(x => x.Id == id);
             if (objCustomer == null) objCustomer = Customers.Find(x => x.Id == 0);
 
-            objCustomer.CustomerUrl = _urlHelper.Action("DisplayCustomer", "Customers", new { area = "Customer" });
+            objCustomer.CustomerUrl = CreateUrl("DisplayCustomer", "Customer");
             return DisplayCustomer(objCustomer);
         }
 
@@ -82,6 +82,11 @@ namespace WebApplication.Net.Customers.Controllers
             return (obj.NAS == null || obj.Amount > 0.0m)
                 ? Json(true/*, JsonRequestBehavior.AllowGet*/)
                 : Json(false/*, JsonRequestBehavior.AllowGet*/);
+        }
+
+        private string CreateUrl(string action, string controller)
+        {
+            return _urlHelper.Action(action, controller, new { area = "Customers" }, _urlHelper.ActionContext.HttpContext.Request.Scheme);
         }
     }
 }
