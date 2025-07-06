@@ -9,10 +9,13 @@ namespace WebApplication.Net.Customers.Controllers
     [Area("Customers")]
     public class CustomerController : Controller
     {
-        List<Customer> Customers = new List<Customer>();
+        private readonly IUrlHelper _urlHelper;
+        private List<Customer> Customers = new List<Customer>();
 
-        public CustomerController()
+        public CustomerController(IUrlHelper urlHelper)
         {
+            _urlHelper = urlHelper;
+
             Customer obj1 = new Customer();
             obj1.Id = 12;
             obj1.CustomerCode = "1001";
@@ -53,6 +56,7 @@ namespace WebApplication.Net.Customers.Controllers
         {
             if (ModelState.IsValid)
             {
+                obj.CustomerUrl = _urlHelper.Action("DisplayCustomer", "Customers", new { area = "Customer" });
                 return View("DisplayCustomer", obj);
             }
             else
@@ -68,13 +72,14 @@ namespace WebApplication.Net.Customers.Controllers
             Customer objCustomer = Customers.Find(x => x.Id == id);
             if (objCustomer == null) objCustomer = Customers.Find(x => x.Id == 0);
 
+            objCustomer.CustomerUrl = _urlHelper.Action("DisplayCustomer", "Customers", new { area = "Customer" });
             return DisplayCustomer(objCustomer);
         }
 
         // GET: /Customers/Customer/IsAmountValide
         public JsonResult IsAmountValide(Customer obj)
         {
-            return (obj.NAS == null || obj.Amount > 0)
+            return (obj.NAS == null || obj.Amount > 0.0m)
                 ? Json(true/*, JsonRequestBehavior.AllowGet*/)
                 : Json(false/*, JsonRequestBehavior.AllowGet*/);
         }

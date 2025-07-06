@@ -17,7 +17,7 @@ namespace WebApplication.Net.Customers.Models
 
         [StringLength(40)]
         public string CustomerName { get; set; }
-        
+
         [NasValidation]
         public string NAS { get; set; }
 
@@ -32,5 +32,7 @@ namespace WebApplication.Net.Customers.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? OtherDate { get; set; }
+        
+        public string CustomerUrl { get; set; }
     }
 }

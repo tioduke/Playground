@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
+using NSubstitute;
 using Xunit;
 using Xunit.Categories;
 
@@ -11,6 +13,15 @@ namespace WebApplication.Net.Tests
 {
     public class CustomerControllerTest
     {
+        private readonly IUrlHelper _urlHelper;
+
+        public CustomerControllerTest()
+        {
+            _urlHelper = Substitute.For<IUrlHelper>();
+
+            _urlHelper.Action(Arg.Any<UrlActionContext>()).Returns("http://example.net");
+        }
+
         [Fact, UnitTest]
         public void DisplayCustomer_Success()
         {
@@ -24,7 +35,7 @@ namespace WebApplication.Net.Tests
             objCustomer.BirthDate = null;
             objCustomer.OtherDate = null;
 
-            CustomerController controller = new CustomerController();
+            CustomerController controller = new CustomerController(_urlHelper);
 
             // Act
             ViewResult result = controller.DisplayCustomer(objCustomer) as ViewResult;
