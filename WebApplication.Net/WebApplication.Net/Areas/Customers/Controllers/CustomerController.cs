@@ -86,7 +86,7 @@ namespace WebApplication.Net.Customers.Controllers
 
         private string CreateUrl(string action, string controller)
         {
-            return _urlHelper.Action(action, controller, new { area = "Customers" }, _urlHelper.ActionContext.HttpContext.Request.Scheme);
+            return Url.Action(action, controller, new { area = "Customers" }, HttpContext.Request.Scheme);
         }
     }
 }

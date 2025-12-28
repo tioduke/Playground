@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-using WebApplication.Net.Helpers;
-
 namespace WebApplication.Net
 {
     public class Startup
@@ -17,8 +15,7 @@ namespace WebApplication.Net
             services.AddControllersWithViews()
                     .AddNewtonsoftJson();
 
-            services.AddSession()
-                    .AddUrlHelperProxy();
+            services.AddSession();
 
             services.AddBundles(options =>
             {
