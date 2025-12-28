@@ -1,8 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <AllowMissingPrunePackageData>true</AllowMissingPrunePackageData>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -29,7 +30,7 @@
     <PackageReference Include="Autofac.Configuration" Version="7.0.0"/>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="10.0.0"/>
     <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="6.5.1"/>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="9.0.10"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Xml" Version="10.0.1"/>
   </ItemGroup>
 
 </Project>
