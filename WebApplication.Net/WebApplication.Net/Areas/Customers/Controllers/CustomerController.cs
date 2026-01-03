@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
 using WebApplication.Net.Customers.Models;
+using WebApplication.Net.Helpers;
 
 namespace WebApplication.Net.Customers.Controllers
 {
     [Area("Customers")]
     public class CustomerController : Controller
     {
-        private readonly IUrlHelper _urlHelper;
+        private readonly IActionLinkGenerator _actionLinkGenerator;
         private List<Customer> Customers = new List<Customer>();
 
-        public CustomerController(IUrlHelper urlHelper)
+        public CustomerController(IActionLinkGenerator actionLinkGenerator)
         {
-            _urlHelper = urlHelper;
+            _actionLinkGenerator = actionLinkGenerator;
 
             Customer obj1 = new Customer();
             obj1.Id = 12;
@@ -86,7 +87,7 @@ namespace WebApplication.Net.Customers.Controllers
 
         private string CreateUrl(string action, string controller)
         {
-            return Url.Action(action, controller, new { area = "Customers" }, HttpContext.Request.Scheme);
+            return _actionLinkGenerator.ActionLink(action, controller, new { area = "Customers" });
         }
     }
 }

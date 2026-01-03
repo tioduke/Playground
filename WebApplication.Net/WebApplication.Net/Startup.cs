@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebApplication.Net.Helpers;
 
 namespace WebApplication.Net
 {
@@ -15,7 +16,8 @@ namespace WebApplication.Net
             services.AddControllersWithViews()
                     .AddNewtonsoftJson();
 
-            services.AddSession();
+            services.AddSession()
+                    .AddActionLinkGenerator();
 
             services.AddBundles(options =>
             {
