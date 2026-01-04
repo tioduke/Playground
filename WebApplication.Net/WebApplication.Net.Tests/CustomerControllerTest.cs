@@ -8,18 +8,19 @@ using Xunit.Categories;
 
 using WebApplication.Net.Customers.Controllers;
 using WebApplication.Net.Customers.Models;
+using WebApplication.Net.Helpers;
 
 namespace WebApplication.Net.Tests
 {
     public class CustomerControllerTest
     {
-        private readonly IUrlHelper _urlHelper;
+        private readonly IActionLinkGenerator _actionLinkGenerator;
 
         public CustomerControllerTest()
         {
-            _urlHelper = Substitute.For<IUrlHelper>();
+            _actionLinkGenerator = Substitute.For<IActionLinkGenerator>();
 
-            _urlHelper.Action(Arg.Any<UrlActionContext>()).Returns("http://example.net");
+            _actionLinkGenerator.ActionLink(Arg.Any<string>(), Arg.Any<string>(), Arg.Any<object>()).Returns("http://example.net");
         }
 
         [Fact, UnitTest]
@@ -35,7 +36,7 @@ namespace WebApplication.Net.Tests
             objCustomer.BirthDate = null;
             objCustomer.OtherDate = null;
 
-            CustomerController controller = new CustomerController(_urlHelper);
+            CustomerController controller = new CustomerController(_actionLinkGenerator);
 
             // Act
             ViewResult result = controller.DisplayCustomer(objCustomer) as ViewResult;
